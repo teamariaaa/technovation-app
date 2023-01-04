@@ -38,7 +38,6 @@ const LoginScreen = ({ navigation }: any) => {
                 style={inputStyle}
                 label="Email"
                 value={email}
-                autoComplete={false}
                 onChangeText={(email: string) => setEmail(email)}
             />
             <TextInput
@@ -47,7 +46,6 @@ const LoginScreen = ({ navigation }: any) => {
                 style={inputStyle}
                 secureTextEntry={hidePassword}
                 value={password}
-                autoComplete={false}
                 onChangeText={(password) => setPassword(password)}
                 right={<TextInput.Icon name="eye" onPress={() => setHidePassword(!hidePassword)} />}
             />

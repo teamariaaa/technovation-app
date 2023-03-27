@@ -10,17 +10,17 @@ import {
 import { StyleProp, View, ViewStyle } from "react-native";
 import { Button, TextInput } from "react-native-paper";
 
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
+// const app = initializeApp(firebaseConfig);
+// const auth = getAuth(app);
 
 const LoginScreen = ({ navigation }: any) => {
 
-    onAuthStateChanged(auth, user => {
-        if (user != null) {
-            AsyncStorage.setItem('@user', JSON.stringify(user))
-                .then(() => navigation.navigate('Main'));
-        }
-    });
+    // onAuthStateChanged(auth, user => {
+    //     if (user != null) {
+    //         AsyncStorage.setItem('@user', JSON.stringify(user))
+    //             .then(() => navigation.navigate('Main'));
+    //     }
+    // });
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -47,10 +47,10 @@ const LoginScreen = ({ navigation }: any) => {
                 secureTextEntry={hidePassword}
                 value={password}
                 onChangeText={(password) => setPassword(password)}
-                right={<TextInput.Icon name="eye" onPress={() => setHidePassword(!hidePassword)} />}
+                right={<TextInput.Icon icon="eye" onPress={() => setHidePassword(!hidePassword)} />}
             />
             <Button mode="outlined" style={{ alignSelf: 'center' }}
-                onPress={() => signInWithEmailAndPassword(auth, email, password)}
+                onPress={() => navigation.navigate('Main')}
             >Login</Button>
         </View>
     );

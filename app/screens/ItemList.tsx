@@ -3,20 +3,20 @@ import MainLayout from "./Layout";
 import { getFirestore, onSnapshot, collection } from 'firebase/firestore';
 import { Button, DataTable } from "react-native-paper";
 
-const db = getFirestore();
+// const db = getFirestore();
 
 const ItemListScreen = ({ navigation }: any) => {
 
         const [data, setData] = useState<{ id?: string, label: string, quantity: number }[]>([]);
 
-        useEffect(() => {
-                const unsubscribe = onSnapshot(
-                        collection(db, 'items'),
-                        snapshot => {
-                                setData(snapshot.docs.map(d => ({ ...d.data() as any, id: d.id })))
-                        });
-                return () => unsubscribe();
-        }, [data]);
+        // useEffect(() => {
+        //         const unsubscribe = onSnapshot(
+        //                 collection(db, 'items'),
+        //                 snapshot => {
+        //                         setData(snapshot.docs.map(d => ({ ...d.data() as any, id: d.id })))
+        //                 });
+        //         return () => unsubscribe();
+        // }, [data]);
         /**
          https://callstack.github.io/react-native-paper/data-table.html
          */

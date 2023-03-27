@@ -11,8 +11,8 @@ import { initializeApp } from "firebase/app";
 import firebaseConfig from "../../firebase-config.json";
 import { useNavigation } from "@react-navigation/native";
 
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
+// const app = initializeApp(firebaseConfig);
+// const auth = getAuth(app);
 
 const MainLayout = ({ children }: any) => {
 
@@ -20,26 +20,15 @@ const MainLayout = ({ children }: any) => {
 
     const navigation = useNavigation() as any;
 
-    useEffect(() => {
-        const fetchUser = async () => {
-            const storedUser = await AsyncStorage.getItem('@user');
-            if (!!storedUser) {
-                setUser(JSON.parse(storedUser));
-            }
-        }
-        fetchUser();
-    }, [])
 
     return (
-        user ? <SafeAreaView>
+     <SafeAreaView>
             <Appbar.Header>
-                <Appbar.Content title={`Welcome, ${user.displayName || user.email}`} />
-                <Appbar.Action icon="logout" onPress={async () => { await signOut(auth); navigation.navigate('Login') }} />
+                <Appbar.Content title={`Welcome, Ghita`} />
+                <Appbar.Action icon="logout" onPress={async () => {}} />
             </Appbar.Header>
-            <View style={{ alignSelf: 'stretch', backgroundColor: 'pink', height: '80%', display: 'flex', flexDirection: 'column' }}>{children}</View>
-
-        </SafeAreaView> :
-            <ActivityIndicator />
+            <View style={{ alignSelf: 'stretch', backgroundColor: 'blue', height: '80%', display: 'flex', flexDirection: 'column' }}>{children}</View>
+    </SafeAreaView>
     );
 }
 

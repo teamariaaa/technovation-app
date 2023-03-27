@@ -3,6 +3,7 @@ import Icon from "@expo/vector-icons/MaterialCommunityIcons";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeScreen from "./Home";
 import ItemScreen from "./Items";
+import ProfileScreen from "./ProfilePage";
 
 //https://reactnavigation.org/docs/tab-based-navigation
 const Tab = createBottomTabNavigator();
@@ -18,6 +19,17 @@ const MainNavigator = () => (
                 tabBarLabel: 'Home',
                 tabBarIcon: ({ color }) => (
                     <Icon name="home" color={color} size={26} />
+                ),
+            }}
+        />
+        <Tab.Screen
+            name="Profile"
+            component={ProfileScreen}
+            options={{
+                headerShown: false,
+                tabBarLabel: 'Profile',
+                tabBarIcon: ({ color }) => (
+                    <Icon name="account" color={color} size={26} />
                 ),
             }}
         />

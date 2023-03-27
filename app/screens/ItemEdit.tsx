@@ -9,7 +9,7 @@ const inputStyle: StyleProp<ViewStyle> = {
         margin: 20
 };
 
-const db = getFirestore();
+// const db = getFirestore();
 
 const ItemEditScreen = ({ navigation, route }: any) => {
         const [item, setItem] = useState<{ label: string, quantity: number, id?: string }>(route.params?.item || {})
@@ -31,7 +31,7 @@ const ItemEditScreen = ({ navigation, route }: any) => {
                         onChangeText={(quantity: string) => setItem({ ...item, quantity: Number(quantity) })}
                 />
 
-                <Button mode="outlined" style={{ alignSelf: 'center' }}
+                {/* <Button mode="outlined" style={{ alignSelf: 'center' }}
                         onPress={async () => {
                                 if (item.id) {
                                         await setDoc(doc(db, 'items', item.id), { label: item.label, quantity: item.quantity });
@@ -40,7 +40,7 @@ const ItemEditScreen = ({ navigation, route }: any) => {
                                 }
                                 navigation.navigate('ItemList');
                         }}
-                >Save</Button>
+                >Save</Button> */}
         </MainLayout>
 }
 

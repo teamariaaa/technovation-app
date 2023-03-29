@@ -6,14 +6,13 @@ import { Paragraph } from "react-native-paper";
 const Stack = createNativeStackNavigator();
 
 const HomeScreen = ({ navigation }: any) => {
+  const [data, setData] = useState<{ label: string; quantity: number }[]>();
 
-    const [data, setData] = useState<{ label: string, quantity: number }[]>();
-
-    return (
-        <MainLayout>
-            <Paragraph>Hello!</Paragraph>
-       </MainLayout>
-    );
-}
+  return (
+    <MainLayout>
+      <Paragraph>Teo e </Paragraph>
+    </MainLayout>
+  );
+};
 
 export default HomeScreen;

@@ -15,8 +15,9 @@ import {
   StyleSheet,
   Image,
   Text,
+  DropShadow,
 } from "react-native";
-import { Button, Paragraph, TextInput } from "react-native-paper";
+import { Button, Paragraph, TextInput, Surface } from "react-native-paper";
 import { red100 } from "react-native-paper/lib/typescript/src/styles/themes/v2/colors";
 
 // const app = initializeApp(firebaseConfig);
@@ -50,8 +51,9 @@ const GetStarted = ({ navigation }: any) => {
           style={styles.img}
           source={require("../../assets/people-eating.png")}
         />
+
         <Button
-          mode="contained"
+          mode="elevated"
           style={styles.myButton}
           onPress={() => navigation.navigate("Main")}
         >
@@ -63,9 +65,9 @@ const GetStarted = ({ navigation }: any) => {
         </Button>
 
         <Button
-          mode="contained"
-          style={[styles.myButton, styles.elevation]}
-          onPress={() => navigation.navigate("Main")}
+          mode="elevated"
+          style={styles.myButton}
+          onPress={() => navigation.navigate("Login")}
         >
           <Text
             style={[styles.textBodyLarge, styles.text, styles.textSemiBold]}
@@ -101,8 +103,8 @@ const styles = StyleSheet.create({
   },
 
   img: {
-    width: win.width / 1.05,
-    height: win.width / 1.05,
+    width: win.width / 1.2,
+    height: win.width / 1.2,
     marginBottom: "20%",
   },
 
@@ -118,7 +120,7 @@ const styles = StyleSheet.create({
     color: "#333",
     borderRadius: 20,
     width: 250,
-    marginTop: "6%",
+    marginTop: "8%",
   },
 
   containerText: {
@@ -156,14 +158,12 @@ const styles = StyleSheet.create({
     fontWeight: "600",
   },
 
-  shadowProp: {
-    shadowColor: "#171717",
-    shadowOffset: { width: -2, height: 4 },
-    shadowOpacity: 0.2,
-    shadowRadius: 3,
-  },
-  elevation: {
-    elevation: 20,
-    shadowColor: "#52006A",
+  Surface: {
+    backgroundColor: "red",
+    borderRadius: 20,
+    width: 250,
+    marginTop: "8%",
+    alignItems: "center",
+    justifyContent: "center",
   },
 });

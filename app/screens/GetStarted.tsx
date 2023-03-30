@@ -15,7 +15,6 @@ import {
   StyleSheet,
   Image,
   Text,
-  DropShadow,
 } from "react-native";
 import { Button, Paragraph, TextInput, Surface } from "react-native-paper";
 import { red100 } from "react-native-paper/lib/typescript/src/styles/themes/v2/colors";
@@ -133,7 +132,7 @@ const styles = StyleSheet.create({
   },
 
   headlineBig: {
-    fontFamily: "Rubik",
+    fontFamily: "Cabin",
     fontSize: 36,
     fontWeight: "400",
     letterSpacing: 0,
@@ -143,7 +142,7 @@ const styles = StyleSheet.create({
   },
 
   textBodyLarge: {
-    fontFamily: "Rubik",
+    fontFamily: "Cabin",
     fontSize: 16,
     fontWeight: "400",
     letterSpacing: 0.15,

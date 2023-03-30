@@ -23,7 +23,7 @@ const theme = {
   ...DefaultTheme,
   colors: {
     ...DefaultTheme.colors,
-    primary: "#aac0aa",
+    primary: "#246324",
     accent: "#fff2bd",
   },
 };
@@ -31,6 +31,8 @@ const theme = {
 function App() {
   const [loaded] = useFonts({
     Rubik: require("./assets/fonts/Rubik-Regular.ttf"),
+
+    Cabin: require("./assets/fonts/Cabin-Regular.ttf"),
   });
 
   if (!loaded) {

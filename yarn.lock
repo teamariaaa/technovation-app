@@ -6300,6 +6300,13 @@ react-native-codegen@^0.71.5:
     jscodeshift "^0.13.1"
     nullthrows "^1.1.1"
 
+react-native-drop-shadow@^0.0.6:
+  version "0.0.6"
+  resolved "https://registry.npmjs.org/react-native-drop-shadow/-/react-native-drop-shadow-0.0.6.tgz"
+  integrity sha512-eIFZoU7yhr90xB0/Gfuolt/Eelk0F+ohy3piutuYFA+xJx1xtJ/t9xWaaTPwTGXK+56CTnp8mAX4VPDz464NZg==
+  dependencies:
+    logkitty "^0.7.1"
+
 react-native-gradle-plugin@^0.71.16:
   version "0.71.16"
   resolved "https://registry.npmjs.org/react-native-gradle-plugin/-/react-native-gradle-plugin-0.71.16.tgz"
@@ -6348,7 +6355,7 @@ react-native-web@^0.18.12:
     postcss-value-parser "^4.2.0"
     styleq "^0.1.2"
 
-react-native@*, "react-native@^0.0.0-0 || 0.60 - 0.71 || 1000.0.0", react-native@^0.71.4:
+react-native@*, "react-native@^0.0.0-0 || 0.60 - 0.71 || 1000.0.0", react-native@^0.71.4, react-native@>=0.61.5:
   version "0.71.4"
   resolved "https://registry.npmjs.org/react-native/-/react-native-0.71.4.tgz"
   integrity sha512-3hSYqvWrOdKhpV3HpEKp1/CkWx8Sr/N/miCrmUIAsVTSJUR7JW0VvIsrV9urDhUj/s6v2WF4n7qIEEJsmTCrPw==

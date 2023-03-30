@@ -7,6 +7,7 @@ import MainNavigator from "./app/screens/Main";
 
 import { LogBox } from "react-native";
 import GetStarted from "./app/screens/GetStarted";
+import SignUpScreen from "./app/screens/SignUp";
 
 import { useFonts } from "expo-font";
 
@@ -51,6 +52,11 @@ function App() {
           <Stack.Screen
             name="Login"
             component={LoginScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="SignUp"
+            component={SignUpScreen}
             options={{ headerShown: false }}
           />
           <Stack.Screen

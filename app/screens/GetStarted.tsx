@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { initializeApp } from "firebase/app";
-import firebaseConfig from "../../firebase-config.json";
+//import firebaseConfig from "../firebase-config.json";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import {
   getAuth,
@@ -54,7 +54,7 @@ const GetStarted = ({ navigation }: any) => {
         <Button
           mode="elevated"
           style={styles.myButton}
-          onPress={() => navigation.navigate("Main")}
+          onPress={() => navigation.navigate("SignUp")}
         >
           <Text
             style={[styles.textBodyLarge, styles.text, styles.textSemiBold]}

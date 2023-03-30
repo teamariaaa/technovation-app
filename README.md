@@ -18,7 +18,7 @@ The file should look like this:
 {
     "apiKey": "[YOUR_API_KEY]",
     "authDomain": "[YOUR_DOMAIN].firebaseapp.com",
-    "projectId": "[YOUR_PROJECT_ID]",
+    "projectId": "[YOUR_PROJECT_ID]",npm
     "storageBucket": "[YOUR_STORAGE_BUCKET].appspot.com",
     "messagingSenderId": "[YOU_GET_THE_POINT]",
     "appId": "[THIS_IS_THE_MOST_IMPORTANT_LINE]
@@ -33,3 +33,5 @@ cd react-native-firebase-seed
 npm install
 npm start
 ```
+
+"#aac0aa"

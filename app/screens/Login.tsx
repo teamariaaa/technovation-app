@@ -47,7 +47,7 @@ const LoginScreen = ({ navigation }: any) => {
 
   return (
     <View style={styles.container}>
-      <View style={[styles.upContainer, styles.text]}>
+      <View style={styles.upContainer}>
         <IconButton
           icon="keyboard-backspace"
           mode="contained-tonal"
@@ -192,11 +192,11 @@ const styles = StyleSheet.create({
   },
 
   text: {
-    color: "#333",
+    color: "#333333",
   },
 
   lightText: {
-    color: "#555",
+    color: "#555555",
   },
 
   hightlightText: {
@@ -294,14 +294,14 @@ const styles = StyleSheet.create({
   },
 
   noMargin: {
-    margin: null,
+    margin: 0,
   },
 
   noTopMargin: {
-    marginTop: null,
+    marginTop: 0,
   },
 
   noBottomMargin: {
-    marginBottom: null,
+    marginBottom: 0,
   },
 });

@@ -41,7 +41,7 @@ const GetStarted = ({ navigation }: any) => {
 
   return (
     <View style={{ backgroundColor: "#c1dbc1", flex: 1 }}>
-      <View style={[styles.container, styles.text]}>
+      <View style={styles.container}>
         <Paragraph style={[styles.headlineBig, styles.text, styles.textBold]}>
           RecoverEats
         </Paragraph>
@@ -128,7 +128,7 @@ const styles = StyleSheet.create({
   },
 
   text: {
-    color: "#333",
+    color: "#333333",
   },
 
   headlineBig: {

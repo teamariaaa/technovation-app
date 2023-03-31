@@ -1,50 +1,130 @@
 import React from "react";
-import Icon from "@expo/vector-icons/MaterialCommunityIcons";
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import Icon from "@expo/vector-icons/Octicons";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomeScreen from "./Home";
 import ItemScreen from "./Items";
 import ProfileScreen from "./ProfilePage";
+import { StyleSheet, Dimensions, View } from "react-native";
+
+import styles from "../global.styles.js";
 
 //https://reactnavigation.org/docs/tab-based-navigation
 const Tab = createBottomTabNavigator();
 
-const MainNavigator = () => (
+const win = Dimensions.get("window");
 
-    <Tab.Navigator>
-        <Tab.Screen
-            name="Home"
-            component={HomeScreen}
-            options={{
-                headerShown: false,
-                tabBarLabel: 'Home',
-                tabBarIcon: ({ color }) => (
-                    <Icon name="home" color={color} size={26} />
-                ),
-            }}
-        />
-        <Tab.Screen
-            name="Profile"
-            component={ProfileScreen}
-            options={{
-                headerShown: false,
-                tabBarLabel: 'Profile',
-                tabBarIcon: ({ color }) => (
-                    <Icon name="account" color={color} size={26} />
-                ),
-            }}
-        />
-        <Tab.Screen
-            name="Items"
-            component={ItemScreen}
-            options={{
-                headerShown: false,
-                tabBarLabel: 'Items',
-                tabBarIcon: ({ color }) => (
-                    <Icon name="table" color={color} size={26} />
-                ),
-            }}
-        />       
-    </Tab.Navigator>
+const MainNavigator = () => (
+  <Tab.Navigator
+    screenOptions={{
+      tabBarStyle: {
+        height: 90,
+        paddingTop: 20,
+        paddingBottom: 20,
+        shadowColor: "#000",
+        shadowOffset: {
+          width: 0,
+          height: -1,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+
+        elevation: 5,
+      },
+
+      /*tabBarItemStyle: {
+        height: 60,
+        borderRadius: 30,
+        padding: 0,
+        marginLeft: (win.width / 4 - 60) / 2,
+        marginRight: (win.width / 4 - 60) / 2,
+        paddingBottom: 12,
+        paddingTop: 8,
+        marginBottom: 10,
+      },*/
+
+      tabBarActiveTintColor: "#246324",
+      tabBarInactiveTintColor: "#8DB38D",
+      //tabBarActiveBackgroundColor: "#8DB38D",
+    }}
+  >
+    <Tab.Screen
+      name="Home"
+      component={HomeScreen}
+      options={{
+        headerShown: false,
+        tabBarLabel: "Home",
+        //tabBarColor: "#8DB38D",
+        tabBarIcon: ({ color }) => (
+          <View
+            style={[
+              styles.navbavIconCircle,
+              color == "#246324" && { backgroundColor: "#fff2bd" },
+            ]}
+          >
+            <Icon name="home" color={color} size={26} />
+          </View>
+        ),
+      }}
+    />
+    <Tab.Screen
+      name="Profile"
+      component={ProfileScreen}
+      options={{
+        headerShown: false,
+        tabBarLabel: "Meals",
+        //tabBarColor: "#8DB38D",
+        tabBarIcon: ({ color }) => (
+          <View
+            style={[
+              styles.navbavIconCircle,
+              color == "#246324" && { backgroundColor: "#fff2bd" },
+            ]}
+          >
+            <Icon name="calendar" color={color} size={26} />
+          </View>
+        ),
+      }}
+    />
+    <Tab.Screen
+      name="Items"
+      component={ItemScreen}
+      options={{
+        headerShown: false,
+        tabBarLabel: "WeCare",
+        //tabBarColor: "#8DB38D",
+        tabBarIcon: ({ color }) => (
+          <View
+            style={[
+              styles.navbavIconCircle,
+              color == "#246324" && { backgroundColor: "#fff2bd" },
+            ]}
+          >
+            <Icon name="heart" color={color} size={26} />
+          </View>
+        ),
+      }}
+    />
+
+    <Tab.Screen
+      name="Mda"
+      component={ItemScreen}
+      options={{
+        headerShown: false,
+        tabBarLabel: "Profil",
+        //tabBarColor: "#8DB38D",
+        tabBarIcon: ({ color }) => (
+          <View
+            style={[
+              styles.navbavIconCircle,
+              color == "#246324" && { backgroundColor: "#fff2bd" },
+            ]}
+          >
+            <Icon name="person" color={color} size={26} />
+          </View>
+        ),
+      }}
+    />
+  </Tab.Navigator>
 );
 
 export default MainNavigator;

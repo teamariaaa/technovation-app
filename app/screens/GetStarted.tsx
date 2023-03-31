@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { initializeApp } from "firebase/app";
-import firebaseConfig from "../../firebase-config.json";
+//import firebaseConfig from "../firebase-config.json";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import {
   getAuth,
@@ -14,8 +14,9 @@ import {
   ViewStyle,
   StyleSheet,
   Image,
+  Text,
 } from "react-native";
-import { Button, Paragraph, TextInput } from "react-native-paper";
+import { Button, Paragraph, TextInput, Surface } from "react-native-paper";
 import { red100 } from "react-native-paper/lib/typescript/src/styles/themes/v2/colors";
 
 // const app = initializeApp(firebaseConfig);
@@ -39,20 +40,38 @@ const GetStarted = ({ navigation }: any) => {
   };
 
   return (
-    <View style={{ backgroundColor: "#aac0aa", flex: 1 }}>
+    <View style={{ backgroundColor: "#c1dbc1", flex: 1 }}>
       <View style={styles.container}>
-        <Paragraph style={styles.headlineSmall}>RecoverEats</Paragraph>
+        <Paragraph style={[styles.headlineBig, styles.text, styles.textBold]}>
+          RecoverEats
+        </Paragraph>
         <Image
           style={styles.img}
           source={require("../../assets/people-eating.png")}
         />
 
         <Button
-          //mode="outlined"
+          mode="elevated"
           style={styles.myButton}
-          onPress={() => navigation.navigate("Main")}
+          onPress={() => navigation.navigate("SignUp")}
         >
-          Get started
+          <Text
+            style={[styles.textBodyLarge, styles.text, styles.textSemiBold]}
+          >
+            Get started
+          </Text>
+        </Button>
+
+        <Button
+          mode="elevated"
+          style={styles.myButton}
+          onPress={() => navigation.navigate("Login")}
+        >
+          <Text
+            style={[styles.textBodyLarge, styles.text, styles.textSemiBold]}
+          >
+            Log in
+          </Text>
         </Button>
       </View>
     </View>
@@ -72,28 +91,75 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     //backgroundColor: "red",
   },
-  img: {
-    width: win.width / 1.05,
-    height: win.width / 1.05,
-    marginBottom: "30%",
+  containerRow: {
+    alignSelf: "center",
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
   },
+
+  img: {
+    width: win.width / 1.2,
+    height: win.width / 1.2,
+    marginBottom: "20%",
+  },
+
+  logoImg: {
+    width: win.width / 5,
+    height: win.width / 5,
+  },
+
   myButton: {
+    //height: 16,
     alignSelf: "center",
     backgroundColor: "#fff2bd",
+    color: "#333",
+    borderRadius: 20,
+    width: 250,
+    marginTop: "8%",
   },
 
   containerText: {
     marginTop: "30%",
     marginBottom: "10%",
   },
+  text: {
+    color: "#333333",
+  },
 
-  headlineSmall: {
-    fontFamily: "Rubik",
-    fontSize: 30,
+  headlineBig: {
+    fontFamily: "Cabin",
+    fontSize: 36,
     fontWeight: "400",
     letterSpacing: 0,
-    lineHeight: 30,
+    lineHeight: 36,
     marginTop: "30%",
     marginBottom: "15%",
+  },
+
+  textBodyLarge: {
+    fontFamily: "Cabin",
+    fontSize: 16,
+    fontWeight: "400",
+    letterSpacing: 0.15,
+    lineHeight: 24,
+  },
+
+  textBold: {
+    fontWeight: "700",
+  },
+
+  textSemiBold: {
+    fontWeight: "600",
+  },
+
+  Surface: {
+    backgroundColor: "red",
+    borderRadius: 20,
+    width: 250,
+    marginTop: "8%",
+    alignItems: "center",
+    justifyContent: "center",
   },
 });

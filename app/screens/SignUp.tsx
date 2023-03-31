@@ -24,7 +24,7 @@ import { red100 } from "react-native-paper/lib/typescript/src/styles/themes/v2/c
 const app = firebaseConfig;
 const auth = getAuth(app);
 
-const LoginScreen = ({ navigation }: any) => {
+const SignUpcreen = ({ navigation }: any) => {
   // onAuthStateChanged(auth, user => {
   //     if (user != null) {
   //         AsyncStorage.setItem('@user', JSON.stringify(user))
@@ -36,11 +36,25 @@ const LoginScreen = ({ navigation }: any) => {
   const [password, setPassword] = useState("");
   const [hidePassword, setHidePassword] = useState(true);
 
-  async function signUp() {
-    try {
-      await createUserWithEmailAndPassword(auth, email, password);
-      navigation.navigate("Main");
-    } catch (error) {}
+  // async function signUp() {
+  //   try {
+  //     await createUserWithEmailAndPassword(auth, email, password);
+  //     navigation.navigate("Main");
+  //   } catch (error) {}
+  // }
+
+  function signUp() {
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // ..
+      });
   }
 
   const inputStyle: StyleProp<ViewStyle> = {
@@ -67,12 +81,12 @@ const LoginScreen = ({ navigation }: any) => {
             styles.textCenter,
           ]}
         >
-          Sign in
+          Sign up
         </Text>
       </View>
       <View style={styles.bottomContainer}>
         <Paragraph style={[styles.headlineSmall, styles.textBold]}>
-          Welcome back
+          Welcome!
         </Paragraph>
         <Paragraph style={(styles.bodyMedium, styles.lightText)}>
           Enter your credential login
@@ -108,21 +122,21 @@ const LoginScreen = ({ navigation }: any) => {
             styles.marginButtonTop,
             styles.noBottomMargin,
           ]}
-          onPress={() => navigation.navigate("Main")}
+          onPress={() => signUp()}
         >
-          <Text style={[styles.text, styles.textBodyLarge]}>Sign in</Text>
+          <Text style={[styles.text, styles.textBodyLarge]}>Sign up</Text>
         </Button>
 
         <View style={[styles.containerRow, styles.noMargin]}>
           <Paragraph style={(styles.bodyMedium, styles.lightText)}>
-            Don't have an account?
+            Aready have an account?
           </Paragraph>
           <Button
             mode="text"
             style={styles.smallHiddenButton}
             onPress={() => navigation.navigate("Main")}
           >
-            <Text style={styles.hightlightText}>Sign Up</Text>
+            <Text style={styles.hightlightText}>Sign in</Text>
           </Button>
         </View>
       </View>
@@ -130,7 +144,7 @@ const LoginScreen = ({ navigation }: any) => {
   );
 };
 
-export default LoginScreen;
+export default SignUpcreen;
 
 const win = Dimensions.get("window");
 

@@ -18,7 +18,7 @@ The file should look like this:
 {
     "apiKey": "[YOUR_API_KEY]",
     "authDomain": "[YOUR_DOMAIN].firebaseapp.com",
-    "projectId": "[YOUR_PROJECT_ID]",
+    "projectId": "[YOUR_PROJECT_ID]",npm
     "storageBucket": "[YOUR_STORAGE_BUCKET].appspot.com",
     "messagingSenderId": "[YOU_GET_THE_POINT]",
     "appId": "[THIS_IS_THE_MOST_IMPORTANT_LINE]
@@ -63,4 +63,27 @@ npm start
 - Tints: ;
 - Shades:
 - Accents:
-- Greys: #555 #333
+- # Greys: #555 #333
+  "#aac0aa"
+
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+apiKey: "AIzaSyBSJiMdisq6_WPE22tk64W37djF57c03oA",
+authDomain: "recovereats-722e7.firebaseapp.com",
+projectId: "recovereats-722e7",
+storageBucket: "recovereats-722e7.appspot.com",
+messagingSenderId: "153756491871",
+appId: "1:153756491871:web:01e90fc104340f85dffbea",
+measurementId: "G-BT1GGNS476"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);

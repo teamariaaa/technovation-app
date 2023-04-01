@@ -135,23 +135,23 @@ const ProfileScreen = ({ navigation }: any) => {
                     />
                     <Card.Content style={{ margin: 10 }}>
                       <DataTable.Row>
-                        <DataTable.Cell>1</DataTable.Cell>
-                        <DataTable.Cell numeric>2</DataTable.Cell>
+                        <DataTable.Cell>First Name</DataTable.Cell>
+                        <DataTable.Cell numeric>Tom</DataTable.Cell>
                       </DataTable.Row>
 
                       <DataTable.Row>
-                        <DataTable.Cell>1</DataTable.Cell>
-                        <DataTable.Cell numeric>2</DataTable.Cell>
+                        <DataTable.Cell>Last Name</DataTable.Cell>
+                        <DataTable.Cell numeric>Stuart</DataTable.Cell>
                       </DataTable.Row>
 
                       <DataTable.Row>
-                        <DataTable.Cell>1</DataTable.Cell>
-                        <DataTable.Cell numeric>2</DataTable.Cell>
+                        <DataTable.Cell>Date of Birth</DataTable.Cell>
+                        <DataTable.Cell numeric>07 June 1999</DataTable.Cell>
                       </DataTable.Row>
 
                       <DataTable.Row>
-                        <DataTable.Cell>1</DataTable.Cell>
-                        <DataTable.Cell numeric>2</DataTable.Cell>
+                        <DataTable.Cell>Gender</DataTable.Cell>
+                        <DataTable.Cell numeric>male</DataTable.Cell>
                       </DataTable.Row>
 
                       {/* 

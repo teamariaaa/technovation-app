@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
   },
 
   text: {
-    color: "#333333",
+    color: "#3C403D",
   },
 
   lightText: {

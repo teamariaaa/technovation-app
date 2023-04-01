@@ -52,25 +52,6 @@ const MainNavigator = () => (
       component={HomeScreen}
       options={{
         headerShown: false,
-        tabBarLabel: "Home",
-        //tabBarColor: "#8DB38D",
-        tabBarIcon: ({ color }) => (
-          <View
-            style={[
-              styles.navbavIconCircle,
-              color == "#246324" && { backgroundColor: "#fff2bd" },
-            ]}
-          >
-            <Icon name="home" color={color} size={26} />
-          </View>
-        ),
-      }}
-    />
-    <Tab.Screen
-      name="MealTreacker"
-      component={ItemScreen}
-      options={{
-        headerShown: false,
         tabBarLabel: "Meals",
         //tabBarColor: "#8DB38D",
         tabBarIcon: ({ color }) => (
@@ -81,6 +62,25 @@ const MainNavigator = () => (
             ]}
           >
             <Icon name="calendar" color={color} size={26} />
+          </View>
+        ),
+      }}
+    />
+    <Tab.Screen
+      name="MealTreacker"
+      component={ItemScreen}
+      options={{
+        headerShown: false,
+        tabBarLabel: "Self Care",
+        //tabBarColor: "#8DB38D",
+        tabBarIcon: ({ color }) => (
+          <View
+            style={[
+              styles.navbavIconCircle,
+              color == "#246324" && { backgroundColor: "#fff2bd" },
+            ]}
+          >
+            <Icon name="accessibility" color={color} size={26} />
           </View>
         ),
       }}

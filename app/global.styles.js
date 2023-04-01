@@ -186,6 +186,25 @@ const styles = StyleSheet.create({
     //padding: 10,
     //backgroundColor: "red",
   },
+
+  surface: {
+    display: "flex",
+    flexDirection: "row",
+    flexWrap: "wrap",
+    //margin: 10,
+  },
+
+  chip: {
+    margin: 5,
+    backgroundColor: "#c1dbc1",
+  },
+
+  profilePageAboutSuface: {
+    marginTop: 10,
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
 });
 
 export default styles;

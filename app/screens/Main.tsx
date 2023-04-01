@@ -67,8 +67,8 @@ const MainNavigator = () => (
       }}
     />
     <Tab.Screen
-      name="Profile"
-      component={ProfileScreen}
+      name="MealTreacker"
+      component={ItemScreen}
       options={{
         headerShown: false,
         tabBarLabel: "Meals",
@@ -107,7 +107,7 @@ const MainNavigator = () => (
 
     <Tab.Screen
       name="Mda"
-      component={ItemScreen}
+      component={ProfileScreen}
       options={{
         headerShown: false,
         tabBarLabel: "Profil",

@@ -64,14 +64,17 @@ const styles = StyleSheet.create({
 
   text: {
     color: "#3C403D",
+    fontFamily: "Cabin",
   },
 
   lightText: {
     color: "#555555",
+    fontFamily: "Cabin",
   },
 
   hightlightText: {
     color: "#246324",
+    fontFamily: "Cabin",
   },
 
   headlineBig: {

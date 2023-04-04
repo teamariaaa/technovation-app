@@ -26,7 +26,7 @@ const LeftContent = () => (
   />
 );
 
-const ResourcesScreen = () => {
+const ResourcesScreen = ({ navigation }: any) => {
   const resources = [
     {
       id: 1,

@@ -7,6 +7,7 @@ import ProfileScreen from "./ProfilePage";
 import { StyleSheet, Dimensions, View } from "react-native";
 
 import styles from "../global.styles.js";
+import ResourcesScreen from "./Resources";
 
 //https://reactnavigation.org/docs/tab-based-navigation
 const Tab = createBottomTabNavigator();
@@ -68,7 +69,7 @@ const MainNavigator = () => (
     />
     <Tab.Screen
       name="MealTreacker"
-      component={ItemScreen}
+      component={ResourcesScreen} 
       options={{
         headerShown: false,
         tabBarLabel: "Self Care",

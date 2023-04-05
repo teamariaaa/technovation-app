@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { StyleSheet, View, Text, Dimensions, ScrollView } from "react-native";
-import { TouchableOpacity, Linking } from 'react-native';
+import { StyleSheet, View, Text, Dimensions, ScrollView, TouchableOpacity, Linking } from "react-native";
 import MainLayout from "./Layout";
 import {
   Card,
@@ -70,19 +69,22 @@ const ResourcesScreen = ({ navigation }: any) => {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Resources</Text>
-      {resources.map((resource) => (
-        <TouchableOpacity
-          key={resource.id}
-          style={styles.resourceContainer}
-          onPress={() => handleResourceClick(resource.url)}
-        >
-          <Text style={styles.resourceName}>{resource.name}</Text>
-          <Text style={styles.resourceDescription}>{resource.description}</Text>
-        </TouchableOpacity>
-      ))}
-    </View>
+    <ScrollView>
+      <View style={styles.container}>
+        <Text style={[styles.title,{ alignSelf: "center", marginTop: 30, marginBottom: 30}]}>Resources</Text>
+        {resources.map((resource) => (
+          <TouchableOpacity
+            key={resource.id}
+            style={styles.resourceContainer}
+            onPress={() => handleResourceClick(resource.url)}
+          >
+            <Text style={styles.resourceName}>{resource.name}</Text>
+            <Text style={styles.resourceDescription}>{resource.description}</Text>
+          </TouchableOpacity>
+        ))}
+      </View>
+    
+    </ScrollView>
   );
 };
 
@@ -107,6 +109,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     fontFamily: "Cabin",
+    color: "#3C403D",
     marginBottom: 5,
   },
   resourceDescription: {
@@ -115,7 +118,7 @@ const styles = StyleSheet.create({
     color: '#999999', // light grey color code
   },
   text: {
-    color: "CDCBCB",
+    color: "#CDCBCB",
     fontFamily: "Cabin",
   },
 });

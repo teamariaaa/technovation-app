@@ -94,7 +94,6 @@ const styles = StyleSheet.create({
   title: {
     fontFamily: "Cabin",
     fontSize: 24,
-    fontColor: '#246324',
     fontWeight: 'bold',
     marginBottom: 20,
   },

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { initializeApp } from "firebase/app";
 import firebaseConfig from "../../config/firebase.js";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import {
   Dimensions,
   StyleProp,
@@ -36,12 +36,42 @@ const LoginScreen = ({ navigation }: any) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [hidePassword, setHidePassword] = useState(true);
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
 
-  async function signUp() {
-    try {
-      await createUserWithEmailAndPassword(auth, email, password);
-      navigation.navigate("Main");
-    } catch (error) {}
+  function LogIn() {
+    const auth = getAuth();
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in
+        setEmailError("");
+        setPasswordError("");
+        const user = userCredential.user;
+        navigation.navigate("Main");
+        // ...
+      })
+      .catch((error) => {
+        setEmailError("");
+        setPasswordError("");
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        if (error.code === "auth/user-not-found") {
+          console.log("User not found!");
+          setEmailError("Invalid email");
+          setPasswordError("Invalide password");
+        }
+
+        if (error.code === "auth/invalid-email") {
+          console.log("That email address is invalid!");
+          setEmailError("That email address is invalid!");
+        }
+
+        if (error.code === "auth/wrong-password") {
+          console.log("wrong-password");
+          setPasswordError("wrong-password");
+        }
+        console.error(error);
+      });
   }
 
   const inputStyle: StyleProp<ViewStyle> = {
@@ -87,6 +117,7 @@ const LoginScreen = ({ navigation }: any) => {
           value={email}
           onChangeText={(email: string) => setEmail(email)}
         />
+        <Text> {emailError}</Text>
         <TextInput
           mode="flat"
           label="Password"
@@ -102,6 +133,7 @@ const LoginScreen = ({ navigation }: any) => {
             />
           }
         />
+        <Text> {passwordError}</Text>
         <Button
           mode="elevated"
           style={[
@@ -109,7 +141,9 @@ const LoginScreen = ({ navigation }: any) => {
             styles.marginButtonTop,
             styles.noBottomMargin,
           ]}
-          onPress={() => navigation.navigate("Main")}
+          onPress={() => {
+            LogIn();
+          }}
         >
           <Text style={[styles.text, styles.textBodyLarge]}>Sign in</Text>
         </Button>

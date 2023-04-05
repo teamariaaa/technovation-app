@@ -36,6 +36,8 @@ const SignUpcreen = ({ navigation }: any) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [hidePassword, setHidePassword] = useState(true);
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
 
   // async function signUp() {
   //   try {
@@ -45,19 +47,41 @@ const SignUpcreen = ({ navigation }: any) => {
   // }
 
   function signUp() {
-    
     const auth = getAuth();
     createUserWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-          const user = userCredential.user;
-        })
-        .catch((error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
-        });
+      .then((userCredential) => {
+        const user = userCredential.user;
+        navigation.navigate("Main");
+      })
+      .catch((error) => {
+        setEmailError("");
+        setPasswordError("");
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        if (error.code === "auth/email-already-in-use") {
+          console.log("That email address is already in use!");
+          setEmailError("That email address is already in use!");
+        }
+
+        if (error.code === "auth/invalid-email") {
+          console.log("That email address is invalid!");
+          setEmailError("That email address is invalid!");
+        }
+
+        if (error.code === "auth/invalide-password") {
+          console.log("invalide-password");
+          setPasswordError("invalide-password");
+        }
+
+        if (error.code === "auth/weak-password") {
+          console.log("weak-password");
+          setPasswordError("Password should be at least six characters");
+        }
+        console.error(error);
+      });
   }
 
-  function getToTest(){
+  function getToTest() {
     navigation.navigate("Main");
   }
 
@@ -104,6 +128,8 @@ const SignUpcreen = ({ navigation }: any) => {
           value={email}
           onChangeText={(email: string) => setEmail(email)}
         />
+
+        <Text> {emailError}</Text>
         <TextInput
           mode="flat"
           label="Password"
@@ -119,6 +145,7 @@ const SignUpcreen = ({ navigation }: any) => {
             />
           }
         />
+        <Text> {passwordError}</Text>
         <Button
           mode="elevated"
           style={[
@@ -126,7 +153,9 @@ const SignUpcreen = ({ navigation }: any) => {
             styles.marginButtonTop,
             styles.noBottomMargin,
           ]}
-          onPress={() => {signUp(); getToTest();}}
+          onPress={() => {
+            signUp();
+          }}
         >
           <Text style={[styles.text, styles.textBodyLarge]}>Sign up</Text>
         </Button>

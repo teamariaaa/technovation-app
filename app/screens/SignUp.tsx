@@ -45,17 +45,20 @@ const SignUpcreen = ({ navigation }: any) => {
   // }
 
   function signUp() {
+    
+    const auth = getAuth();
     createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Signed in
-        const user = userCredential.user;
-        // ...
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        // ..
-      });
+        .then((userCredential) => {
+          const user = userCredential.user;
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+        });
+  }
+
+  function getToTest(){
+    navigation.navigate("Main");
   }
 
   const inputStyle: StyleProp<ViewStyle> = {
@@ -123,7 +126,7 @@ const SignUpcreen = ({ navigation }: any) => {
             styles.marginButtonTop,
             styles.noBottomMargin,
           ]}
-          onPress={() => signUp()}
+          onPress={() => {signUp(); getToTest();}}
         >
           <Text style={[styles.text, styles.textBodyLarge]}>Sign up</Text>
         </Button>

@@ -15,6 +15,7 @@ import {
 } from "react-native-paper";
 import styles from "../global.styles.js";
 import Icon from "@expo/vector-icons/MaterialCommunityIcons";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
 const Stack = createNativeStackNavigator();
 

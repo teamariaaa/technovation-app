@@ -1,25 +1,24 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { View, Dimensions, ScrollView } from "react-native";
+import { _View, Dimensions, _ScrollView, View } from "react-native";
 import {
   Card,
   Paragraph,
   Avatar,
   Title,
   Button,
+  Appbar,
 } from "react-native-paper";
 import styles from "../global.styles.js";
+import { ScrollView } from "react-native";
+import * as Progress from "react-native-progress";
 
-
-const LeftContent = () => (
-  <Avatar.Image
-    size={70}
-    source={require("../../assets/profilePicture.jpeg")}
-  />
-);
+/*Culori #DAF7DC
+         #ABC8C0
+         #C7EFCF
+         #B7CECE*/
 
 const MealTrackingScreen = ({ navigation }: any) => {
-
   const win = Dimensions.get("window");
 
   return (
@@ -31,50 +30,54 @@ const MealTrackingScreen = ({ navigation }: any) => {
             marginBottom: 30,
           }}
         >
-          <Paragraph
-            style={[
-              styles.text,
-              styles.textBodyLarge,
-              styles.textSemiBold,
-              { alignSelf: "center" },
-            ]}
+          <Appbar.Header
+            mode="small"
+            style={{
+              flex: 1,
+              backgroundColor: "#FFFCEF",
+              marginLeft: 10,
+              marginRight: 10,
+            }}
           >
-            Profile Info
-          </Paragraph>
+            <Avatar.Image
+              size={60}
+              source={require("../../assets/profilePicture.jpeg")}
+            />
+            <Button
+              mode="contained-tonal"
+              style={[
+                { backgroundColor: "#e4ede4", marginLeft: win.width - 170 },
+              ]}
+              onPress={() => navigation.navigate("Diary")}
+            >
+              Diary
+            </Button>
+          </Appbar.Header>
         </View>
-
-        <Button
-          mode="contained-tonal"
-          style={[
-            styles.myButton,
-            { position: "absolute", marginLeft: win.width - 50, marginTop: 35 },
-          ]}
-          onPress={() => navigation.navigate("Diary")}
-        >
-          Diary
-        </Button>
-        <View style={{ flex: 20, backgroundColor: "#FFFCEF" }}>
-          <Card mode="contained">
-            <View style={{ backgroundColor: "#FFFCEF" }}>
-              <Card.Title
-                style={{ margin: 10 }}
-                title="Tom Stuart"
-                titleStyle={[styles.text, styles.textBold]}
-                subtitle="age sickness treatment"
-                subtitleStyle={[styles.text, styles.hightlightText]}
-                left={LeftContent}
-                leftStyle={{ marginRight: 40 }} //style={{ margin: 10 }}
-              />
-              <Card.Content style={{ margin: 10 }}>
-                <Title
-                  style={[styles.text, styles.textBold, styles.headlineSmall]}
-                >
-                  Hello, Tom Stuart
-                </Title>
-              </Card.Content>
-            </View>
-          </Card>
-        </View>
+        <Paragraph style={[styles.titleLarge, { bottom: 13, left: 15 }]}>
+          Hello, {global.username}!
+        </Paragraph>
+        <Card style={styles.idkContainer}>
+          <Card.Title
+            title="Today"
+            titleStyle={[styles.headlineSmall, { textAlign: "center" }]}
+          ></Card.Title>
+          <Progress.Circle
+            style={{ alignSelf: "center", marginTop: 10 }}
+            size={200}
+            progress={0.7}
+            thickness={10}
+            borderWidth={2}
+            color="#B6CB9E"
+            borderColor="#B6CB9E"
+            fill="#EEF5DB"
+            unfilledColor="#EEF5DB"
+            formatText={() => {}}
+          />
+          <Card.Content>
+            
+          </Card.Content>
+        </Card>
       </View>
     </ScrollView>
   );

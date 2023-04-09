@@ -5,6 +5,9 @@ import HomeScreen from "./Home";
 import ItemScreen from "./Items";
 import ProfileScreen from "./ProfilePage";
 import { StyleSheet, Dimensions, View } from "react-native";
+import SelfCareDescription from "./SelfCare";
+
+
 
 import styles from "../global.styles.js";
 import ResourcesScreen from "./Resources";
@@ -122,6 +125,18 @@ const MainNavigator = () => (
           >
             <Icon name="person" color={color} size={26} />
           </View>
+        ),
+      }}
+    />
+
+    <Tab.Screen
+      name="Self-care"
+      component={SelfCareDescription}
+      options={{
+        headerShown: false,
+        tabBarLabel: 'Self-care',
+        tabBarIcon: ({ color }) => (
+          <Icon name="ruby" color={color} size={26} />
         ),
       }}
     />

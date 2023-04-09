@@ -1,52 +1,82 @@
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
 const SelfCareDescription = ({ navigation }: any) => {
-    return (
-        <View style={styles.container}>
-            <CircleCronometer />
-        </View>
-    );
-}
+    const [isBreathingCycleInProgress, setIsBreathingCycleInProgress] = useState(false); // Set initial value to false
+    const [isBreathingCycleCompleted, setIsBreathingCycleCompleted] = useState(false); // Set initial value to false
 
-const CircleCronometer = () => {
-    const [currentColor, setCurrentColor] = useState('lightgreen');
-    const [time, setTime] = useState(0);
-    const [breathIn, setBreathIn] = useState(true);
+    const handleBreathingCycleToggle = () => {
+        if (isBreathingCycleInProgress) {
+            setIsBreathingCycleInProgress(false);
+            setIsBreathingCycleCompleted(false);
+        } else {
+            setIsBreathingCycleInProgress(true);
+        }
+    };
 
     useEffect(() => {
+        if (isBreathingCycleInProgress && isBreathingCycleCompleted) {
+            setIsBreathingCycleInProgress(false);
+            setIsBreathingCycleCompleted(false);
+        }
+    }, [isBreathingCycleCompleted]);
 
-        var counter = 0;
-        const intervalId = setInterval(() => {
+    return (
+        <View style={styles.container}>
+            <CircleCronometer
+                isBreathingCycleInProgress={isBreathingCycleInProgress}
+                isBreathingCycleCompleted={isBreathingCycleCompleted}
+                setIsBreathingCycleCompleted={setIsBreathingCycleCompleted}
+            />
+            <TouchableOpacity
+                style={styles.button}
+                onPress={handleBreathingCycleToggle} // Call handleBreathingCycleToggle when button is pressed
+                disabled={isBreathingCycleInProgress && !isBreathingCycleCompleted} // Disable button when cycle is in progress and not completed
+            >
+                <Text style={styles.buttonText}>
+                    {isBreathingCycleInProgress ? 'Stop breathing cycle' : 'Start one breathing cycle'}
+                </Text>
+            </TouchableOpacity>
+        </View>
+    );
+};
 
-            if (time % 8 == 0)
-                setTime(0);
-            console.log(time);
-            setTime(time + 1);
+const CircleCronometer = ({
+    isBreathingCycleInProgress,
+    isBreathingCycleCompleted,
+    setIsBreathingCycleCompleted,
+}: any) => {
+    const [currentColor, setCurrentColor] = useState('lightgreen');
+    const [elapsedTime, setElapsedTime] = useState(0);
 
-        }, 1000);
+    useEffect(() => {
+        if (isBreathingCycleInProgress) {
+            const intervalId = setInterval(() => {
+                setElapsedTime((prevTime) => prevTime + 1);
+            }, 1000);
 
-        const colorIntervalId = setInterval(() => {
+            return () => {
+                clearInterval(intervalId);
+            };
+        }
+    }, [isBreathingCycleInProgress]);
 
-            setCurrentColor(currentColor === 'lightgreen' ? 'lightblue' : 'lightgreen');
-        }, 8000);
+    useEffect(() => {
+        if (elapsedTime >= 16) {
+            setCurrentColor('lightgreen');
+            setElapsedTime(0);
+            setIsBreathingCycleCompleted(true);
+        } else if (elapsedTime % 8 === 0) {
+            setCurrentColor((currentColor) => (currentColor === 'lightgreen' ? 'lightblue' : 'lightgreen'));
+        }
+    }, [elapsedTime, setIsBreathingCycleCompleted]);
 
-        const breathIntervalId = setInterval(() => {
-            setBreathIn(prevBreathIn => !prevBreathIn);
-        }, 8000);
-
-        return () => {
-            clearInterval(intervalId);
-            clearInterval(colorIntervalId);
-            clearInterval(breathIntervalId);
-        };
-    }, [time]);
+    const breathIn = elapsedTime % 16 < 8;
 
     return (
         <View style={[styles.circle, { backgroundColor: currentColor }]}>
             <Text style={styles.breath}>{breathIn ? 'Breathe in' : 'Breathe out'}</Text>
-            <Text style={styles.time}>{time}</Text>
+            <Text style={styles.time}>{elapsedTime}</Text>
         </View>
     );
 };
@@ -56,23 +86,13 @@ const styles = StyleSheet.create({
         marginTop: 50,
         paddingHorizontal: 20,
     },
-    // title: {
-    //     fontSize: 24,
-    //     fontWeight: 'bold',
-    //     marginBottom: 10,
-    //     color: 'purple',
-    // },
-    // subtitle: {
-    //     fontSize: 16,
-    //     lineHeight: 22,
-    //     color: 'purple',
-    // },
     circle: {
         width: 200,
         height: 200,
         borderRadius: 100,
         justifyContent: 'center',
-        alignItems: 'center',
+        alignItems:
+            'center',
     },
     breath: {
         fontSize: 24,
@@ -80,12 +100,27 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         color: 'white',
         position: 'absolute',
+
+
         top: 25,
     },
+
     time: {
         fontSize: 36,
         fontWeight: 'bold',
         color: 'white',
+    },
+    button: {
+        marginTop: 20,
+        backgroundColor: 'lightblue',
+        paddingVertical: 10,
+        paddingHorizontal: 20,
+        borderRadius: 5,
+    },
+    buttonText: {
+        color: 'white',
+        fontSize: 18,
+        fontWeight: 'bold',
     },
 });
 

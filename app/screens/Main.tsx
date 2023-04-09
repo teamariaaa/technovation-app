@@ -4,6 +4,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomeScreen from "./Home";
 import ItemScreen from "./Items";
 import ProfileScreen from "./ProfilePage";
+import { Ionicons } from '@expo/vector-icons';
 import { StyleSheet, Dimensions, View } from "react-native";
 import SelfCareDescription from "./SelfCare";
 
@@ -136,7 +137,7 @@ const MainNavigator = () => (
         headerShown: false,
         tabBarLabel: 'Self-care',
         tabBarIcon: ({ color }) => (
-          <Icon name="ruby" color={color} size={26} />
+          <Ionicons name="leaf-outline" color={color} size={26} />
         ),
       }}
     />

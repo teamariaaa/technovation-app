@@ -1,6 +1,7 @@
 import React from "react";
 import Icon from "@expo/vector-icons/Octicons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import HomeScreen from "./Home";
 import ItemScreen from "./Items";
 import ProfileScreen from "./ProfilePage";
@@ -8,6 +9,10 @@ import { StyleSheet, Dimensions, View } from "react-native";
 
 import styles from "../global.styles.js";
 import ResourcesScreen from "./Resources";
+import MealsScreen from "./MealNavigator";
+import MealsTrackingScreen from "./MealNavigator";
+import DiaryScreen from "./Diary";
+import { NavigationContainer } from "@react-navigation/native";
 
 //https://reactnavigation.org/docs/tab-based-naviganpmtion
 const Tab = createBottomTabNavigator();
@@ -49,8 +54,8 @@ const MainNavigator = () => (
     }}
   >
     <Tab.Screen
-      name="Home"
-      component={HomeScreen}
+      name="Meal"
+      component={MealsScreen}
       options={{
         headerShown: false,
         tabBarLabel: "Meals",

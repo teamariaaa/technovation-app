@@ -2,6 +2,8 @@ import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import ItemEditScreen from "./ItemEdit";
 import ItemListScreen from "./ItemList";
+import MealsTrackingScreen from "./MealNavigator";
+import DiaryScreen from "./Diary";
 
 //https://reactnavigation.org/docs/hello-react-navigation
 const ItemStack = createNativeStackNavigator();

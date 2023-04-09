@@ -92,9 +92,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
+    backgroundColor:'#FFFCEF',
   },
   title: {
-    fontFamily: "Cabin",
+    fontFamily: 'Cabin',
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 20,
@@ -108,18 +109,18 @@ const styles = StyleSheet.create({
   resourceName: {
     fontSize: 18,
     fontWeight: 'bold',
-    fontFamily: "Cabin",
-    color: "#3C403D",
+    fontFamily: 'Cabin',
+    color: '#3C403D',
     marginBottom: 5,
   },
   resourceDescription: {
     fontSize: 16,
-    fontFamily: "Cabin",
+    fontFamily: 'Cabin',
     color: '#999999', // light grey color code
   },
   text: {
-    color: "#CDCBCB",
-    fontFamily: "Cabin",
+    color: '#CDCBCB',
+    fontFamily: 'Cabin',
   },
 });
 

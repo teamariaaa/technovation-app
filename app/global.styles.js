@@ -138,6 +138,18 @@ const styles = StyleSheet.create({
     width: "100%",
   },
 
+  idkContainer: {
+    backgroundColor: "#EEF5DB",
+    borderTopLeftRadius: 40,
+    borderTopRightRadius: 40,
+    borderBottomLeftRadius: 40,
+    borderBottomRightRadius: 40,
+    paddingTop: 28,
+    paddingLeft: 30,
+    paddingRight: 30,
+    paddingBottom: 40,
+  },
+
   bottomContainer: {
     flex: 3,
     backgroundColor: "#c1dbc1",

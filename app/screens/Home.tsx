@@ -10,7 +10,7 @@ const HomeScreen = ({ navigation }: any) => {
 
   return (
     <MainLayout>
-      <Paragraph>Teo e </Paragraph>
+      <Paragraph>fdsfdg</Paragraph>
     </MainLayout>
   );
 };

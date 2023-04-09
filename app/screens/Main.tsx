@@ -1,5 +1,6 @@
 import React from "react";
 import Icon from "@expo/vector-icons/Octicons";
+import { Ionicons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import HomeScreen from "./Home";
@@ -7,6 +8,9 @@ import ItemScreen from "./Items";
 import ProfileScreen from "./ProfilePage";
 import WeCareScreen from "./WeCare";
 import { StyleSheet, Dimensions, View } from "react-native";
+import SelfCareDescription from "./SelfCare";
+
+
 
 import styles from "../global.styles.js";
 import ResourcesScreen from "./Resources";
@@ -128,6 +132,18 @@ const MainNavigator = () => (
           >
             <Icon name="person" color={color} size={26} />
           </View>
+        ),
+      }}
+    />
+
+    <Tab.Screen
+      name="Self-care"
+      component={SelfCareDescription}
+      options={{
+        headerShown: false,
+        tabBarLabel: 'Self-care',
+        tabBarIcon: ({ color }) => (
+          <Ionicons name="leaf-outline" color={color} size={26} />
         ),
       }}
     />

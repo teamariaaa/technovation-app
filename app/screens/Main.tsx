@@ -1,10 +1,11 @@
 import React from "react";
 import Icon from "@expo/vector-icons/Octicons";
+import { Ionicons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomeScreen from "./Home";
 import ItemScreen from "./Items";
 import ProfileScreen from "./ProfilePage";
-import { Ionicons } from '@expo/vector-icons';
+import WeCareScreen from "./WeCare";
 import { StyleSheet, Dimensions, View } from "react-native";
 import SelfCareDescription from "./SelfCare";
 
@@ -91,11 +92,11 @@ const MainNavigator = () => (
       }}
     />
     <Tab.Screen
-      name="Items"
-      component={ItemScreen}
+      name="WeCare"
+      component={WeCareScreen}
       options={{
         headerShown: false,
-        tabBarLabel: "WeCare",
+        tabBarLabel: "We Care",
         //tabBarColor: "#8DB38D",
         tabBarIcon: ({ color }) => (
           <View

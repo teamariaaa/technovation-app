@@ -4,6 +4,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomeScreen from "./Home";
 import ItemScreen from "./Items";
 import ProfileScreen from "./ProfilePage";
+import WeCareScreen from "./WeCare";
 import { StyleSheet, Dimensions, View } from "react-native";
 
 import styles from "../global.styles.js";
@@ -86,11 +87,11 @@ const MainNavigator = () => (
       }}
     />
     <Tab.Screen
-      name="Items"
-      component={ItemScreen}
+      name="WeCare"
+      component={WeCareScreen}
       options={{
         headerShown: false,
-        tabBarLabel: "WeCare",
+        tabBarLabel: "We Care",
         //tabBarColor: "#8DB38D",
         tabBarIcon: ({ color }) => (
           <View

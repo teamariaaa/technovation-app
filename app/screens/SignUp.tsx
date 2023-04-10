@@ -26,8 +26,8 @@ import {
 import { red100 } from "react-native-paper/lib/typescript/src/styles/themes/v2/colors";
 import styles from "../global.styles.js";
 
-import database from "@react-native-firebase/database";
-import { firebase } from "@react-native-firebase/database";
+// import database from "@react-native-firebase/database";
+// import { firebase } from "@react-native-firebase/database";
 
 const app = firebaseConfig;
 const auth = getAuth(app);
@@ -42,28 +42,29 @@ const SignUpcreen = ({ navigation }: any) => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [hidePassword, setHidePassword] = useState(true);
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
 
-  function writeUserData(
-    userId: string,
-    name: string,
-    email: string,
-    imageUrl: string
-  ) {
-    firebase
-      .database()
-      .ref("users/" + userId)
-      .set({
-        username: name,
-        email: email,
-        //some more user data
-      });
-    console.log(name);
-    console.log(email);
-  }
+  // function writeUserData(
+  //   userId: string,
+  //   name: string,
+  //   email: string,
+  //   imageUrl: string
+  // ) {
+  //   firebase
+  //     .database()
+  //     .ref("users/" + userId)
+  //     .set({
+  //       username: name,
+  //       email: email,
+  //       //some more user data
+  //     });
+  //   console.log(name);
+  //   console.log(email);
+  // }
 
   // async function signUp() {
   //   try {
@@ -72,12 +73,33 @@ const SignUpcreen = ({ navigation }: any) => {
   //   } catch (error) {}
   // }
 
+  function updateUser() {
+    const auth = getAuth();
+    const user = auth.currentUser;
+    if (user) {
+      let userName = lastName + "," + firstName;
+      updateProfile(user, {
+        displayName: userName,
+        photoURL: "https://example.com/jane-q-user/profile.jpg",
+      })
+        .then(() => {
+          console.log(user.displayName);
+          console.log(lastName);
+        })
+        .catch((error) => {
+          // An error occurred
+          // ...
+        });
+    }
+  }
+
   function signUp() {
     const auth = getAuth();
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
-        writeUserData(user.uid, name, email, "");
+        updateUser();
+        //writeUserData(user.uid, name, email, "");
         navigation.navigate("Main");
       })
       .catch((error) => {
@@ -146,16 +168,22 @@ const SignUpcreen = ({ navigation }: any) => {
         <Paragraph style={(styles.bodyMedium, styles.lightText)}>
           Enter your personal data
         </Paragraph>
-
         <TextInput
           mode="flat"
           style={styles.TextInput}
-          label="Name"
+          label="First name"
           left={<TextInput.Icon icon="account" />}
-          value={name}
-          onChangeText={(name: string) => setName(name)}
+          value={firstName}
+          onChangeText={(firstName: string) => setFirstName(firstName)}
         />
-
+        <TextInput
+          mode="flat"
+          style={styles.TextInput}
+          label="Last name"
+          left={<TextInput.Icon icon="account" />}
+          value={lastName}
+          onChangeText={(lastName: string) => setLastName(lastName)}
+        />
         <TextInput
           mode="flat"
           style={styles.TextInput}
@@ -165,11 +193,10 @@ const SignUpcreen = ({ navigation }: any) => {
           onChangeText={(email: string) => setEmail(email)}
         />
 
-        <Text style={styles.errorText}> {emailError}</Text>
         <TextInput
           mode="flat"
           label="Password"
-          style={[styles.TextInput, styles.noTopMargin]}
+          style={[styles.noMargin, styles.TextInput]}
           secureTextEntry={hidePassword}
           value={password}
           onChangeText={(password) => setPassword(password)}
@@ -182,13 +209,14 @@ const SignUpcreen = ({ navigation }: any) => {
           }
         />
         <Text style={styles.errorText}> {passwordError}</Text>
+        <Text style={styles.errorText}>{emailError}</Text>
         <Button
           mode="elevated"
           style={[
             styles.myButton,
             //styles.marginButtonTop,
             styles.noBottomMargin,
-            { margin: 10 },
+            { margin: "2%", marginTop: "10%" },
           ]}
           onPress={() => {
             signUp();
@@ -196,7 +224,6 @@ const SignUpcreen = ({ navigation }: any) => {
         >
           <Text style={[styles.text, styles.textBodyLarge]}>Sign up</Text>
         </Button>
-
         <View style={[styles.containerRow, styles.noMargin]}>
           <Paragraph style={(styles.bodyMedium, styles.lightText)}>
             Aready have an account?

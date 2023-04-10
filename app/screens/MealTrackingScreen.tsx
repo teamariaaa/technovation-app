@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useReducer, useState } from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { _View, Dimensions, _ScrollView, View } from "react-native";
 import {
@@ -12,6 +12,8 @@ import {
 import styles from "../global.styles.js";
 import { ScrollView } from "react-native";
 import * as Progress from "react-native-progress";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import firebaseConfig from "../../config/firebase.js";
 
 /*Culori #DAF7DC
          #ABC8C0
@@ -20,6 +22,15 @@ import * as Progress from "react-native-progress";
 
 const MealTrackingScreen = ({ navigation }: any) => {
   const win = Dimensions.get("window");
+
+  const auth = getAuth();
+  const user = auth.currentUser;
+
+  let fullName = user?.displayName;
+
+  let name;
+  name = fullName?.split(",");
+  fullName = name ? name[0] + " " + name[1] : "";
 
   return (
     <ScrollView>
@@ -55,7 +66,7 @@ const MealTrackingScreen = ({ navigation }: any) => {
           </Appbar.Header>
         </View>
         <Paragraph style={[styles.titleLarge, { bottom: 13, left: 15 }]}>
-          Hello, {global.username}!
+          Hello, {name ? name[1] : ""}!
         </Paragraph>
         <Card style={styles.idkContainer}>
           <Card.Title
@@ -74,9 +85,7 @@ const MealTrackingScreen = ({ navigation }: any) => {
             unfilledColor="#EEF5DB"
             formatText={() => {}}
           />
-          <Card.Content>
-            
-          </Card.Content>
+          {/* <Card.Content></Card.Content> */}
         </Card>
       </View>
     </ScrollView>

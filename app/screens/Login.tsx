@@ -34,7 +34,7 @@ const LoginScreen = ({ navigation }: any) => {
   //     }
   // });
 
-  var database = firebase.database();
+  //var database = firebase.database();
   // save the user's profile into Firebase so we can list users,
   // use them in Security and Firebase Rules, and show profiles
 
@@ -117,18 +117,24 @@ const LoginScreen = ({ navigation }: any) => {
 
         <TextInput
           mode="flat"
-          style={styles.TextInput}
+          style={[
+            styles.TextInput,
+            { marginTop: "10%", height: 50, marginBottom: "5%" },
+          ]}
           label="Email"
           left={<TextInput.Icon icon="email" />}
           value={email}
           onChangeText={(email: string) => setEmail(email)}
         />
 
-        <Text style={[styles.errorText]}> {emailError}</Text>
         <TextInput
           mode="flat"
           label="Password"
-          style={[styles.TextInput, styles.noTopMargin]}
+          style={[
+            styles.TextInput,
+            //styles.noTopMargin,
+            { marginTop: "10%", height: 50 },
+          ]}
           secureTextEntry={hidePassword}
           value={password}
           onChangeText={(password) => setPassword(password)}
@@ -141,12 +147,14 @@ const LoginScreen = ({ navigation }: any) => {
           }
         />
         <Text style={[styles.errorText]}>{passwordError}</Text>
+        <Text style={[styles.errorText]}> {emailError}</Text>
         <Button
           mode="elevated"
           style={[
             styles.myButton,
             styles.marginButtonTop,
             styles.noBottomMargin,
+            { marginTop: "50%" },
           ]}
           onPress={() => {
             LogIn();

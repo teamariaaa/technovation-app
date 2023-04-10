@@ -1,6 +1,13 @@
 import React, { useState } from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { StyleSheet, View, Text, Dimensions, ScrollView } from "react-native";
+import {
+  StyleSheet,
+  View,
+  Text,
+  Dimensions,
+  ScrollView,
+  RefreshControlBase,
+} from "react-native";
 import MainLayout from "./Layout";
 import {
   Card,
@@ -27,7 +34,15 @@ const LeftContent = () => (
 );
 
 const ProfileScreen = ({ navigation }: any) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [hidePassword, setHidePassword] = useState(true);
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+
   const auth = getAuth();
+  const user = auth.currentUser;
+
   // const [name, setName] = useState("");
   // onAuthStateChanged(auth, (user) => {
   //   if (user) {
@@ -53,6 +68,14 @@ const ProfileScreen = ({ navigation }: any) => {
   const [display, setDisplay] = useState<string>("Information");
 
   const win = Dimensions.get("window");
+
+  let fullName = user?.displayName;
+
+  let name;
+  name = fullName?.split(",");
+  fullName = name ? name[0] + " " + name[1] : "";
+  console.log(fullName);
+  console.log(name);
 
   return (
     <ScrollView>
@@ -91,7 +114,7 @@ const ProfileScreen = ({ navigation }: any) => {
             <View style={{ backgroundColor: "#FFFCEF" }}>
               <Card.Title
                 style={{ margin: 10 }}
-                title="Tom Stuart"
+                title={fullName}
                 titleStyle={[styles.text, styles.textBold]}
                 subtitle="age sickness treatment"
                 subtitleStyle={[styles.text, styles.hightlightText]}
@@ -164,7 +187,7 @@ const ProfileScreen = ({ navigation }: any) => {
                           </DataTable.Cell>
                           <DataTable.Cell numeric>
                             <Text style={[styles.text, styles.bodyMedium]}>
-                              Tom
+                              {name ? name[1] : ""}
                             </Text>
                           </DataTable.Cell>
                         </DataTable.Row>
@@ -177,7 +200,7 @@ const ProfileScreen = ({ navigation }: any) => {
                           </DataTable.Cell>
                           <DataTable.Cell numeric>
                             <Text style={[styles.text, styles.bodyMedium]}>
-                              Stuart
+                              {name ? name[0] : ""}
                             </Text>
                           </DataTable.Cell>
                         </DataTable.Row>

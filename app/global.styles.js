@@ -136,6 +136,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "flex-start",
     width: "100%",
+    marginVertical: "10%",
   },
 
   idkContainer: {
@@ -151,7 +152,7 @@ const styles = StyleSheet.create({
   },
 
   bottomContainer: {
-    flex: 3,
+    flex: 6,
     backgroundColor: "#c1dbc1",
     alignItems: "flex-start",
     justifyContent: "flex-start",
@@ -173,14 +174,14 @@ const styles = StyleSheet.create({
   TextInput: {
     backgroundColor: "#eeeee4",
     width: "100%",
-    height: 50,
+    height: 45,
     color: "#333",
-    marginTop: 40,
+    marginTop: "9%",
     //marginBottom: ,
   },
 
   noMargin: {
-    margin: 0,
+    margin: "0%",
   },
 
   noTopMargin: {
@@ -224,8 +225,8 @@ const styles = StyleSheet.create({
   errorText: {
     color: "#246324",
     fontFamily: "Cabin",
-    marginBottom: 10,
-    marginTop: 10,
+    //marginBottom: "2%",
+    marginTop: "2%",
   },
 });
 

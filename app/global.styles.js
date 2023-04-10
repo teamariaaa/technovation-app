@@ -164,7 +164,7 @@ const styles = StyleSheet.create({
     height: 50,
     color: "#333",
     marginTop: 40,
-    marginBottom: 40,
+    //marginBottom: ,
   },
 
   noMargin: {
@@ -207,6 +207,13 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "row",
     justifyContent: "space-between",
+  },
+
+  errorText: {
+    color: "#246324",
+    fontFamily: "Cabin",
+    marginBottom: 10,
+    marginTop: 10,
   },
 });
 

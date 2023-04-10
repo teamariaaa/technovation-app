@@ -2,7 +2,11 @@ import React, { useState } from "react";
 import { initializeApp } from "firebase/app";
 import firebaseConfig from "../../config/firebase.js";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  updateProfile,
+} from "firebase/auth";
 import {
   Dimensions,
   StyleProp,
@@ -26,7 +30,7 @@ const app = firebaseConfig;
 const auth = getAuth(app);
 
 const SignUpcreen = ({ navigation }: any) => {
-  // onAuthStateChanged(auth, user => {
+  // onAunpthStateChanged(auth, user => {
   //     if (user != null) {
   //         AsyncStorage.setItem('@user', JSON.stringify(user))
   //             .then(() => navigation.navigate('Main'));
@@ -35,6 +39,7 @@ const SignUpcreen = ({ navigation }: any) => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
   const [hidePassword, setHidePassword] = useState(true);
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
@@ -51,6 +56,11 @@ const SignUpcreen = ({ navigation }: any) => {
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
+        updateProfile(user, {
+          displayName: name,
+          photoURL:
+            "https://static.independent.co.uk/s3fs-public/thumbnails/image/2017/09/27/08/jennifer-lawrence.jpg?quality=75&width=990&crop=1300%3A1000%2Csmart&auto=webp,",
+        });
         navigation.navigate("Main");
       })
       .catch((error) => {
@@ -112,13 +122,22 @@ const SignUpcreen = ({ navigation }: any) => {
           Sign up
         </Text>
       </View>
-      <View style={styles.bottomContainer}>
+      <View style={[styles.bottomContainer]}>
         <Paragraph style={[styles.headlineSmall, styles.textBold]}>
           Welcome!
         </Paragraph>
         <Paragraph style={(styles.bodyMedium, styles.lightText)}>
-          Enter your credential login
+          Enter your personal data
         </Paragraph>
+
+        <TextInput
+          mode="flat"
+          style={styles.TextInput}
+          label="Name"
+          left={<TextInput.Icon icon="account" />}
+          value={name}
+          onChangeText={(name: string) => setName(name)}
+        />
 
         <TextInput
           mode="flat"
@@ -129,7 +148,7 @@ const SignUpcreen = ({ navigation }: any) => {
           onChangeText={(email: string) => setEmail(email)}
         />
 
-        <Text> {emailError}</Text>
+        <Text style={styles.errorText}> {emailError}</Text>
         <TextInput
           mode="flat"
           label="Password"
@@ -145,13 +164,14 @@ const SignUpcreen = ({ navigation }: any) => {
             />
           }
         />
-        <Text> {passwordError}</Text>
+        <Text style={styles.errorText}> {passwordError}</Text>
         <Button
           mode="elevated"
           style={[
             styles.myButton,
-            styles.marginButtonTop,
+            //styles.marginButtonTop,
             styles.noBottomMargin,
+            { margin: 10 },
           ]}
           onPress={() => {
             signUp();

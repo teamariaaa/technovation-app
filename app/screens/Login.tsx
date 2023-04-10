@@ -67,8 +67,8 @@ const LoginScreen = ({ navigation }: any) => {
         }
 
         if (error.code === "auth/wrong-password") {
-          console.log("wrong-password");
-          setPasswordError("wrong-password");
+          console.log("Wrong password!");
+          setPasswordError("Wrong password!");
         }
         console.error(error);
       });
@@ -117,7 +117,8 @@ const LoginScreen = ({ navigation }: any) => {
           value={email}
           onChangeText={(email: string) => setEmail(email)}
         />
-        <Text> {emailError}</Text>
+
+        <Text style={[styles.errorText]}> {emailError}</Text>
         <TextInput
           mode="flat"
           label="Password"
@@ -133,7 +134,7 @@ const LoginScreen = ({ navigation }: any) => {
             />
           }
         />
-        <Text> {passwordError}</Text>
+        <Text style={[styles.errorText]}>{passwordError}</Text>
         <Button
           mode="elevated"
           style={[

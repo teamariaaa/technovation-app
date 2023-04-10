@@ -15,7 +15,7 @@ import {
 } from "react-native-paper";
 import styles from "../global.styles.js";
 import Icon from "@expo/vector-icons/MaterialCommunityIcons";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 const Stack = createNativeStackNavigator();
 
@@ -27,6 +27,21 @@ const LeftContent = () => (
 );
 
 const ProfileScreen = ({ navigation }: any) => {
+  const auth = getAuth();
+  const [name, setName] = useState("");
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      // User is signed in, see docs for a list of available properties
+      // https://firebase.google.com/docs/reference/js/firebase.User
+      const uid = user.uid;
+      const displayName = user.displayName;
+      // ...
+    } else {
+      // User is signed out
+      // ...
+    }
+  });
+
   const [problems, setProblems] = useState<string[]>([
     "anger",
     "mood swings",
@@ -76,7 +91,7 @@ const ProfileScreen = ({ navigation }: any) => {
             <View style={{ backgroundColor: "#FFFCEF" }}>
               <Card.Title
                 style={{ margin: 10 }}
-                title="Tom Stuart"
+                title={displayName}
                 titleStyle={[styles.text, styles.textBold]}
                 subtitle="age sickness treatment"
                 subtitleStyle={[styles.text, styles.hightlightText]}
@@ -411,7 +426,6 @@ const ProfileScreen = ({ navigation }: any) => {
                           </Text>
                         </View>
 
-                        
                         <View
                           style={{
                             //paddingVertical: 10,
@@ -421,76 +435,79 @@ const ProfileScreen = ({ navigation }: any) => {
                             marginTop: 5,
                           }}
                         >
-                          <View style={{marginTop: 5}}>
-                          <Icon
-                            name="chevron-right"
-                            color={"#3C403D"}
-                            size={14}
-                          />
+                          <View style={{ marginTop: 5 }}>
+                            <Icon
+                              name="chevron-right"
+                              color={"#3C403D"}
+                              size={14}
+                            />
                           </View>
-                        <Text
-                          style={[
-                            styles.text,
-                            styles.bodyMedium,
-                            { marginTop: 5 },
-                          ]}
-                        >
-                          6 months
-                        </Text>
+                          <Text
+                            style={[
+                              styles.text,
+                              styles.bodyMedium,
+                              { marginTop: 5 },
+                            ]}
+                          >
+                            6 months
+                          </Text>
                         </View>
                       </Card.Content>
                     </Card>
                   </View>
                 )}
-                {display === "Diagnosis" && <Card
-                      mode="elevated"
-                      style={{ backgroundColor: "#fff2bd", marginTop: 30 }}
-                    >
-                      <Card.Title
-                        style={{ margin: 10, marginBottom: 0 }}
-                        title="Dr. Nichifor Lipan"
-                        titleStyle={[
+                {display === "Diagnosis" && (
+                  <Card
+                    mode="elevated"
+                    style={{ backgroundColor: "#fff2bd", marginTop: 30 }}
+                  >
+                    <Card.Title
+                      style={{ margin: 10, marginBottom: 0 }}
+                      title="Dr. Nichifor Lipan"
+                      titleStyle={[
+                        styles.text,
+                        styles.headlineSmall,
+                        styles.textBold,
+                        { marginBottom: 0 },
+                      ]}
+                    />
+                    <Card.Content style={{ margin: 10 }}>
+                      <Paragraph
+                        style={[
                           styles.text,
-                          styles.headlineSmall,
+                          styles.textBodyLarge,
+                          { marginBottom: 10 },
                           styles.textBold,
-                          { marginBottom: 0 },
                         ]}
-                      />
-                      <Card.Content style={{ margin: 10 }}>
-                        <Paragraph
-                          style={[
-                            styles.text,
-                            styles.textBodyLarge,
-                            { marginBottom: 10 },
-                            styles.textBold,
-                          ]}
-                        >
-                          Diagnosis details:
-                        </Paragraph>
-                        <Paragraph style={[styles.text, styles.bodyMedium]}>
-                          Lorem ipsum dolor sit amet, consectetur adipiscing
-                          elit. Proin nisi metus, lobortis ut quam vitae,
-                          aliquet volutpat turpis. Donec convallis hendrerit
-                          dolor, ut accumsan risus lobortis nec. Suspendisse
-                          potenti. Donec quis rhoncus diam, vel faucibus massa.
-                          Pellentesque habitant morbi tristique senectus et
-                          netus et malesuada fames ac turpis egestas. Aenean
-                          placerat, neque ut tempor ultrices, sapien libero
-                          dignissim magna, non gravida urna turpis nec nunc.
-                        </Paragraph>
+                      >
+                        Diagnosis details:
+                      </Paragraph>
+                      <Paragraph style={[styles.text, styles.bodyMedium]}>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Proin nisi metus, lobortis ut quam vitae, aliquet
+                        volutpat turpis. Donec convallis hendrerit dolor, ut
+                        accumsan risus lobortis nec. Suspendisse potenti. Donec
+                        quis rhoncus diam, vel faucibus massa. Pellentesque
+                        habitant morbi tristique senectus et netus et malesuada
+                        fames ac turpis egestas. Aenean placerat, neque ut
+                        tempor ultrices, sapien libero dignissim magna, non
+                        gravida urna turpis nec nunc.
+                      </Paragraph>
 
-                        <Paragraph
-                          style={[
-                            styles.text,
-                            styles.textBodyLarge,
-                            styles.textBold,
-                            { marginBottom: 10, marginTop : 40},
-                          ]}
-                        >
-                          Diagnosis Date: <Text style={styles.text}>  10.08.2023</Text>
-                        </Paragraph>
-                      </Card.Content>
-                    </Card>}
+                      <Paragraph
+                        style={[
+                          styles.text,
+                          styles.textBodyLarge,
+                          styles.textBold,
+                          { marginBottom: 10, marginTop: 40 },
+                        ]}
+                      >
+                        Diagnosis Date:{" "}
+                        <Text style={styles.text}> 10.08.2023</Text>
+                      </Paragraph>
+                    </Card.Content>
+                  </Card>
+                )}
               </Card.Content>
             </View>
           </Card>

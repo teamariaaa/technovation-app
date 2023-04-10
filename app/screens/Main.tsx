@@ -1,13 +1,22 @@
 import React from "react";
 import Icon from "@expo/vector-icons/Octicons";
+import { Ionicons } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import HomeScreen from "./Home";
 import ItemScreen from "./Items";
 import ProfileScreen from "./ProfilePage";
+import WeCareScreen from "./WeCare";
 import { StyleSheet, Dimensions, View } from "react-native";
+import SelfCareScreen from "./SelfCare";
 
 import styles from "../global.styles.js";
 import ResourcesScreen from "./Resources";
+import MealsScreen from "./MealNavigator";
+import MealsTrackingScreen from "./MealNavigator";
+import DiaryScreen from "./Diary";
+import { NavigationContainer } from "@react-navigation/native";
+//import SelfCareScreen from "./SelfCare";
 
 //https://reactnavigation.org/docs/tab-based-naviganpmtion
 const Tab = createBottomTabNavigator();
@@ -49,8 +58,8 @@ const MainNavigator = () => (
     }}
   >
     <Tab.Screen
-      name="Home"
-      component={HomeScreen}
+      name="Meal"
+      component={MealsScreen}
       options={{
         headerShown: false,
         tabBarLabel: "Meals",
@@ -68,11 +77,11 @@ const MainNavigator = () => (
       }}
     />
     <Tab.Screen
-      name="MealTreacker"
-      component={ResourcesScreen}
+      name="SelfCare"
+      component={SelfCareScreen}
       options={{
         headerShown: false,
-        tabBarLabel: "Self Care",
+        tabBarLabel: "Self-care",
         //tabBarColor: "#8DB38D",
         tabBarIcon: ({ color }) => (
           <View
@@ -87,8 +96,8 @@ const MainNavigator = () => (
       }}
     />
     <Tab.Screen
-      name="Items"
-      component={ItemScreen}
+      name="WeCare"
+      component={WeCareScreen}
       options={{
         headerShown: false,
         tabBarLabel: "WeCare",
@@ -125,6 +134,18 @@ const MainNavigator = () => (
         ),
       }}
     />
+
+    {/* <Tab.Screen
+      name="Self-care"
+      component={SelfCareScreen}
+      options={{
+        headerShown: false,
+        tabBarLabel: "Self-care",
+        tabBarIcon: ({ color }) => (
+          <Ionicons name="leaf-outline" color={color} size={26} />
+        ),
+      }}
+    /> */}
   </Tab.Navigator>
 );
 

@@ -3,6 +3,7 @@ import { initializeApp } from "firebase/app";
 import firebaseConfig from "../../config/firebase.js";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+//import firebase from "firebase";
 import {
   Dimensions,
   StyleProp,
@@ -33,11 +34,16 @@ const LoginScreen = ({ navigation }: any) => {
   //     }
   // });
 
+  var database = firebase.database();
+  // save the user's profile into Firebase so we can list users,
+  // use them in Security and Firebase Rules, and show profiles
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [hidePassword, setHidePassword] = useState(true);
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
+  const [name, setName] = useState("");
 
   function LogIn() {
     const auth = getAuth();

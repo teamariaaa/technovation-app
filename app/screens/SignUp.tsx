@@ -26,6 +26,9 @@ import {
 import { red100 } from "react-native-paper/lib/typescript/src/styles/themes/v2/colors";
 import styles from "../global.styles.js";
 
+import database from "@react-native-firebase/database";
+import { firebase } from "@react-native-firebase/database";
+
 const app = firebaseConfig;
 const auth = getAuth(app);
 
@@ -44,6 +47,24 @@ const SignUpcreen = ({ navigation }: any) => {
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
 
+  function writeUserData(
+    userId: string,
+    name: string,
+    email: string,
+    imageUrl: string
+  ) {
+    firebase
+      .database()
+      .ref("users/" + userId)
+      .set({
+        username: name,
+        email: email,
+        //some more user data
+      });
+    console.log(name);
+    console.log(email);
+  }
+
   // async function signUp() {
   //   try {
   //     await createUserWithEmailAndPassword(auth, email, password);
@@ -56,11 +77,7 @@ const SignUpcreen = ({ navigation }: any) => {
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
-        updateProfile(user, {
-          displayName: name,
-          photoURL:
-            "https://static.independent.co.uk/s3fs-public/thumbnails/image/2017/09/27/08/jennifer-lawrence.jpg?quality=75&width=990&crop=1300%3A1000%2Csmart&auto=webp,",
-        });
+        writeUserData(user.uid, name, email, "");
         navigation.navigate("Main");
       })
       .catch((error) => {

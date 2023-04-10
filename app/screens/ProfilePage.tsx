@@ -28,19 +28,19 @@ const LeftContent = () => (
 
 const ProfileScreen = ({ navigation }: any) => {
   const auth = getAuth();
-  const [name, setName] = useState("");
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      // User is signed in, see docs for a list of available properties
-      // https://firebase.google.com/docs/reference/js/firebase.User
-      const uid = user.uid;
-      const displayName = user.displayName;
-      // ...
-    } else {
-      // User is signed out
-      // ...
-    }
-  });
+  // const [name, setName] = useState("");
+  // onAuthStateChanged(auth, (user) => {
+  //   if (user) {
+  //     // User is signed in, see docs for a list of available properties
+  //     // https://firebase.google.com/docs/reference/js/firebase.User
+  //     const uid = user.uid;
+  //     const displayName = user.displayName;
+  //     // ...
+  //   } else {
+  //     // User is signed out
+  //     // ...
+  //   }
+  // });
 
   const [problems, setProblems] = useState<string[]>([
     "anger",
@@ -91,7 +91,7 @@ const ProfileScreen = ({ navigation }: any) => {
             <View style={{ backgroundColor: "#FFFCEF" }}>
               <Card.Title
                 style={{ margin: 10 }}
-                title={displayName}
+                title="Tom Stuart"
                 titleStyle={[styles.text, styles.textBold]}
                 subtitle="age sickness treatment"
                 subtitleStyle={[styles.text, styles.hightlightText]}

@@ -1,6 +1,13 @@
 import React, { useEffect, useReducer, useState } from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { _View, Dimensions, _ScrollView, View } from "react-native";
+import {
+  _View,
+  Dimensions,
+  _ScrollView,
+  View,
+  Pressable,
+  StyleSheet,
+} from "react-native";
 import {
   Card,
   Paragraph,
@@ -8,8 +15,13 @@ import {
   Title,
   Button,
   Appbar,
+  DataTable,
+  Divider,
+  IconButton,
+  MD3Colors,
+  Surface,
 } from "react-native-paper";
-import styles from "../global.styles.js";
+import globalstyles from "../global.styles.js";
 import { ScrollView } from "react-native";
 import * as Progress from "react-native-progress";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
@@ -23,6 +35,7 @@ import firebaseConfig from "../../config/firebase.js";
 const MealTrackingScreen = ({ navigation }: any) => {
   const win = Dimensions.get("window");
 
+  const progress = <Paragraph style={globalstyles.textBold}>388</Paragraph>;
   const auth = getAuth();
   const user = auth.currentUser;
 
@@ -57,7 +70,7 @@ const MealTrackingScreen = ({ navigation }: any) => {
             <Button
               mode="contained-tonal"
               style={[
-                { backgroundColor: "#e4ede4", marginLeft: win.width - 170 },
+                { backgroundColor: "#EEF5DB", marginLeft: win.width - 170 }, //"#e4ede4"
               ]}
               onPress={() => navigation.navigate("Diary")}
             >
@@ -65,13 +78,16 @@ const MealTrackingScreen = ({ navigation }: any) => {
             </Button>
           </Appbar.Header>
         </View>
-        <Paragraph style={[styles.titleLarge, { bottom: 13, left: 15 }]}>
+        <Paragraph style={[globalstyles.titleLarge, { bottom: 13, left: 15 }]}>
           Hello, {name ? name[1] : ""}!
         </Paragraph>
-        <Card style={styles.idkContainer}>
+        <Card style={globalstyles.idkContainer}>
           <Card.Title
             title="Today"
-            titleStyle={[styles.headlineSmall, { textAlign: "center" }]}
+            titleStyle={[
+              globalstyles.headlineSmall,
+              { textAlign: "center", color: "#B6CB9E" },
+            ]}
           ></Card.Title>
           <Progress.Circle
             style={{ alignSelf: "center", marginTop: 10 }}
@@ -81,11 +97,130 @@ const MealTrackingScreen = ({ navigation }: any) => {
             borderWidth={2}
             color="#B6CB9E"
             borderColor="#B6CB9E"
+            showsText={true}
             fill="#EEF5DB"
             unfilledColor="#EEF5DB"
-            formatText={() => {}}
+            formatText={() => progress}
           />
-          {/* <Card.Content></Card.Content> */}
+          <Card.Content>
+            <Surface
+              style={[
+                styles.row,
+                { backgroundColor: "#EEF5DB", shadowColor: "#EEF5DB" },
+              ]}
+            >
+              <Surface
+                style={[
+                  styles.column,
+                  { backgroundColor: "#EEF5DB", shadowColor: "#EEF5DB" },
+                ]}
+              >
+                <View
+                  style={{
+                    borderBottomColor: "#B6CB9E",
+                    borderBottomWidth: 2,
+                    borderStyle: "solid",
+                  }}
+                >
+                  <Paragraph
+                    style={[
+                      globalstyles.textBold,
+                      { fontSize: 18, textAlign: "center" },
+                    ]}
+                  >
+                    Carbs
+                  </Paragraph>
+                </View>
+                <Paragraph style={globalstyles.lightText2}>204g left</Paragraph>
+              </Surface>
+              <Surface
+                style={[
+                  styles.column,
+                  { backgroundColor: "#EEF5DB", shadowColor: "#EEF5DB" },
+                ]}
+              >
+                <View
+                  style={{
+                    borderBottomColor: "#B6CB9E",
+                    borderBottomWidth: 2,
+                    borderStyle: "solid",
+                  }}
+                >
+                  <Paragraph
+                    style={[
+                      globalstyles.textBold,
+                      { fontSize: 18, textAlign: "center" },
+                    ]}
+                  >
+                    Protein
+                  </Paragraph>
+                </View>
+                <Paragraph
+                  style={[
+                    globalstyles.lightText2,
+                    { fontSize: 18, textAlign: "center" },
+                  ]}
+                >
+                  81g left
+                </Paragraph>
+              </Surface>
+              <Surface
+                style={[
+                  styles.column,
+                  { backgroundColor: "#EEF5DB", shadowColor: "#EEF5DB" },
+                ]}
+              >
+                <View
+                  style={{
+                    borderBottomColor: "#B6CB9E",
+                    borderBottomWidth: 2,
+                    borderStyle: "solid",
+                  }}
+                >
+                  <Paragraph
+                    style={[
+                      globalstyles.textBold,
+                      { fontSize: 18, textAlign: "center" },
+                    ]}
+                  >
+                    Fat
+                  </Paragraph>
+                </View>
+                <Paragraph
+                  style={[
+                    globalstyles.lightText2,
+                    { fontSize: 18, textAlign: "center" },
+                  ]}
+                >
+                  54g left
+                </Paragraph>
+              </Surface>
+            </Surface>
+            <Pressable
+              style={{
+                alignSelf: "center",
+                alignContent: "center",
+                justifyContent: "center",
+                marginBottom: -30,
+                marginTop: 25,
+                backgroundColor: "#B6CB9E",
+                width: 130,
+                height: 50,
+                elevation: 3,
+                borderRadius: 20,
+              }}
+              onPress={() => console.log("Pressed")}
+            >
+              <Paragraph
+                style={[
+                  globalstyles.textBold,
+                  { fontSize: 18, textAlign: "center" },
+                ]}
+              >
+                Add meal
+              </Paragraph>
+            </Pressable>
+          </Card.Content>
         </Card>
       </View>
     </ScrollView>
@@ -93,3 +228,22 @@ const MealTrackingScreen = ({ navigation }: any) => {
 };
 
 export default MealTrackingScreen;
+
+const styles = StyleSheet.create({
+  row: {
+    mode: "flat",
+    elevation: 0,
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginTop: 30,
+    color: "#EEF5DB",
+  },
+  column: {
+    mode: "flat",
+    elevation: 0,
+    display: "flex",
+    flexDirection: "column",
+    color: "#EEF5DB",
+  },
+});

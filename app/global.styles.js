@@ -15,7 +15,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-
     alignSelf: "center",
   },
 
@@ -72,6 +71,12 @@ const styles = StyleSheet.create({
     fontFamily: "Cabin",
   },
 
+  lightText2: {
+    color: "#808080",
+    fontSize : 14,
+    fontFamily: "Cabin",
+  },
+
   hightlightText: {
     color: "#246324",
     fontFamily: "Cabin",
@@ -90,6 +95,16 @@ const styles = StyleSheet.create({
   headlineSmall: {
     fontFamily: "Cabin",
     fontSize: 24,
+    fontWeight: "400",
+    letterSpacing: 0,
+    lineHeight: 32,
+    marginBottom: "5%",
+  },
+
+  paragraphStyle: {
+    fontFamily: "Cabin",
+    fontSize: 18,
+    color : "#808080",
     fontWeight: "400",
     letterSpacing: 0,
     lineHeight: 32,
@@ -137,6 +152,17 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     width: "100%",
     marginVertical: "10%",
+  },
+
+  rowContainer: {
+    borderTopLeftRadius: 40,
+    borderTopRightRadius: 40,
+    borderBottomLeftRadius: 40,
+    borderBottomRightRadius: 40,
+    paddingTop: 28,
+    paddingLeft: 30,
+    paddingRight: 30,
+    paddingBottom: 40,
   },
 
   idkContainer: {

@@ -90,7 +90,7 @@ const MainNavigator = () => (
               color == "#246324" && { backgroundColor: "#fff2bd" },
             ]}
           >
-            <Icon name="accessibility" color={color} size={26} />
+            <Ionicons name="leaf-outline" color={color} size={26} />
           </View>
         ),
       }}

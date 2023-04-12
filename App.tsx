@@ -8,6 +8,7 @@ import MainNavigator from "./app/screens/Main";
 import { LogBox } from "react-native";
 import GetStarted from "./app/screens/GetStarted";
 import SignUpScreen from "./app/screens/SignUp";
+import UserDataScreen from "./app/screens/GetUserPersonalData";
 
 import { useFonts } from "expo-font";
 
@@ -61,6 +62,12 @@ function App() {
           <Stack.Screen
             name="Main"
             component={MainNavigator}
+            options={{ headerShown: false }}
+          />
+
+          <Stack.Screen
+            name="GetUserPersonalData"
+            component={UserDataScreen}
             options={{ headerShown: false }}
           />
         </Stack.Navigator>

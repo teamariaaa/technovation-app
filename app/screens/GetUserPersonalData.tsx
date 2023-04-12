@@ -22,9 +22,11 @@ import {
   TextInput,
   Surface,
   IconButton,
+  Avatar,
 } from "react-native-paper";
 import { red100 } from "react-native-paper/lib/typescript/src/styles/themes/v2/colors";
 import styles from "../global.styles.js";
+import Icon from "react-native-paper/lib/typescript/src/components/Icon.js";
 
 // import database from "@react-native-firebase/database";
 // import { firebase } from "@react-native-firebase/database";
@@ -32,20 +34,27 @@ import styles from "../global.styles.js";
 const app = firebaseConfig;
 const auth = getAuth(app);
 
-const SignUpcreen = ({ navigation }: any) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+const UserDataScreen = ({ navigation }: any) => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [hidePassword, setHidePassword] = useState(true);
-  const [emailError, setEmailError] = useState("");
-  const [passwordError, setPasswordError] = useState("");
+  const [userHeight, setUserHeight] = useState("");
+  const [userAge, setUserAge] = useState("");
+  const [userGender, setUserGender] = useState("");
 
   function updateUser() {
     const auth = getAuth();
     const user = auth.currentUser;
     if (user) {
-      let userName = lastName + "," + firstName;
+      let userName =
+        lastName +
+        "$" +
+        firstName +
+        "$" +
+        userHeight +
+        "$" +
+        userAge +
+        "$" +
+        userGender;
       updateProfile(user, {
         displayName: userName,
         photoURL: "https://example.com/jane-q-user/profile.jpg",
@@ -60,47 +69,8 @@ const SignUpcreen = ({ navigation }: any) => {
         });
     }
   }
-
-  function signUp() {
-    const auth = getAuth();
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        const user = userCredential.user;
-        //updateUser();
-        //writeUserData(user.uid, name, email, "");
-
-        navigation.navigate("GetUserPersonalData");
-      })
-      .catch((error) => {
-        setEmailError("");
-        setPasswordError("");
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        if (error.code === "auth/email-already-in-use") {
-          console.log("That email address is already in use!");
-          setEmailError("That email address is already in use!");
-        }
-
-        if (error.code === "auth/invalid-email") {
-          console.log("That email address is invalid!");
-          setEmailError("That email address is invalid!");
-        }
-
-        if (error.code === "auth/invalide-password") {
-          console.log("invalide-password");
-          setPasswordError("invalide-password");
-        }
-
-        if (error.code === "auth/weak-password") {
-          console.log("weak-password");
-          setPasswordError("Password should be at least six characters");
-        }
-        console.error(error);
-      });
-  }
-
-  function getToTest() {
-    navigation.navigate("GetUserPersonalData");
+  function goToQuizz() {
+    navigation.navigate("");
   }
 
   const inputStyle: StyleProp<ViewStyle> = {
@@ -109,8 +79,13 @@ const SignUpcreen = ({ navigation }: any) => {
   };
 
   return (
-    <View style={styles.container}>
-      <View style={styles.upContainer}>
+    <View style={[styles.container, { backgroundColor: "#FFFCEF" }]}>
+      <View
+        style={[
+          styles.upContainer,
+          { backgroundColor: "#FFFCEF", marginBottom: 0 },
+        ]}
+      >
         <IconButton
           icon="keyboard-backspace"
           mode="contained-tonal"
@@ -122,14 +97,25 @@ const SignUpcreen = ({ navigation }: any) => {
         <Text
           style={[
             styles.text,
-            styles.titleLarge,
-            styles.textSemiBold,
+            styles.bodyMedium,
             styles.textCenter,
+            { marginLeft: "2.5%" },
           ]}
         >
-          Sign up
+          jasfaf
         </Text>
       </View>
+      <Avatar.Icon
+        size={110}
+        icon="dots-horizontal"
+        color="#c1dbc1"
+        style={{
+          backgroundColor: "transparent",
+          // width: customAvtardimension,
+          //height: customAvtardimension,
+        }}
+      />
+      {/* <Icon name="dots-horizontal" size={15} /> */}
       <View style={[styles.bottomContainer]}>
         <Paragraph style={[styles.headlineSmall, styles.textBold]}>
           Welcome!
@@ -139,48 +125,31 @@ const SignUpcreen = ({ navigation }: any) => {
         </Paragraph>
         <TextInput
           mode="flat"
-          style={[
-            styles.TextInput,
-            { marginTop: "10%", height: 50, marginBottom: "5%" },
-          ]}
-          label="Email"
-          left={<TextInput.Icon icon="email" />}
-          value={email}
-          onChangeText={(email: string) => setEmail(email)}
+          style={styles.TextInput}
+          label="First name"
+          left={<TextInput.Icon icon="account" />}
+          value={firstName}
+          onChangeText={(firstName: string) => setFirstName(firstName)}
         />
-
         <TextInput
           mode="flat"
-          label="Password"
-          style={[
-            styles.TextInput,
-            //styles.noTopMargin,
-            { marginTop: "10%", height: 50 },
-          ]}
-          secureTextEntry={hidePassword}
-          value={password}
-          onChangeText={(password) => setPassword(password)}
-          left={<TextInput.Icon icon="lock" />}
-          right={
-            <TextInput.Icon
-              icon="eye"
-              onPress={() => setHidePassword(!hidePassword)}
-            />
-          }
+          style={styles.TextInput}
+          label="Last name"
+          left={<TextInput.Icon icon="account" />}
+          value={lastName}
+          onChangeText={(lastName: string) => setLastName(lastName)}
         />
-        <Text style={styles.errorText}> {passwordError}</Text>
-        <Text style={styles.errorText}>{emailError}</Text>
+
         <Button
           mode="elevated"
           style={[
             styles.myButton,
             //styles.marginButtonTop,
             styles.noBottomMargin,
-            { marginTop: "50%" },
+            { margin: "2%", marginTop: "10%" },
           ]}
           onPress={() => {
-            //signUp();
-            navigation.navigate("GetUserPersonalData");
+            goToQuizz();
           }}
         >
           <Text style={[styles.text, styles.textBodyLarge]}>Sign up</Text>
@@ -202,4 +171,4 @@ const SignUpcreen = ({ navigation }: any) => {
   );
 };
 
-export default SignUpcreen;
+export default UserDataScreen;

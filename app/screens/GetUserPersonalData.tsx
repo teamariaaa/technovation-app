@@ -15,6 +15,9 @@ import {
   StyleSheet,
   Image,
   Text,
+  ScrollView,
+  SafeAreaView,
+  StatusBar,
 } from "react-native";
 import {
   Button,
@@ -40,37 +43,54 @@ const UserDataScreen = ({ navigation }: any) => {
   const [userHeight, setUserHeight] = useState("");
   const [userAge, setUserAge] = useState("");
   const [userGender, setUserGender] = useState("");
+  const [userWeight, setUserWeight] = useState("");
+  const [currentPage, setCurrentPage] = useState("userName");
+  const [userName, setUserName] = useState("");
 
   function updateUser() {
     const auth = getAuth();
     const user = auth.currentUser;
-    if (user) {
-      let userName =
-        lastName +
-        "$" +
-        firstName +
-        "$" +
-        userHeight +
-        "$" +
-        userAge +
-        "$" +
-        userGender;
-      updateProfile(user, {
-        displayName: userName,
-        photoURL: "https://example.com/jane-q-user/profile.jpg",
-      })
-        .then(() => {
-          console.log(user.displayName);
-          console.log(lastName);
-        })
-        .catch((error) => {
-          // An error occurred
-          // ...
-        });
+    if (true) {
+      if (currentPage === "otherInfo") {
+        let userName =
+          lastName +
+          "$" +
+          firstName +
+          "$" +
+          userAge +
+          "$" +
+          userGender +
+          "$" +
+          userWeight +
+          "$" +
+          userHeight;
+        // updateProfile(user, {
+        //   displayName: userName,
+        //   photoURL: "https://example.com/jane-q-user/profile.jpg",
+        // })
+        //   .then(() => {
+        //     console.log(user.displayName);
+        //     console.log(lastName);
+        //   })
+        //   .catch((error) => {
+        //     // An error occurred
+        //     // ...
+        //   });
+
+        navigation.navigate("GoToQuizz");
+      }
+      if (currentPage === "userName") {
+        setCurrentPage("otherInfo");
+      }
     }
   }
   function goToQuizz() {
     navigation.navigate("");
+  }
+
+  function changePage() {
+    if (currentPage == "userName") navigation.navigate("SignUp");
+    if (currentPage == "otherInfo") setCurrentPage("userName");
   }
 
   const inputStyle: StyleProp<ViewStyle> = {
@@ -79,95 +99,180 @@ const UserDataScreen = ({ navigation }: any) => {
   };
 
   return (
-    <View style={[styles.container, { backgroundColor: "#FFFCEF" }]}>
-      <View
-        style={[
-          styles.upContainer,
-          { backgroundColor: "#FFFCEF", marginBottom: 0 },
-        ]}
-      >
-        <IconButton
-          icon="keyboard-backspace"
-          mode="contained-tonal"
-          style={styles.iconButton}
-          size={20}
-          onPress={() => navigation.navigate("Start")}
-        />
-
-        <Text
+    <SafeAreaView
+      style={[
+        styles.container,
+        { backgroundColor: "#FFFCEF", paddingTop: StatusBar.currentHeight },
+      ]}
+    >
+      <ScrollView style={{ flex: 1 }}>
+        <View
           style={[
-            styles.text,
-            styles.bodyMedium,
-            styles.textCenter,
-            { marginLeft: "2.5%" },
+            styles.upContainer,
+            { backgroundColor: "#FFFCEF", marginBottom: 0 },
           ]}
         >
-          jasfaf
-        </Text>
-      </View>
-      <Avatar.Icon
-        size={110}
-        icon="dots-horizontal"
-        color="#c1dbc1"
-        style={{
-          backgroundColor: "transparent",
-          // width: customAvtardimension,
-          //height: customAvtardimension,
-        }}
-      />
-      {/* <Icon name="dots-horizontal" size={15} /> */}
-      <View style={[styles.bottomContainer]}>
-        <Paragraph style={[styles.headlineSmall, styles.textBold]}>
-          Welcome!
-        </Paragraph>
-        <Paragraph style={(styles.bodyMedium, styles.lightText)}>
-          Enter your personal data
-        </Paragraph>
-        <TextInput
-          mode="flat"
-          style={styles.TextInput}
-          label="First name"
-          left={<TextInput.Icon icon="account" />}
-          value={firstName}
-          onChangeText={(firstName: string) => setFirstName(firstName)}
-        />
-        <TextInput
-          mode="flat"
-          style={styles.TextInput}
-          label="Last name"
-          left={<TextInput.Icon icon="account" />}
-          value={lastName}
-          onChangeText={(lastName: string) => setLastName(lastName)}
-        />
+          <IconButton
+            icon="keyboard-backspace"
+            mode="contained-tonal"
+            style={styles.iconButton}
+            size={20}
+            onPress={() => changePage()}
+          />
 
-        <Button
-          mode="elevated"
-          style={[
-            styles.myButton,
-            //styles.marginButtonTop,
-            styles.noBottomMargin,
-            { margin: "2%", marginTop: "10%" },
-          ]}
-          onPress={() => {
-            goToQuizz();
+          <Text
+            style={[
+              styles.text,
+              styles.bodyMedium,
+              styles.textCenter,
+              { marginLeft: "2.5%" },
+            ]}
+          >
+            Sign Up
+          </Text>
+        </View>
+        <Avatar.Icon
+          size={134}
+          icon="dots-horizontal"
+          color="#c1dbc1"
+          style={{
+            backgroundColor: "transparent",
+            height: 122 * 0.8,
+            marginTop: "10%",
+            // width: customAvtardimension,
+            //height: customAvtardimension,
+          }}
+        />
+        {/* <Icon name="dots-horizontal" size={15} /> */}
+        <View
+          style={{
+            flex: 6,
+            alignItems: "flex-start",
+            justifyContent: "flex-start",
+            paddingLeft: 30,
+            paddingRight: 30,
           }}
         >
-          <Text style={[styles.text, styles.textBodyLarge]}>Sign up</Text>
-        </Button>
-        <View style={[styles.containerRow, styles.noMargin]}>
-          <Paragraph style={(styles.bodyMedium, styles.lightText)}>
-            Aready have an account?
+          <Paragraph style={[styles.headlineSmall, styles.textBold]}>
+            Let us know you!
           </Paragraph>
-          <Button
-            mode="text"
-            style={styles.smallHiddenButton}
-            onPress={() => navigation.navigate("Login")}
+          <Paragraph
+            style={[
+              styles.bodyMedium,
+              styles.lightText,
+              { width: "75%", marginBottom: "5%" },
+            ]}
           >
-            <Text style={styles.hightlightText}>Sign in</Text>
+            Based on your data we can calculate the perfect diet and treatment.
+          </Paragraph>
+
+          {/* {true && 
+            <View></View>
+          } */}
+
+          {currentPage == "userName" ? (
+            <View style={{ width: "100%" }}>
+              <Text
+                style={[
+                  styles.text,
+                  styles.hightlightText,
+                  styles.bodyMedium,
+                  { marginTop: "5%", marginBottom: 0 },
+                ]}
+              >
+                Enter your name and age:
+              </Text>
+              <TextInput
+                mode="flat"
+                style={[
+                  styles.TextInput,
+                  styles.text,
+                  { height: 45, marginTop: "5%" },
+                ]}
+                label="First name"
+                left={<TextInput.Icon icon="account" />}
+                value={firstName}
+                onChangeText={(firstName: string) => setFirstName(firstName)}
+              />
+              <TextInput
+                mode="flat"
+                style={[
+                  styles.TextInput,
+                  styles.text,
+                  { height: 45, marginTop: "10%" },
+                ]}
+                label="Last name"
+                left={<TextInput.Icon icon="account" />}
+                value={lastName}
+                onChangeText={(lastName: string) => setLastName(lastName)}
+              />
+              <TextInput
+                mode="flat"
+                style={[styles.TextInput, { height: 45, marginTop: "10%" }]}
+                label="Age"
+                left={<TextInput.Icon icon="calendar-account" />}
+                value={userAge}
+                onChangeText={(userAge: string) => setUserAge(userAge)}
+              />
+            </View>
+          ) : (
+            <View style={{ width: "100%" }}>
+              <Text
+                style={[
+                  styles.text,
+                  styles.hightlightText,
+                  styles.bodyMedium,
+                  { marginTop: "5%", marginBottom: 0 },
+                ]}
+              >
+                Enter your gender, weight and height:
+              </Text>
+              <TextInput
+                mode="flat"
+                style={[styles.TextInput, { height: 45, marginTop: "5%" }]}
+                label="Gender"
+                left={<TextInput.Icon icon="gender-male-female" />}
+                value={userGender}
+                onChangeText={(userGender: string) => setUserGender(userGender)}
+              />
+
+              <TextInput
+                mode="flat"
+                style={[styles.TextInput, { height: 45, marginTop: "10%" }]}
+                label="Weight in kg"
+                left={<TextInput.Icon icon="scale" />}
+                value={userWeight}
+                onChangeText={(userWeight: string) => setUserWeight(userWeight)}
+              />
+
+              <TextInput
+                mode="flat"
+                style={[styles.TextInput, { height: 45, marginTop: "10%" }]}
+                label="Height in cm"
+                left={<TextInput.Icon icon="human-male-height" />}
+                value={userHeight}
+                onChangeText={(userHeight: string) => setUserHeight(userHeight)}
+              />
+            </View>
+          )}
+
+          <Button
+            mode="elevated"
+            style={[
+              styles.myButton,
+              //styles.marginButtonTop,
+              styles.noBottomMargin,
+              { marginTop: "30%", marginBottom: "10%" },
+            ]}
+            onPress={() => {
+              updateUser();
+            }}
+          >
+            <Text style={[styles.text, styles.textBodyLarge]}>Next</Text>
           </Button>
         </View>
-      </View>
-    </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 

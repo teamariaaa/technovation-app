@@ -10,6 +10,8 @@ import GetStarted from "./app/screens/GetStarted";
 import SignUpScreen from "./app/screens/SignUp";
 
 import { useFonts } from "expo-font";
+import ProfileTherapeutScreen from "./app/screens/ProfileTherapeutScreen";
+import ProfileTherapeutChatScreen from "./app/screens/ProfileTherapeutChatScreen";
 
 LogBox.ignoreLogs([
   /^AsyncStorage has been extracted from react-native/,
@@ -61,6 +63,17 @@ function App() {
           <Stack.Screen
             name="Main"
             component={MainNavigator}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="ProfileTherapeutScreen"
+            component={ProfileTherapeutScreen}
+            options={{ headerShown: false }}
+          />
+
+          <Stack.Screen
+            name="ProfileTherapeutChatScreen"
+            component={ProfileTherapeutChatScreen}
             options={{ headerShown: false }}
           />
         </Stack.Navigator>

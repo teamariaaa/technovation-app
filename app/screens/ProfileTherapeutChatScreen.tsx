@@ -88,7 +88,6 @@ const ProfileTherapeutChatScreen = ({ route, navigation }: Props) => {
                 flexDirection: "row",
                 justifyContent: "space-evenly",
                 alignItems: "center",
-                // padding: 25,
                 backgroundColor: '#fff'
               }}
             >

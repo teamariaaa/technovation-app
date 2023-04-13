@@ -70,7 +70,7 @@ const persons = [
   avatarURL: "https://source.unsplash.com/_H6wpor9mjs",
   messages: [
     {text: "Hi Dr. Orn, I'm interested in getting some nutrition advice. What are some tips you have for eating healthier?", sender: true},
-    {text: "Hi there! That's great to hear 🤗 The timing of your meals can have an impact on your metabolism and energy levels. Generally, it's a good idea to eat breakfast within an hour of waking up and then aim to eat every 3-4 hours throughout the day. This helps to keep your blood sugar levels stable and prevent overeating later on.", sender: false},
+    {text: "Hi there! That's great to hear 🤗. The timing of your meals can have an impact on your metabolism and energy levels. Generally, it's a good idea to eat breakfast within an hour of waking up and then aim to eat every 3-4 hours throughout the day. This helps to keep your blood sugar levels stable and prevent overeating later on.", sender: false},
     {text: "How does your current meal schedule look like?", sender: false},
   ],
   email: "dr_michelledare@gmail.com",

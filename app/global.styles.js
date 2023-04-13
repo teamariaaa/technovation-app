@@ -15,7 +15,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-
     alignSelf: "center",
   },
 
@@ -72,6 +71,12 @@ const styles = StyleSheet.create({
     fontFamily: "Cabin",
   },
 
+  lightText2: {
+    color: "#808080",
+    fontSize : 14,
+    fontFamily: "Cabin",
+  },
+
   hightlightText: {
     color: "#246324",
     fontFamily: "Cabin",
@@ -90,6 +95,16 @@ const styles = StyleSheet.create({
   headlineSmall: {
     fontFamily: "Cabin",
     fontSize: 24,
+    fontWeight: "400",
+    letterSpacing: 0,
+    lineHeight: 32,
+    marginBottom: "5%",
+  },
+
+  paragraphStyle: {
+    fontFamily: "Cabin",
+    fontSize: 18,
+    color : "#808080",
     fontWeight: "400",
     letterSpacing: 0,
     lineHeight: 32,
@@ -136,6 +151,18 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "flex-start",
     width: "100%",
+    marginVertical: "10%",
+  },
+
+  rowContainer: {
+    borderTopLeftRadius: 40,
+    borderTopRightRadius: 40,
+    borderBottomLeftRadius: 40,
+    borderBottomRightRadius: 40,
+    paddingTop: 28,
+    paddingLeft: 30,
+    paddingRight: 30,
+    paddingBottom: 40,
   },
 
   idkContainer: {
@@ -151,7 +178,7 @@ const styles = StyleSheet.create({
   },
 
   bottomContainer: {
-    flex: 3,
+    flex: 6,
     backgroundColor: "#c1dbc1",
     alignItems: "flex-start",
     justifyContent: "flex-start",
@@ -173,14 +200,14 @@ const styles = StyleSheet.create({
   TextInput: {
     backgroundColor: "#eeeee4",
     width: "100%",
-    height: 50,
+    height: 45,
     color: "#333",
-    marginTop: 40,
-    marginBottom: 40,
+    marginTop: "9%",
+    //marginBottom: ,
   },
 
   noMargin: {
-    margin: 0,
+    margin: "0%",
   },
 
   noTopMargin: {
@@ -219,6 +246,13 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "row",
     justifyContent: "space-between",
+  },
+
+  errorText: {
+    color: "#246324",
+    fontFamily: "Cabin",
+    //marginBottom: "2%",
+    marginTop: "2%",
   },
 });
 

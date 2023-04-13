@@ -8,7 +8,6 @@ import { Button, DataTable } from "react-native-paper";
 const ItemListScreen = ({ navigation }: any) => {
 
         const [data, setData] = useState<{ id?: string, label: string, quantity: number }[]>([]);
-
         // useEffect(() => {
         //         const unsubscribe = onSnapshot(
         //                 collection(db, 'items'),

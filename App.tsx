@@ -71,6 +71,7 @@ function App() {
           <Stack.Screen
             name="ProfileTherapeutScreen"
             component={ProfileTherapeutScreen}
+            options={{ headerShown: false }}
             />
 
           <Stack.Screen
@@ -82,6 +83,7 @@ function App() {
           <Stack.Screen
             name="ProfileTherapeutChatScreen"
             component={ProfileTherapeutChatScreen}
+            options={{ headerShown: false }}
             />
 
           <Stack.Screen

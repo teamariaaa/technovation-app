@@ -8,6 +8,9 @@ import MainNavigator from "./app/screens/Main";
 import { LogBox } from "react-native";
 import GetStarted from "./app/screens/GetStarted";
 import SignUpScreen from "./app/screens/SignUp";
+import UserDataScreen from "./app/screens/GetUserPersonalData";
+import QuizzScreen from "./app/screens/Quizz";
+import GetToQuizzScreen from "./app/screens/GoToQuizz";
 
 import { useFonts } from "expo-font";
 import ProfileTherapeutScreen from "./app/screens/ProfileTherapeutScreen";
@@ -68,12 +71,28 @@ function App() {
           <Stack.Screen
             name="ProfileTherapeutScreen"
             component={ProfileTherapeutScreen}
+            />
+
+          <Stack.Screen
+            name="GetUserPersonalData"
+            component={UserDataScreen}
             options={{ headerShown: false }}
           />
 
           <Stack.Screen
             name="ProfileTherapeutChatScreen"
             component={ProfileTherapeutChatScreen}
+            />
+
+          <Stack.Screen
+            name="Quizz"
+            component={QuizzScreen}
+            options={{ headerShown: false }}
+          />
+
+          <Stack.Screen
+            name="GoToQuizz"
+            component={GetToQuizzScreen}
             options={{ headerShown: false }}
           />
         </Stack.Navigator>

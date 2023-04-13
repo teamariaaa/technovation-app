@@ -70,10 +70,19 @@ const ProfileScreen = ({ navigation }: any) => {
   const win = Dimensions.get("window");
 
   let fullName = user?.displayName;
+  let age;
+  let gender;
+  let weight;
+  let height;
 
   let name;
-  name = fullName?.split(",");
+  name = fullName?.split("$");
   fullName = name ? name[0] + " " + name[1] : "";
+  age = name ? name[2] : "";
+  gender = name ? name[3] : "";
+  weight = name ? name[4] : "";
+  height = name ? name[5] : "";
+
   console.log(fullName);
   console.log(name);
 
@@ -116,7 +125,7 @@ const ProfileScreen = ({ navigation }: any) => {
                 style={{ margin: 10 }}
                 title={fullName}
                 titleStyle={[styles.text, styles.textBold]}
-                subtitle="age sickness treatment"
+                subtitle={age}
                 subtitleStyle={[styles.text, styles.hightlightText]}
                 left={LeftContent}
                 leftStyle={{ marginRight: 40 }} //style={{ margin: 10 }}
@@ -208,12 +217,12 @@ const ProfileScreen = ({ navigation }: any) => {
                         <DataTable.Row>
                           <DataTable.Cell>
                             <Text style={[styles.text, styles.bodyMedium]}>
-                              Date of Birth
+                              Age
                             </Text>
                           </DataTable.Cell>
                           <DataTable.Cell numeric>
                             <Text style={[styles.text, styles.bodyMedium]}>
-                              07 June 1999
+                              {age}
                             </Text>
                           </DataTable.Cell>
                         </DataTable.Row>
@@ -226,7 +235,7 @@ const ProfileScreen = ({ navigation }: any) => {
                           </DataTable.Cell>
                           <DataTable.Cell numeric>
                             <Text style={[styles.text, styles.bodyMedium]}>
-                              male
+                              {gender}
                             </Text>
                           </DataTable.Cell>
                         </DataTable.Row>

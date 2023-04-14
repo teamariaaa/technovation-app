@@ -32,6 +32,78 @@ import firebaseConfig from "../../config/firebase.js";
          #C7EFCF
          #B7CECE*/
 
+const breakfastItems = [
+  {
+    id : 1,
+    name: "Omelet",
+    photo : "../../assets/profilePicture.jpeg",
+    calories : 183,
+    protein : 12,
+    fat : 14,
+    carbs : 4.6,
+  }
+];
+
+const lunchItems = [
+  {
+    id : 1,
+    name: "Omelet",
+    photo : "../../assets/profilePicture.jpeg",
+    calories : 183,
+    protein : 12,
+    fat : 14,
+    carbs : 4.6,
+  }
+];
+
+const dinnerItems = [
+  {
+    id : 1,
+    name: "Omelet",
+    photo : "../../assets/profilePicture.jpeg",
+    calories : 183,
+    protein : 12,
+    fat : 14,
+    carbs : 4.6,
+  }
+];
+
+const drinksItems = [
+  {
+    id : 1,
+    name: "Omelet",
+    photo : "../../assets/profilePicture.jpeg",
+    calories : 183,
+    protein : 12,
+    fat : 14,
+    carbs : 4.6,
+  }
+];
+
+const dessertItems = [
+  {
+    id : 1,
+    name: "Omelet",
+    photo : "../../assets/profilePicture.jpeg",
+    calories : 183,
+    protein : 12,
+    fat : 14,
+    carbs : 4.6,
+  }
+];
+
+const snacksItems = [
+  {
+    id : 1,
+    name: "Omelet",
+    photo : "../../assets/profilePicture.jpeg",
+    calories : 183,
+    protein : 12,
+    fat : 14,
+    carbs : 4.6,
+  }
+];
+
 const MealTrackingScreen = ({ navigation }: any) => {
   const win = Dimensions.get("window");
 
@@ -209,7 +281,7 @@ const MealTrackingScreen = ({ navigation }: any) => {
                 elevation: 3,
                 borderRadius: 20,
               }}
-              onPress={() => console.log("Pressed")}
+              onPress={() => navigation.navigate("SearchPage")}
             >
               <Paragraph
                 style={[

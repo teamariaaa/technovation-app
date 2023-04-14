@@ -33,13 +33,6 @@ const app = firebaseConfig;
 const auth = getAuth(app);
 
 const SignUpcreen = ({ navigation }: any) => {
-  // onAunpthStateChanged(auth, user => {
-  //     if (user != null) {
-  //         AsyncStorage.setItem('@user', JSON.stringify(user))
-  //             .then(() => navigation.navigate('Main'));
-  //     }
-  // });
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [firstName, setFirstName] = useState("");
@@ -47,31 +40,6 @@ const SignUpcreen = ({ navigation }: any) => {
   const [hidePassword, setHidePassword] = useState(true);
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
-
-  // function writeUserData(
-  //   userId: string,
-  //   name: string,
-  //   email: string,
-  //   imageUrl: string
-  // ) {
-  //   firebase
-  //     .database()
-  //     .ref("users/" + userId)
-  //     .set({
-  //       username: name,
-  //       email: email,
-  //       //some more user data
-  //     });
-  //   console.log(name);
-  //   console.log(email);
-  // }
-
-  // async function signUp() {
-  //   try {
-  //     await createUserWithEmailAndPassword(auth, email, password);
-  //     navigation.navigate("Main");
-  //   } catch (error) {}
-  // }
 
   function updateUser() {
     const auth = getAuth();
@@ -98,9 +66,10 @@ const SignUpcreen = ({ navigation }: any) => {
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
-        updateUser();
+        //updateUser();
         //writeUserData(user.uid, name, email, "");
-        navigation.navigate("Main");
+
+        navigation.navigate("GetUserPersonalData");
       })
       .catch((error) => {
         setEmailError("");
@@ -131,7 +100,7 @@ const SignUpcreen = ({ navigation }: any) => {
   }
 
   function getToTest() {
-    navigation.navigate("Main");
+    navigation.navigate("GetUserPersonalData");
   }
 
   const inputStyle: StyleProp<ViewStyle> = {
@@ -170,23 +139,10 @@ const SignUpcreen = ({ navigation }: any) => {
         </Paragraph>
         <TextInput
           mode="flat"
-          style={styles.TextInput}
-          label="First name"
-          left={<TextInput.Icon icon="account" />}
-          value={firstName}
-          onChangeText={(firstName: string) => setFirstName(firstName)}
-        />
-        <TextInput
-          mode="flat"
-          style={styles.TextInput}
-          label="Last name"
-          left={<TextInput.Icon icon="account" />}
-          value={lastName}
-          onChangeText={(lastName: string) => setLastName(lastName)}
-        />
-        <TextInput
-          mode="flat"
-          style={styles.TextInput}
+          style={[
+            styles.TextInput,
+            { marginTop: "10%", height: 50, marginBottom: "5%" },
+          ]}
           label="Email"
           left={<TextInput.Icon icon="email" />}
           value={email}
@@ -196,7 +152,11 @@ const SignUpcreen = ({ navigation }: any) => {
         <TextInput
           mode="flat"
           label="Password"
-          style={[styles.noMargin, styles.TextInput]}
+          style={[
+            styles.TextInput,
+            //styles.noTopMargin,
+            { marginTop: "10%", height: 50 },
+          ]}
           secureTextEntry={hidePassword}
           value={password}
           onChangeText={(password) => setPassword(password)}
@@ -216,10 +176,11 @@ const SignUpcreen = ({ navigation }: any) => {
             styles.myButton,
             //styles.marginButtonTop,
             styles.noBottomMargin,
-            { margin: "2%", marginTop: "10%" },
+            { marginTop: "50%" },
           ]}
           onPress={() => {
-            signUp();
+            //signUp();
+            navigation.navigate("GetUserPersonalData");
           }}
         >
           <Text style={[styles.text, styles.textBodyLarge]}>Sign up</Text>

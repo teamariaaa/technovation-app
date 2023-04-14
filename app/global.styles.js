@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
 
   lightText2: {
     color: "#808080",
-    fontSize : 14,
+    fontSize: 14,
     fontFamily: "Cabin",
   },
 
@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
   paragraphStyle: {
     fontFamily: "Cabin",
     fontSize: 18,
-    color : "#808080",
+    color: "#808080",
     fontWeight: "400",
     letterSpacing: 0,
     lineHeight: 32,

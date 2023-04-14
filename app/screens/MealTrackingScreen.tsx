@@ -26,6 +26,8 @@ import { ScrollView } from "react-native";
 import * as Progress from "react-native-progress";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import firebaseConfig from "../../config/firebase.js";
+import CircularProgress from "react-native-circular-progress-indicator";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 /*Culori #DAF7DC
          #ABC8C0
@@ -34,74 +36,74 @@ import firebaseConfig from "../../config/firebase.js";
 
 const breakfastItems = [
   {
-    id : 1,
+    id: 1,
     name: "Omelet",
-    photo : "../../assets/profilePicture.jpeg",
-    calories : 183,
-    protein : 12,
-    fat : 14,
-    carbs : 4.6,
-  }
+    photo: "../../assets/profilePicture.jpeg",
+    calories: 183,
+    protein: 12,
+    fat: 14,
+    carbs: 4.6,
+  },
 ];
 
 const lunchItems = [
   {
-    id : 1,
+    id: 1,
     name: "Omelet",
-    photo : "../../assets/profilePicture.jpeg",
-    calories : 183,
-    protein : 12,
-    fat : 14,
-    carbs : 4.6,
-  }
+    photo: "../../assets/profilePicture.jpeg",
+    calories: 183,
+    protein: 12,
+    fat: 14,
+    carbs: 4.6,
+  },
 ];
 
 const dinnerItems = [
   {
-    id : 1,
+    id: 1,
     name: "Omelet",
-    photo : "../../assets/profilePicture.jpeg",
-    calories : 183,
-    protein : 12,
-    fat : 14,
-    carbs : 4.6,
-  }
+    photo: "../../assets/profilePicture.jpeg",
+    calories: 183,
+    protein: 12,
+    fat: 14,
+    carbs: 4.6,
+  },
 ];
 
 const drinksItems = [
   {
-    id : 1,
+    id: 1,
     name: "Omelet",
-    photo : "../../assets/profilePicture.jpeg",
-    calories : 183,
-    protein : 12,
-    fat : 14,
-    carbs : 4.6,
-  }
+    photo: "../../assets/profilePicture.jpeg",
+    calories: 183,
+    protein: 12,
+    fat: 14,
+    carbs: 4.6,
+  },
 ];
 
 const dessertItems = [
   {
-    id : 1,
+    id: 1,
     name: "Omelet",
-    photo : "../../assets/profilePicture.jpeg",
-    calories : 183,
-    protein : 12,
-    fat : 14,
-    carbs : 4.6,
-  }
+    photo: "../../assets/profilePicture.jpeg",
+    calories: 183,
+    protein: 12,
+    fat: 14,
+    carbs: 4.6,
+  },
 ];
 
 const snacksItems = [
   {
-    id : 1,
+    id: 1,
     name: "Omelet",
-    photo : "../../assets/profilePicture.jpeg",
-    calories : 183,
-    protein : 12,
-    fat : 14,
-    carbs : 4.6,
-  }
+    photo: "../../assets/profilePicture.jpeg",
+    calories: 183,
+    protein: 12,
+    fat: 14,
+    carbs: 4.6,
+  },
 ];
 
 const MealTrackingScreen = ({ navigation }: any) => {
@@ -161,19 +163,36 @@ const MealTrackingScreen = ({ navigation }: any) => {
               { textAlign: "center", color: "#B6CB9E" },
             ]}
           ></Card.Title>
-          <Progress.Circle
-            style={{ alignSelf: "center", marginTop: 10 }}
-            size={200}
-            progress={0.7}
-            thickness={10}
-            borderWidth={2}
-            color="#B6CB9E"
-            borderColor="#B6CB9E"
-            showsText={true}
-            fill="#EEF5DB"
-            unfilledColor="#EEF5DB"
-            formatText={() => progress}
-          />
+          <View style={{ alignSelf: "center", marginTop: 10 }}>
+            <CircularProgress
+              value={388}
+              //initialValue={1400}
+              //<MaterialCommunityIcons name = "fire" />
+              radius={110}
+              duration={3000}
+              activeStrokeColor="#9db97d"
+              inActiveStrokeColor="#B6CB9E"
+              inActiveStrokeOpacity={0.5}
+              progressValueColor={"#3C403D"}
+              progressValueStyle={{ fontSize: 40 }}
+              inActiveStrokeWidth={18}
+              activeStrokeWidth={16}
+              maxValue={1400}
+              title={"Kcal"}
+              titleStyle={{
+                color: "#808080",
+                fontFamily: "Cabin",
+                fontSize: 20,
+              }}
+              subtitle=" Your daily goals"
+              subtitleStyle={{
+                color: "#808080",
+                fontFamily: "Cabin",
+                fontSize: 17,
+              }}
+              titleColor={"#3C403D"}
+            />
+          </View>
           <Card.Content>
             <Surface
               style={[

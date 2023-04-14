@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, TouchableWithoutFeedbackProps } from "react-native";
 import { Surface } from 'react-native-paper';
+
 
 const SelfCareScreen = ({ navigation }: any) => {
     const [isBreathingCycleInProgress, setIsBreathingCycleInProgress] =
@@ -25,28 +26,33 @@ const SelfCareScreen = ({ navigation }: any) => {
     }, [isBreathingCycleCompleted]);
 
     return (
-        <View style={styles.container}>
+        <View style={{ backgroundColor: '#fffcef' }}>
+            <View style={styles.container}>
 
-            <SelfCareList></SelfCareList>
+                <ResourcesButton onPress={function (): void {
+                    throw new Error("Function not implemented.");
+                }}></ResourcesButton>
+                <SelfCareList></SelfCareList>
 
-            { /* <Text style={styles.buttonText}> Try our exercise for relaxing </Text> */}
+                { /* <Text style={styles.buttonText}> Try our exercise for relaxing </Text> */}
 
-            <CircleCronometer
-                isBreathingCycleInProgress={isBreathingCycleInProgress}
-                isBreathingCycleCompleted={isBreathingCycleCompleted}
-                setIsBreathingCycleCompleted={setIsBreathingCycleCompleted}
-            />
-            <TouchableOpacity
-                style={styles.button}
-                onPress={handleBreathingCycleToggle} // Call handleBreathingCycleToggle when button is pressed
-                disabled={isBreathingCycleInProgress && !isBreathingCycleCompleted} // Disable button when cycle is in progress and not completed
-            >
-                <Text style={[styles.buttonText, styles.text]}>
-                    {isBreathingCycleInProgress
-                        ? "Stop breathing cycle"
-                        : "Start one breathing cycle"}
-                </Text>
-            </TouchableOpacity>
+                <CircleCronometer
+                    isBreathingCycleInProgress={isBreathingCycleInProgress}
+                    isBreathingCycleCompleted={isBreathingCycleCompleted}
+                    setIsBreathingCycleCompleted={setIsBreathingCycleCompleted}
+                />
+                <TouchableOpacity
+                    style={styles.button}
+                    onPress={handleBreathingCycleToggle} // Call handleBreathingCycleToggle when button is pressed
+                    disabled={isBreathingCycleInProgress && !isBreathingCycleCompleted} // Disable button when cycle is in progress and not completed
+                >
+                    <Text style={[styles.buttonText, styles.text]}>
+                        {isBreathingCycleInProgress
+                            ? "Stop breathing cycle"
+                            : "Start one breathing cycle"}
+                    </Text>
+                </TouchableOpacity>
+            </View>
         </View>
     );
 };
@@ -96,6 +102,19 @@ const CircleCronometer = ({
     );
 
 };
+interface ResourcesButtonProps extends TouchableWithoutFeedbackProps {
+    onPress: () => void;
+}
+
+const ResourcesButton: React.FC<ResourcesButtonProps> = ({ onPress }) => {
+    return (
+        <TouchableOpacity onPress={onPress} style={styles.buttonContainer}>
+            <Text style={styles.buttonresources}>Resources</Text>
+        </TouchableOpacity>
+    );
+};
+
+
 
 const SelfCareList = () => {
     const selfCareMessages = [
@@ -116,7 +135,7 @@ const SelfCareList = () => {
         "Self-care is not a selfish act, it's an act of self-love. You are worthy of all the care and attention you give to yourself.",
     ];
 
-    const [randomMessage, setRandomMessage] = useState('bla');
+    const [randomMessage, setRandomMessage] = useState('');
 
     useEffect(() => {
         // Function to get a random self-care message
@@ -141,12 +160,13 @@ const SelfCareList = () => {
 
 const styles = StyleSheet.create({
     container: {
+        marginTop: 50,
         display: "flex",
         flexDirection: "column",
-        marginTop: 55,
         paddingHorizontal: 30,
     },
     circle: {
+        marginTop: 50,
         width: 200,
         height: 200,
         borderRadius: 100,
@@ -176,6 +196,7 @@ const styles = StyleSheet.create({
         color: "#3C403D",
         fontSize: 18,
         fontWeight: "bold",
+        marginBottom: 50,
     },
 
     text: {
@@ -195,6 +216,18 @@ const styles = StyleSheet.create({
         fontSize: 18,
         fontWeight: "bold",
         elevation: 4,
+    },
+    buttonContainer: {
+        marginBottom: 50,
+        backgroundColor: '#c1dbc1', // Change this to the desired background color
+        padding: 10,
+        borderRadius: 5,
+    },
+    buttonresources: {
+        color: 'black', // Change this to the desired text color
+        fontSize: 16,
+        fontWeight: 'bold',
+        textAlign: 'center',
     },
 });
 

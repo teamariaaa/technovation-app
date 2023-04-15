@@ -9,7 +9,6 @@ export interface FoodItem {
   id: number;
   name: string;
   photo: any;
-  grams: number;
   calories: number;
   protein: number;
   fat: number;

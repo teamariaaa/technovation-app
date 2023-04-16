@@ -270,7 +270,7 @@ const MealDetailsScreen = ({ navigation, route }: any) => {
                   //initialValue={1400}
                   //<MaterialCommunityIcons name = "fire" />
                   radius={40}
-                  duration={0}
+                  duration={1}
                   activeStrokeColor="#9db97d"
                   inActiveStrokeColor="#B6CB9E"
                   inActiveStrokeOpacity={0.5}
@@ -301,7 +301,7 @@ const MealDetailsScreen = ({ navigation, route }: any) => {
                   //initialValue={1400}
                   //<MaterialCommunityIcons name = "fire" />
                   radius={40}
-                  duration={0}
+                  duration={1}
                   activeStrokeColor="#9db97d"
                   inActiveStrokeColor="#B6CB9E"
                   inActiveStrokeOpacity={0.5}
@@ -332,7 +332,7 @@ const MealDetailsScreen = ({ navigation, route }: any) => {
                   //initialValue={1400}
                   //<MaterialCommunityIcons name = "fire" />
                   radius={40}
-                  duration={0}
+                  duration={1}
                   activeStrokeColor="#9db97d"
                   inActiveStrokeColor="#B6CB9E"
                   inActiveStrokeOpacity={0.5}

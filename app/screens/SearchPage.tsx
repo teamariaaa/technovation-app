@@ -515,7 +515,7 @@ const SearchPageScreen = ({ navigation }: any) => {
       setFood(
         foodList.filter((d) => d.name.toLowerCase().startsWith(lowercaseQuery))
       );
-      foodList.map((d) => console.log(d.name));
+      // foodList.map((d) => console.log(d.name));
     }
   };
 

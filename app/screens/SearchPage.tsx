@@ -41,13 +41,14 @@ const SearchPageScreen = ({ navigation }: any) => {
     },
     {
       id: 4,
-      name: "Oatmeal with Bananas and Honey",
+      name: "Oatmeal with Bananas",
       photo: require("../../assets/oats.jpg"),
       calories: 400,
       carbs: 60,
       fat: 7,
       protein: 9,
-    },{
+    },
+    {
       id: 5,
       name: "Omelette",
       photo: require("../../assets/omelette.jpg"),
@@ -55,7 +56,8 @@ const SearchPageScreen = ({ navigation }: any) => {
       carbs: 14,
       fat: 12,
       protein: 14,
-    },{
+    },
+    {
       id: 6,
       name: "Avocado Toast",
       photo: require("../../assets/avocadoToast.jpg"),
@@ -63,7 +65,8 @@ const SearchPageScreen = ({ navigation }: any) => {
       carbs: 35,
       fat: 17,
       protein: 6,
-    },{
+    },
+    {
       id: 7,
       name: "Boiled Egg",
       photo: require("../../assets/eggs.jpg"),
@@ -71,7 +74,8 @@ const SearchPageScreen = ({ navigation }: any) => {
       carbs: 0.2,
       fat: 5,
       protein: 6,
-    },{
+    },
+    {
       id: 8,
       name: "Yogurt",
       photo: require("../../assets/Yogurt.jpg"),
@@ -79,7 +83,8 @@ const SearchPageScreen = ({ navigation }: any) => {
       carbs: 10,
       fat: 4,
       protein: 5,
-    },{
+    },
+    {
       id: 9,
       name: "Cottage Cheese",
       photo: require("../../assets/cheese.jpg"),
@@ -87,7 +92,8 @@ const SearchPageScreen = ({ navigation }: any) => {
       carbs: 3,
       fat: 3,
       protein: 12,
-    },{
+    },
+    {
       id: 10,
       name: "Chicken Noodle Soup",
       photo: require("../../assets/noodles.jpg"),
@@ -95,7 +101,8 @@ const SearchPageScreen = ({ navigation }: any) => {
       carbs: 20,
       fat: 6,
       protein: 12,
-    },{
+    },
+    {
       id: 11,
       name: "Beef Soup",
       photo: require("../../assets/soup.jpg"),
@@ -103,7 +110,8 @@ const SearchPageScreen = ({ navigation }: any) => {
       carbs: 15,
       fat: 6,
       protein: 15,
-    },{
+    },
+    {
       id: 12,
       name: "Grilled Chicken",
       photo: require("../../assets/chicken.jpg"),
@@ -111,7 +119,8 @@ const SearchPageScreen = ({ navigation }: any) => {
       carbs: 1,
       fat: 8,
       protein: 30,
-    },{
+    },
+    {
       id: 13,
       name: "Grilled Mushrooms",
       photo: require("../../assets/mushrooms.jpg"),
@@ -119,7 +128,8 @@ const SearchPageScreen = ({ navigation }: any) => {
       carbs: 2.7,
       fat: 0.3,
       protein: 2.5,
-    },{
+    },
+    {
       id: 14,
       name: "Rice with Vegetables",
       photo: require("../../assets/rice.jpg"),
@@ -127,7 +137,8 @@ const SearchPageScreen = ({ navigation }: any) => {
       carbs: 27,
       fat: 0.9,
       protein: 2.3,
-    },{
+    },
+    {
       id: 15,
       name: "Baked Potatoes",
       photo: require("../../assets/potato.jpg"),
@@ -135,7 +146,8 @@ const SearchPageScreen = ({ navigation }: any) => {
       carbs: 23,
       fat: 5.4,
       protein: 2.9,
-    },{
+    },
+    {
       id: 16,
       name: "Pizza",
       photo: require("../../assets/pizza.jpg"),
@@ -143,7 +155,8 @@ const SearchPageScreen = ({ navigation }: any) => {
       carbs: 35,
       fat: 15,
       protein: 12,
-    },{
+    },
+    {
       id: 17,
       name: "Caesar Salad",
       photo: require("../../assets/caesar.jpg"),
@@ -151,7 +164,8 @@ const SearchPageScreen = ({ navigation }: any) => {
       carbs: 30,
       fat: 30,
       protein: 30,
-    },{
+    },
+    {
       id: 18,
       name: "Red Cabbage Salad",
       photo: require("../../assets/salad.jpg"),
@@ -159,15 +173,17 @@ const SearchPageScreen = ({ navigation }: any) => {
       carbs: 10,
       fat: 2,
       protein: 4,
-    },{
-      id: 40,
+    },
+    {
+      id: 100,
       name: "Mashed Potatoes",
       photo: require("../../assets/mashedPotatoes.jpg"),
       calories: 250,
       carbs: 40,
       fat: 10,
       protein: 3,
-    },{
+    },
+    {
       id: 19,
       name: "Beef Burger",
       photo: require("../../assets/burger.jpg"),
@@ -175,7 +191,8 @@ const SearchPageScreen = ({ navigation }: any) => {
       carbs: 5,
       fat: 25,
       protein: 25,
-    },{
+    },
+    {
       id: 20,
       name: "Pasta",
       photo: require("../../assets/pasta.jpg"),
@@ -183,7 +200,8 @@ const SearchPageScreen = ({ navigation }: any) => {
       carbs: 30,
       fat: 2,
       protein: 6,
-    },{
+    },
+    {
       id: 21,
       name: "Salmon",
       photo: require("../../assets/somon.jpg"),
@@ -191,7 +209,8 @@ const SearchPageScreen = ({ navigation }: any) => {
       carbs: 0,
       fat: 13,
       protein: 20,
-    },{
+    },
+    {
       id: 22,
       name: "Spinach",
       photo: require("../../assets/spanac.jpg"),
@@ -199,7 +218,8 @@ const SearchPageScreen = ({ navigation }: any) => {
       carbs: 3.6,
       fat: 0.4,
       protein: 2.9,
-    },{
+    },
+    {
       id: 23,
       name: "Porc Steak",
       photo: require("../../assets/steak.jpg"),
@@ -207,7 +227,8 @@ const SearchPageScreen = ({ navigation }: any) => {
       carbs: 0,
       fat: 25,
       protein: 20,
-    },{
+    },
+    {
       id: 24,
       name: "Apple",
       photo: require("../../assets/apple.jpg"),
@@ -215,7 +236,8 @@ const SearchPageScreen = ({ navigation }: any) => {
       carbs: 25,
       fat: 0.3,
       protein: 0.5,
-    },{
+    },
+    {
       id: 25,
       name: "Banana",
       photo: require("../../assets/banana.jpg"),
@@ -223,7 +245,8 @@ const SearchPageScreen = ({ navigation }: any) => {
       carbs: 27,
       fat: 0.4,
       protein: 1,
-    },{
+    },
+    {
       id: 26,
       name: "Pear",
       photo: require("../../assets/pear.jpg"),
@@ -231,7 +254,8 @@ const SearchPageScreen = ({ navigation }: any) => {
       carbs: 27,
       fat: 0.3,
       protein: 1,
-    },{
+    },
+    {
       id: 27,
       name: "Strawberries",
       photo: require("../../assets/capsuni.jpg"),
@@ -239,7 +263,8 @@ const SearchPageScreen = ({ navigation }: any) => {
       carbs: 7.7,
       fat: 0.3,
       protein: 0.7,
-    },{
+    },
+    {
       id: 28,
       name: "Cranberries",
       photo: require("../../assets/afine.jpg"),
@@ -247,7 +272,8 @@ const SearchPageScreen = ({ navigation }: any) => {
       carbs: 14.5,
       fat: 0.3,
       protein: 0.7,
-    },{
+    },
+    {
       id: 29,
       name: "Pineapple",
       photo: require("../../assets/ananas.jpg"),
@@ -255,7 +281,8 @@ const SearchPageScreen = ({ navigation }: any) => {
       carbs: 13,
       fat: 0.2,
       protein: 0.5,
-    },{
+    },
+    {
       id: 30,
       name: "Mango",
       photo: require("../../assets/mango.jpg"),
@@ -263,7 +290,8 @@ const SearchPageScreen = ({ navigation }: any) => {
       carbs: 15,
       fat: 0.4,
       protein: 0.8,
-    },{
+    },
+    {
       id: 31,
       name: "Kiwi",
       photo: require("../../assets/kiwi.jpg"),
@@ -271,7 +299,8 @@ const SearchPageScreen = ({ navigation }: any) => {
       carbs: 14.7,
       fat: 0.5,
       protein: 1.1,
-    },{
+    },
+    {
       id: 32,
       name: "Grapes",
       photo: require("../../assets/grapes.jpg"),
@@ -279,7 +308,8 @@ const SearchPageScreen = ({ navigation }: any) => {
       carbs: 18.1,
       fat: 0.16,
       protein: 0.72,
-    },{
+    },
+    {
       id: 33,
       name: "Peaches",
       photo: require("../../assets/peaches.jpg"),
@@ -288,13 +318,166 @@ const SearchPageScreen = ({ navigation }: any) => {
       fat: 0.25,
       protein: 0.91,
     },
+    {
+      id: 34,
+      name: "Ice Cream",
+      photo: require("../../assets/inghetata.jpg"),
+      calories: 300,
+      carbs: 30,
+      fat: 18,
+      protein: 5,
+    },
+    {
+      id: 35,
+      name: "Pancakes",
+      photo: require("../../assets/crepe.jpg"),
+      calories: 150,
+      carbs: 20,
+      fat: 5,
+      protein: 7,
+    },
+    {
+      id: 36,
+      name: "Donut",
+      photo: require("../../assets/donut.jpg"),
+      calories: 300,
+      carbs: 35,
+      fat: 15,
+      protein: 7,
+    },
+    {
+      id: 37,
+      name: "Waffle",
+      photo: require("../../assets/waffle.jpg"),
+      calories: 75,
+      carbs: 9,
+      fat: 4,
+      protein: 1,
+    },
+    {
+      id: 38,
+      name: "Chocolate Cake",
+      photo: require("../../assets/cake.jpg"),
+      calories: 350,
+      carbs: 45,
+      fat: 18,
+      protein: 3,
+    },
+    {
+      id: 39,
+      name: "Cheesecake",
+      photo: require("../../assets/cheesecake.jpg"),
+      calories: 300,
+      carbs: 30,
+      fat: 20,
+      protein: 7,
+    },
+    {
+      id: 40,
+      name: "Muffin",
+      photo: require("../../assets/briosa.jpg"),
+      calories: 45,
+      carbs: 28,
+      fat: 13,
+      protein: 3.5,
+    },
+    {
+      id: 41,
+      name: "Orange Juice",
+      photo: require("../../assets/orange.jpg"),
+      calories: 112,
+      carbs: 26.8,
+      fat: 0.5,
+      protein: 1.7,
+    },
+    {
+      id: 42,
+      name: "Coffee",
+      photo: require("../../assets/coffee.jpg"),
+      calories: 2,
+      carbs: 0.4,
+      fat: 0.1,
+      protein: 0.3,
+    },
+    {
+      id: 43,
+      name: "Milk",
+      photo: require("../../assets/milk.jpg"),
+      calories: 150,
+      carbs: 12,
+      fat: 8,
+      protein: 8,
+    },
+    {
+      id: 44,
+      name: "Hot Chocolate",
+      photo: require("../../assets/chocolate.jpg"),
+      calories: 190,
+      carbs: 24,
+      fat: 8,
+      protein: 8,
+    },
+    {
+      id: 45,
+      name: "Lemonade",
+      photo: require("../../assets/lemonade.jpg"),
+      calories: 99,
+      carbs: 26,
+      fat: 0.1,
+      protein: 0.2,
+    },
+    {
+      id: 46,
+      name: "Tomatoes",
+      photo: require("../../assets/tomatoes.jpg"),
+      calories: 22,
+      carbs: 5,
+      fat: 0.1,
+      protein: 1,
+    },
+    {
+      id: 47,
+      name: "Cucumber",
+      photo: require("../../assets/cucu.jpg"),
+      calories: 20,
+      carbs: 2.2,
+      fat: 0.1,
+      protein: 0.7,
+    },
+    {
+      id: 48,
+      name: "Peppers",
+      photo: require("../../assets/pepper.jpg"),
+      calories: 20,
+      carbs: 1.8,
+      fat: 0.2,
+      protein: 0.9,
+    },
+    {
+      id: 49,
+      name: "Carrots",
+      photo: require("../../assets/carrot.jpg"),
+      calories: 41,
+      carbs: 9.6,
+      fat: 0.2,
+      protein: 0.9,
+    },
+    {
+      id: 50,
+      name: "Onion",
+      photo: require("../../assets/ceapa.jpg"),
+      calories: 32,
+      carbs: 7.6,
+      fat: 0.2,
+      protein: 1.8,
+    },
   ];
 
   const [food, setFood] = useState<FoodItem[]>(foodList);
 
   const styles = StyleSheet.create({
     container: {
-      backgroundColor: '#fffcef',
+      backgroundColor: "#fffcef",
       bottom: 10,
     },
 
@@ -351,13 +534,18 @@ const SearchPageScreen = ({ navigation }: any) => {
           />
           <Searchbar
             value={searchQuery}
-            style={{ margin: "3%", flex: 1, backgroundColor :"#EEF5DB", paddingVertical :"0.0001%"}}
+            style={{
+              margin: "3%",
+              flex: 1,
+              backgroundColor: "#EEF5DB",
+              paddingVertical: "0.0001%",
+            }}
             placeholder="Search"
             //inputStyle = {{marginTop: "-5%", marginBottom: "-5%"}}
             onChangeText={onChangeSearch}
           />
         </View>
-        <View style = {{paddingBottom : 30}}></View>
+        <View style={{ paddingBottom: 30 }}></View>
         <ScrollView>{renderFood(food)}</ScrollView>
       </View>
     </>

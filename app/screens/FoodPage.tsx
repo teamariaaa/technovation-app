@@ -28,6 +28,8 @@ import { useNavigation } from "@react-navigation/native";
 import CircularProgress from "react-native-circular-progress-indicator";
 import globalstyles from "../global.styles.js";
 import { color } from "react-native-reanimated";
+import Icon from "react-native-paper/lib/typescript/src/components/Icon";
+import { Dimensions } from "react-native";
 const inputStyle: StyleProp<ViewStyle> = {
   alignSelf: "stretch",
   margin: 20,
@@ -36,7 +38,7 @@ const inputStyle: StyleProp<ViewStyle> = {
 const LeftContent = (foodItem: FoodItem) => () =>
   (
     <Surface style={[styles.row, styles.container]}>
-      <Image
+      {/* <Image
         style={{
           width: 85,
           height: 80,
@@ -47,17 +49,38 @@ const LeftContent = (foodItem: FoodItem) => () =>
           // shadowColor : "red",
         }}
         source={foodItem.photo}
-      />
+      /> */}
       <IconButton
         icon="fire"
         iconColor="#A0A0A0"
-        style={{ alignSelf: "flex-end", marginBottom: "6%" }}
+        size={33}
+        style={{ marginTop: "170%" }}
       />
     </Surface>
   );
 
+const win = Dimensions.get("window");
+const RightContent = (foodItem: FoodItem) => () =>
+  (
+    <Button
+      mode="contained-tonal"
+      style={[
+        {
+          backgroundColor: "#9db97d",
+          opacity: 0.5,
+          marginRight: "10%",
+          marginTop: "30%",
+          marginBottom: "10%",
+        }, //"#e4ede4"
+      ]}
+      onPress={() => console.log("Pressed")}
+    >
+      Add to Diary
+    </Button>
+  );
+
 const MealDetailsScreen = ({ navigation, route }: any) => {
-  const [meal, setMeal] = useState<FoodItem>(route.params?.meal || {});
+  const [meal, setMeal] = useState<FoodItem>(route.params?.foodItem || {});
 
   const [visible, setVisible] = React.useState(false);
   const onToggleSnackBar = () => setVisible(!visible);
@@ -78,30 +101,133 @@ const MealDetailsScreen = ({ navigation, route }: any) => {
   };
 
   return (
-    <><View style={globalstyles.upContainer}>
-      <IconButton
-        icon="keyboard-backspace"
-        mode="contained-tonal"
-        style={globalstyles.iconButton}
-        size={20}
-        onPress={() => navigation.navigate("Start")} />
+    <ScrollView style={{ backgroundColor: "#fffcef" }}>
+      <View style={styles.upContainer}>
+        <IconButton
+          icon="keyboard-backspace"
+          mode="contained-tonal"
+          style={globalstyles.iconButton}
+          size={20}
+          onPress={() => navigation.navigate("SearchPage")}
+        />
 
-      <Text
+        <Text
+          style={[
+            globalstyles.text,
+            globalstyles.titleLarge,
+            globalstyles.textSemiBold,
+            globalstyles.textCenter,
+          ]}
+        >
+          Meal
+        </Text>
+      </View>
+      <Card
+        key={meal.id}
         style={[
-          globalstyles.text,
-          globalstyles.titleLarge,
-          globalstyles.textSemiBold,
-          globalstyles.textCenter,
+          styles.container,
+          {
+            display: "flex",
+            flexDirection: "column",
+            borderTopLeftRadius: 20,
+            borderTopRightRadius: 20,
+            overflow: "hidden",
+            backgroundColor: "#EEF5DB",
+          },
         ]}
       >
-        Sign in
-      </Text>
-    </View>
-    <Card key={meal.id} style={[styles.container, { display: "flex", flexDirection: "column", borderTopLeftRadius: 20, borderTopRightRadius: 20, overflow: "hidden", backgroundColor: "#EEF5DB" }]}>
         <Card style={{ backgroundColor: "blue" }}>
-          <Card.Cover source={require("../../assets/profilePicture.jpeg")} style={{ width: "100%", height: 270, maxHeight: 270 }} />
+          <Card.Cover
+            source={meal.photo}
+            style={{ width: "100%", height: 270, maxHeight: 270 }}
+          />
         </Card>
-        <Card style={{ position: "relative", bottom: 20, borderRadius: 20 }}>
+        <Card
+          style={{
+            position: "relative",
+            bottom: 25,
+            borderRadius: 20,
+            backgroundColor: "#EEF5DB",
+            shadowColor: "#EEF5DB",
+          }}
+        >
+          <Card.Title
+            style={{
+              alignSelf: "flex-start",
+              marginTop: "4%",
+              marginBottom: "4%",
+              // display : "flex",
+              // flexDirection : "row",
+            }}
+            title={meal.name}
+            titleStyle={[
+              globalstyles.text,
+              {
+                flex: 1,
+                alignSelf: "flex-start",
+                // marginLeft: "-15%",
+                marginTop: "0%",
+                paddingTop: "7%",
+                fontSize: 28,
+                fontWeight: "800",
+                // fontSize : 20,
+              },
+            ]}
+            // subtitle={`${meal.calories} kcal`}
+            // subtitleStyle={{
+            //   color: "#808080",
+            //   fontFamily: "Cabin",
+            //   fontSize: 23,
+            //   paddingTop: "3%",
+            //   marginTop: "2%",
+            //   alignSelf: "flex-start",
+            //   // marginLeft: "24%",
+            // }}
+            // left={LeftContent(meal)}
+            // right={RightContent(meal)}
+          />
+          <Card.Content>
+            <Surface style={[styles.row2, { backgroundColor: "#EEF5DB" }]}>
+              <IconButton
+                icon="fire"
+                iconColor="#A0A0A0"
+                size={33}
+                style={{ marginTop: "-1%", marginRight: "-1%" }}
+              />
+              <Paragraph
+                // left={LeftContent(meal)}
+                style={{
+                  color: "#808080",
+                  fontFamily: "Cabin",
+                  fontSize: 23,
+                  paddingTop: "3%",
+                  marginTop: "2%",
+                  // alignSelf: "flex-start",
+                }}
+              >
+                {meal.calories} kcal
+              </Paragraph>
+              <Button
+                mode="contained-tonal"
+                style={[
+                  {
+                    backgroundColor: "#9db97d",
+                    opacity: 0.5,
+                    marginLeft: "17%",
+                    marginTop: "1%",
+                    marginBottom: "10%",
+                  }, //"#e4ede4"
+                ]}
+                onPress={() => {
+                  console.log("am apasat");
+                  navigation.navigate("MealTracking");
+                }}
+                textColor="#3C403D"
+              >
+                Add to Diary
+              </Button>
+            </Surface>
+          </Card.Content>
           <View
             style={[
               styles.container,
@@ -136,18 +262,21 @@ const MealDetailsScreen = ({ navigation, route }: any) => {
                 ]}
               >
                 <CircularProgress
-                  value={50}
+                  value={
+                    (meal.carbs * 10000) /((meal.carbs + meal.fat + meal.protein) * 100)
+                  }
                   maxValue={100}
                   valueSuffix="%"
                   //initialValue={1400}
                   //<MaterialCommunityIcons name = "fire" />
                   radius={40}
-                  duration={0}
+                  duration={1}
                   activeStrokeColor="#9db97d"
                   inActiveStrokeColor="#B6CB9E"
                   inActiveStrokeOpacity={0.5}
                   progressValueColor={"#3C403D"}
-                  progressValueStyle={{ fontSize: 15 }} />
+                  progressValueStyle={{ fontSize: 15 }}
+                />
                 <Paragraph
                   style={[
                     globalstyles.text,
@@ -164,18 +293,21 @@ const MealDetailsScreen = ({ navigation, route }: any) => {
                 ]}
               >
                 <CircularProgress
-                  value={50}
+                  value={
+                    (meal.protein * 10000) /((meal.carbs + meal.fat + meal.protein) * 100)
+                  }
                   maxValue={100}
                   valueSuffix="%"
                   //initialValue={1400}
                   //<MaterialCommunityIcons name = "fire" />
                   radius={40}
-                  duration={0}
+                  duration={1}
                   activeStrokeColor="#9db97d"
                   inActiveStrokeColor="#B6CB9E"
                   inActiveStrokeOpacity={0.5}
                   progressValueColor={"#3C403D"}
-                  progressValueStyle={{ fontSize: 15 }} />
+                  progressValueStyle={{ fontSize: 15 }}
+                />
                 <Paragraph
                   style={[
                     globalstyles.text,
@@ -192,18 +324,21 @@ const MealDetailsScreen = ({ navigation, route }: any) => {
                 ]}
               >
                 <CircularProgress
-                  value={50}
+                  value={
+                    (meal.fat * 10000) /((meal.carbs + meal.fat + meal.protein) * 100)
+                  }
                   maxValue={100}
                   valueSuffix="%"
                   //initialValue={1400}
                   //<MaterialCommunityIcons name = "fire" />
                   radius={40}
-                  duration={0}
+                  duration={1}
                   activeStrokeColor="#9db97d"
                   inActiveStrokeColor="#B6CB9E"
                   inActiveStrokeOpacity={0.5}
                   progressValueColor={"#3C403D"}
-                  progressValueStyle={{ fontSize: 15 }} />
+                  progressValueStyle={{ fontSize: 15 }}
+                />
                 <Paragraph
                   style={[
                     globalstyles.text,
@@ -214,15 +349,202 @@ const MealDetailsScreen = ({ navigation, route }: any) => {
                 </Paragraph>
               </Surface>
             </Surface>
+            <View
+              style={{
+                borderBottomColor: "#B6CB9E",
+                borderBottomWidth: 1,
+                marginVertical: 10,
+                marginTop: "7%",
+                marginEnd: 20,
+                marginStart: 20,
+              }}
+            />
+            <Surface
+              style={[
+                styles.row3,
+                { backgroundColor: "#EEF5DB", shadowColor: "#EEF5DB"},
+              ]}
+            >
+              <Surface
+                style={[
+                  styles.column,
+                  { backgroundColor: "#EEF5DB", shadowColor: "#EEF5DB" },
+                ]}
+              >
+                <View
+                  style={{
+                    borderBottomColor: "#B6CB9E",
+                    borderBottomWidth: 2,
+                    borderStyle: "solid",
+                  }}
+                >
+                  <Paragraph
+                    style={[
+                      globalstyles.textBold,
+                      { fontSize: 18, textAlign: "center" },
+                    ]}
+                  >
+                    Carbs
+                  </Paragraph>
+                </View>
+              </Surface>
+              <Surface
+                style={[
+                  styles.column,
+                  { backgroundColor: "#EEF5DB", shadowColor: "#EEF5DB" },
+                ]}
+              >
+                {/* <View
+                  style={{
+                    borderBottomColor: "#B6CB9E",
+                    borderBottomWidth: 2,
+                    borderStyle: "solid",
+                  }}
+                > */}
+                  <Paragraph style={[
+                      globalstyles.textBold,
+                      { fontSize: 18, textAlign: "center" },
+                    ]}>
+                    {meal.carbs} g
+                  </Paragraph>
+                {/* </View> */}
+              </Surface>
+            </Surface>
+            <Surface
+              style={[
+                styles.row3,
+                { backgroundColor: "#EEF5DB", shadowColor: "#EEF5DB" },
+              ]}
+            >
+              <Surface
+                style={[
+                  styles.column,
+                  { backgroundColor: "#EEF5DB", shadowColor: "#EEF5DB" },
+                ]}
+              >
+                <View
+                  style={{
+                    borderBottomColor: "#B6CB9E",
+                    borderBottomWidth: 2,
+                    borderStyle: "solid",
+                  }}
+                >
+                  <Paragraph
+                    style={[
+                      globalstyles.textBold,
+                      { fontSize: 18, textAlign: "center" },
+                    ]}
+                  >
+                    Protein
+                  </Paragraph>
+                </View>
+              </Surface>
+              <Surface
+                style={[
+                  styles.column,
+                  { backgroundColor: "#EEF5DB", shadowColor: "#EEF5DB" },
+                ]}
+              >
+                {/* <View
+                  style={{
+                    borderBottomColor: "#B6CB9E",
+                    borderBottomWidth: 2,
+                    borderStyle: "solid",
+                  }}
+                > */}
+                  <Paragraph style={[
+                      globalstyles.textBold,
+                      { fontSize: 18, textAlign: "center" },
+                    ]}>
+                    {meal.protein} g
+                  </Paragraph>
+                {/* </View> */}
+              </Surface>
+            </Surface>
+            <Surface
+              style={[
+                styles.row3,
+                { backgroundColor: "#EEF5DB", shadowColor: "#EEF5DB" },
+              ]}
+            >
+              <Surface
+                style={[
+                  styles.column,
+                  { backgroundColor: "#EEF5DB", shadowColor: "#EEF5DB" },
+                ]}
+              >
+                <View
+                  style={{
+                    borderBottomColor: "#B6CB9E",
+                    borderBottomWidth: 2,
+                    borderStyle: "solid",
+                  }}
+                >
+                  <Paragraph
+                    style={[
+                      globalstyles.textBold,
+                      { fontSize: 18, textAlign: "center" },
+                    ]}
+                  >
+                    Fat
+                  </Paragraph>
+                </View>
+              </Surface>
+              <Surface
+                style={[
+                  styles.column,
+                  { backgroundColor: "#EEF5DB", shadowColor: "#EEF5DB" },
+                ]}
+              >
+                {/* <View
+                  style={{
+                    borderBottomColor: "#B6CB9E",
+                    borderBottomWidth: 2,
+                    borderStyle: "solid",
+                  }}
+                > */}
+                  <Paragraph style={[
+                      globalstyles.textBold,
+                      { fontSize: 18, textAlign: "center" },
+                    ]}>
+                    {meal.fat} g
+                  </Paragraph>
+                {/* </View> */}
+              </Surface>
+            </Surface>
+            {/* <Surface style={[styles.row3, { backgroundColor: "#EEF5DB" }]}>
+            <Paragraph style = {{justifyContent : "flex-start"}}> Carbs </Paragraph>
+            <Paragraph style = {{justifyContent : "flex-end"}}> {meal.carbs}g</Paragraph>
+            </Surface>
+            <Surface style={[styles.row3, { backgroundColor: "#EEF5DB" }]}>
+            <Paragraph style = {{justifyContent : "flex-start"}}> Protein </Paragraph>
+            <Paragraph style = {{justifyContent : "flex-end"}}> {meal.protein}g</Paragraph>
+            </Surface>
+            <Surface style={[styles.row3, { backgroundColor: "#EEF5DB" }]}>
+            <Paragraph style = {{justifyContent : "flex-start"}}> Fat </Paragraph>
+            <Paragraph style = {{justifyContent : "flex-end"}}> {meal.fat}g</Paragraph>
+            </Surface> */}
           </View>
         </Card>
-      </Card></>
+      </Card>
+    </ScrollView>
   );
 };
 
 export default MealDetailsScreen;
 
 const styles = StyleSheet.create({
+  upContainer: {
+    flex: 1,
+    flexDirection: "row",
+    paddingLeft: "2.5%",
+    backgroundColor: "#fffcef",
+    alignItems: "center",
+    justifyContent: "flex-start",
+    marginTop: "15%",
+    marginBottom: "2%",
+  },
+
   container: {
     backgroundColor: "#EEF5DB",
     marginTop: "3%",
@@ -245,6 +567,31 @@ const styles = StyleSheet.create({
     color: "#EEF5DB",
     marginLeft: "3%",
     marginRight: "3%",
+  },
+  row2: {
+    mode: "flat",
+    elevation: 0,
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    // marginTop: 30,
+    shadowColor: "#EEF5DB",
+    color: "#EEF5DB",
+    // marginLeft: "3%",
+    // marginRight: "3%",
+  },
+
+  row3: {
+    mode: "flat",
+    elevation: 0,
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginTop: 20,
+    shadowColor: "#EEF5DB",
+    color: "#EEF5DB",
+    marginLeft: "8%",
+    marginRight: "8%",
   },
   column: {
     mode: "flat",

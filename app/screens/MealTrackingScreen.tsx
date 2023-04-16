@@ -120,7 +120,7 @@ const MealTrackingScreen = ({ navigation }: any) => {
   fullName = name ? name[0] + " " + name[1] : "";
 
   return (
-    <ScrollView>
+    <ScrollView style = {{backgroundColor : "#FFFCEF"}}>
       <View style={{ flex: 1, backgroundColor: "#FFFCEF", marginLeft: 0 }}>
         <View
           style={{

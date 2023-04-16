@@ -62,11 +62,11 @@ const ProfileTherapeutChatScreen = ({ route, navigation }: Props) => {
           })}
         </ScrollView>
         <KeyboardAvoidingView
-          style={{ flex: 1, height: "20%" }}
+          style={{ flex: 1}}
           behavior={Platform.OS === "ios" ? "padding" : "height"}
           keyboardVerticalOffset={Platform.OS === "ios" ? 80 : 0}
         >
-          <View style={{ flex: 1, height: "20%" }}>
+          <View style={{ flex: 1}}>
             <View
               style={{
                 alignSelf: "flex-start",

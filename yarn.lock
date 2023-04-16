@@ -7058,6 +7058,11 @@
   "resolved" "https://registry.npmjs.org/react-native-gradle-plugin/-/react-native-gradle-plugin-0.71.17.tgz"
   "version" "0.71.17"
 
+"react-native-linear-gradient@^2.6.2":
+  "integrity" "sha512-Z8Xxvupsex+9BBFoSYS87bilNPWcRfRsGC0cpJk72Nxb5p2nEkGSBv73xZbEHnW2mUFvP+huYxrVvjZkr/gRjQ=="
+  "resolved" "https://registry.npmjs.org/react-native-linear-gradient/-/react-native-linear-gradient-2.6.2.tgz"
+  "version" "2.6.2"
+
 "react-native-paper@^5.5.1":
   "integrity" "sha512-IEk7fJwQp5+8sY8+zPTie2wbKrS72vOyFCJdatjoYGuiz55BiTn8JJanqKIu0IQFKZjiGAZPlzM44cCWrEkTPw=="
   "resolved" "https://registry.npmjs.org/react-native-paper/-/react-native-paper-5.5.1.tgz"

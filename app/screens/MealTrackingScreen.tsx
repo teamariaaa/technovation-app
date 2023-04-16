@@ -160,7 +160,7 @@ const MealTrackingScreen = ({ navigation }: any) => {
             title="Today"
             titleStyle={[
               globalstyles.headlineSmall,
-              { textAlign: "center", color: "#B6CB9E" },
+              { textAlign: "center", color: "#9db97d"},
             ]}
           ></Card.Title>
           <View style={{ alignSelf: "center", marginTop: 10 }}>

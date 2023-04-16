@@ -50,7 +50,7 @@ const UserDataScreen = ({ navigation }: any) => {
   function updateUser() {
     const auth = getAuth();
     const user = auth.currentUser;
-    if (true) {
+    if (user) {
       if (currentPage === "otherInfo") {
         let userName =
           lastName +
@@ -64,18 +64,18 @@ const UserDataScreen = ({ navigation }: any) => {
           userWeight +
           "$" +
           userHeight;
-        // updateProfile(user, {
-        //   displayName: userName,
-        //   photoURL: "https://example.com/jane-q-user/profile.jpg",
-        // })
-        //   .then(() => {
-        //     console.log(user.displayName);
-        //     console.log(lastName);
-        //   })
-        //   .catch((error) => {
-        //     // An error occurred
-        //     // ...
-        //   });
+        updateProfile(user, {
+          displayName: userName,
+          photoURL: "https://example.com/jane-q-user/profile.jpg",
+        })
+          .then(() => {
+            console.log(user.displayName);
+            console.log(lastName);
+          })
+          .catch((error) => {
+            // An error occurred
+            // ...
+          });
 
         navigation.navigate("GoToQuizz");
       }
@@ -99,12 +99,7 @@ const UserDataScreen = ({ navigation }: any) => {
   };
 
   return (
-    <SafeAreaView
-      style={[
-        styles.container,
-        { backgroundColor: "#FFFCEF", paddingTop: StatusBar.currentHeight },
-      ]}
-    >
+    <SafeAreaView style={[styles.container, { backgroundColor: "#FFFCEF" }]}>
       <ScrollView style={{ flex: 1 }}>
         <View
           style={[
@@ -123,7 +118,7 @@ const UserDataScreen = ({ navigation }: any) => {
           <Text
             style={[
               styles.text,
-              styles.bodyMedium,
+              styles.textBodyLarge,
               styles.textCenter,
               { marginLeft: "2.5%" },
             ]}
@@ -262,7 +257,7 @@ const UserDataScreen = ({ navigation }: any) => {
               styles.myButton,
               //styles.marginButtonTop,
               styles.noBottomMargin,
-              { marginTop: "30%", marginBottom: "10%" },
+              { marginTop: "37%", marginBottom: "10%" },
             ]}
             onPress={() => {
               updateUser();

@@ -5,7 +5,7 @@ const win = Dimensions.get("window");
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff2bd",
+    backgroundColor: "#FFFCEF",
     // backgroundColor: "red",
     //backgroundColor: "red",
   },
@@ -147,7 +147,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "row",
     paddingLeft: "2.5%",
-    backgroundColor: "#fff2bd",
+    backgroundColor: "#FFFCEF",
     alignItems: "center",
     justifyContent: "flex-start",
     width: "100%",

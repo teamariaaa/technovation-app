@@ -31,10 +31,20 @@ import { red100 } from "react-native-paper/lib/typescript/src/styles/themes/v2/c
 import styles from "../global.styles.js";
 import Icon from "react-native-paper/lib/typescript/src/components/Icon.js";
 
-const GetToQuizzScreen = ({ navigation }: any) => {
+const LastSignUpScreen = ({ navigation }: any) => {
   function changePage() {
     navigation.navigate("Main");
   }
+
+  const auth = getAuth();
+  const user = auth.currentUser;
+
+  let userInfo = user?.displayName;
+  let info = userInfo?.split("$");
+  let score;
+
+  score = info ? parseInt(info[6]) : 0;
+  console.log(score / 2);
 
   return (
     <SafeAreaView
@@ -91,8 +101,8 @@ const GetToQuizzScreen = ({ navigation }: any) => {
             paddingRight: 30,
           }}
         >
-          <Paragraph style={[styles.headlineBig, styles.textBold]}>
-            Let's take a short quizz!
+          <Paragraph style={[styles.headlineSmall, styles.textBold]}>
+            Your score is {score / 2} out of 78.
           </Paragraph>
           <Paragraph
             style={[
@@ -101,26 +111,32 @@ const GetToQuizzScreen = ({ navigation }: any) => {
               { width: "90%", marginBottom: "5%" },
             ]}
           >
-            Please indicate your level of agreement with the following
-            statements!
+            A score above 20 indicates some level of concern about your diet and
+            mental health.
           </Paragraph>
-
-          {/* {true && 
-            <View></View>
-          } */}
+          <Paragraph
+            style={[
+              styles.textBodyLarge,
+              styles.lightText,
+              { width: "90%", marginBottom: "5%" },
+            ]}
+          >
+            This was the last step of the sign up. Thank your for taking our
+            test!
+          </Paragraph>
           <Button
             mode="elevated"
             style={[
               styles.myButton,
               //styles.marginButtonTop,
               styles.noBottomMargin,
-              { marginTop: "76%", marginBottom: "10%" },
+              { marginTop: "60%", marginBottom: "10%" },
             ]}
             onPress={() => {
-              navigation.navigate("Quizz");
+              navigation.navigate("Main");
             }}
           >
-            <Text style={[styles.text, styles.textBodyLarge]}>Start quizz</Text>
+            <Text style={[styles.text, styles.textBodyLarge]}>Next</Text>
           </Button>
         </View>
       </ScrollView>
@@ -128,4 +144,4 @@ const GetToQuizzScreen = ({ navigation }: any) => {
   );
 };
 
-export default GetToQuizzScreen;
+export default LastSignUpScreen;

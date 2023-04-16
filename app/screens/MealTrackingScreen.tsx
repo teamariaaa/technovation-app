@@ -338,3 +338,17 @@ const styles = StyleSheet.create({
     color: "#EEF5DB",
   },
 });
+
+{/* <Progress.Circle
+            style={{ alignSelf: "center", marginTop: 10 }}
+            size={200}
+            progress={0.7}
+            thickness={10}
+            borderWidth={2}
+            color="#B6CB9E"
+            borderColor="#B6CB9E"
+            showsText={true}
+            fill="#EEF5DB"
+            unfilledColor="#EEF5DB"
+            formatText={() => progress}
+          /> */}

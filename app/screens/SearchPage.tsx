@@ -326,7 +326,7 @@ const SearchPageScreen = ({ navigation }: any) => {
     setSearchQuery(query);
     if (query === "") {
       setFood(foodList);
-      console.log("empty");
+      // console.log("empty");s
     } else {
       const lowercaseQuery = query.toLowerCase();
       setFood(
@@ -357,6 +357,7 @@ const SearchPageScreen = ({ navigation }: any) => {
             onChangeText={onChangeSearch}
           />
         </View>
+        <View style = {{paddingBottom : 30}}></View>
         <ScrollView>{renderFood(food)}</ScrollView>
       </View>
     </>

@@ -15,6 +15,7 @@ const SearchPageScreen = ({ navigation }: any) => {
     {
       id: 1,
       name: "Cereal with milk",
+      date : new Date().getTime(),
       photo: require("../../assets/cerealsWithMilk.jpg"),
       calories: 300,
       carbs: 40,
@@ -24,6 +25,7 @@ const SearchPageScreen = ({ navigation }: any) => {
     {
       id: 2,
       name: "Bread with cream cheese",
+      date : new Date().getTime(),
       photo: require("../../assets/PaineCuBranza.jpg"),
       calories: 220,
       carbs: 20,
@@ -32,6 +34,7 @@ const SearchPageScreen = ({ navigation }: any) => {
     },
     {
       id: 3,
+      date : new Date().getTime(),
       name: "Tuna",
       photo: require("../../assets/tuna.jpg"),
       calories: 150,
@@ -41,6 +44,7 @@ const SearchPageScreen = ({ navigation }: any) => {
     },
     {
       id: 4,
+      date : new Date().getTime(),
       name: "Oatmeal with Bananas",
       photo: require("../../assets/oats.jpg"),
       calories: 400,
@@ -50,6 +54,7 @@ const SearchPageScreen = ({ navigation }: any) => {
     },
     {
       id: 5,
+      date : new Date().getTime(),
       name: "Omelette",
       photo: require("../../assets/omelette.jpg"),
       calories: 180,
@@ -59,6 +64,7 @@ const SearchPageScreen = ({ navigation }: any) => {
     },
     {
       id: 6,
+      date : new Date().getTime(),
       name: "Avocado Toast",
       photo: require("../../assets/avocadoToast.jpg"),
       calories: 350,
@@ -68,6 +74,7 @@ const SearchPageScreen = ({ navigation }: any) => {
     },
     {
       id: 7,
+      date : new Date().getTime(),
       name: "Boiled Egg",
       photo: require("../../assets/eggs.jpg"),
       calories: 80,
@@ -77,6 +84,7 @@ const SearchPageScreen = ({ navigation }: any) => {
     },
     {
       id: 8,
+      date : new Date().getTime(),
       name: "Yogurt",
       photo: require("../../assets/Yogurt.jpg"),
       calories: 80,
@@ -86,6 +94,7 @@ const SearchPageScreen = ({ navigation }: any) => {
     },
     {
       id: 9,
+      date : new Date().getTime(),
       name: "Cottage Cheese",
       photo: require("../../assets/cheese.jpg"),
       calories: 100,
@@ -95,6 +104,7 @@ const SearchPageScreen = ({ navigation }: any) => {
     },
     {
       id: 10,
+      date : new Date().getTime(),
       name: "Chicken Noodle Soup",
       photo: require("../../assets/noodles.jpg"),
       calories: 150,
@@ -104,6 +114,7 @@ const SearchPageScreen = ({ navigation }: any) => {
     },
     {
       id: 11,
+      date : new Date().getTime(),
       name: "Beef Soup",
       photo: require("../../assets/soup.jpg"),
       calories: 150,
@@ -113,6 +124,7 @@ const SearchPageScreen = ({ navigation }: any) => {
     },
     {
       id: 12,
+      date : new Date().getTime(),
       name: "Grilled Chicken",
       photo: require("../../assets/chicken.jpg"),
       calories: 200,
@@ -122,6 +134,7 @@ const SearchPageScreen = ({ navigation }: any) => {
     },
     {
       id: 13,
+      date : new Date().getTime(),
       name: "Grilled Mushrooms",
       photo: require("../../assets/mushrooms.jpg"),
       calories: 22,
@@ -131,6 +144,7 @@ const SearchPageScreen = ({ navigation }: any) => {
     },
     {
       id: 14,
+      date : new Date().getTime(),
       name: "Rice with Vegetables",
       photo: require("../../assets/rice.jpg"),
       calories: 300,
@@ -140,6 +154,7 @@ const SearchPageScreen = ({ navigation }: any) => {
     },
     {
       id: 15,
+      date : new Date().getTime(),
       name: "Baked Potatoes",
       photo: require("../../assets/potato.jpg"),
       calories: 200,
@@ -149,6 +164,7 @@ const SearchPageScreen = ({ navigation }: any) => {
     },
     {
       id: 16,
+      date : new Date().getTime(),
       name: "Pizza",
       photo: require("../../assets/pizza.jpg"),
       calories: 300,
@@ -158,6 +174,7 @@ const SearchPageScreen = ({ navigation }: any) => {
     },
     {
       id: 17,
+      date : new Date().getTime(),
       name: "Caesar Salad",
       photo: require("../../assets/caesar.jpg"),
       calories: 450,
@@ -167,6 +184,7 @@ const SearchPageScreen = ({ navigation }: any) => {
     },
     {
       id: 18,
+      date : new Date().getTime(),
       name: "Red Cabbage Salad",
       photo: require("../../assets/salad.jpg"),
       calories: 100,
@@ -176,6 +194,7 @@ const SearchPageScreen = ({ navigation }: any) => {
     },
     {
       id: 100,
+      date : new Date().getTime(),
       name: "Mashed Potatoes",
       photo: require("../../assets/mashedPotatoes.jpg"),
       calories: 250,
@@ -185,6 +204,7 @@ const SearchPageScreen = ({ navigation }: any) => {
     },
     {
       id: 19,
+      date : new Date().getTime(),
       name: "Beef Burger",
       photo: require("../../assets/burger.jpg"),
       calories: 300,
@@ -194,6 +214,7 @@ const SearchPageScreen = ({ navigation }: any) => {
     },
     {
       id: 20,
+      date : new Date().getTime(),
       name: "Pasta",
       photo: require("../../assets/pasta.jpg"),
       calories: 158,
@@ -203,6 +224,7 @@ const SearchPageScreen = ({ navigation }: any) => {
     },
     {
       id: 21,
+      date : new Date().getTime(),
       name: "Salmon",
       photo: require("../../assets/somon.jpg"),
       calories: 206,
@@ -212,6 +234,7 @@ const SearchPageScreen = ({ navigation }: any) => {
     },
     {
       id: 22,
+      date : new Date().getTime(),
       name: "Spinach",
       photo: require("../../assets/spanac.jpg"),
       calories: 23,
@@ -221,6 +244,7 @@ const SearchPageScreen = ({ navigation }: any) => {
     },
     {
       id: 23,
+      date : new Date().getTime(),
       name: "Porc Steak",
       photo: require("../../assets/steak.jpg"),
       calories: 300,
@@ -230,6 +254,7 @@ const SearchPageScreen = ({ navigation }: any) => {
     },
     {
       id: 24,
+      date : new Date().getTime(),
       name: "Apple",
       photo: require("../../assets/apple.jpg"),
       calories: 95,
@@ -239,6 +264,7 @@ const SearchPageScreen = ({ navigation }: any) => {
     },
     {
       id: 25,
+      date : new Date().getTime(),
       name: "Banana",
       photo: require("../../assets/banana.jpg"),
       calories: 105,
@@ -248,6 +274,7 @@ const SearchPageScreen = ({ navigation }: any) => {
     },
     {
       id: 26,
+      date : new Date().getTime(),
       name: "Pear",
       photo: require("../../assets/pear.jpg"),
       calories: 100,
@@ -257,6 +284,7 @@ const SearchPageScreen = ({ navigation }: any) => {
     },
     {
       id: 27,
+      date : new Date().getTime(),
       name: "Strawberries",
       photo: require("../../assets/capsuni.jpg"),
       calories: 32,
@@ -266,6 +294,7 @@ const SearchPageScreen = ({ navigation }: any) => {
     },
     {
       id: 28,
+      date : new Date().getTime(),
       name: "Cranberries",
       photo: require("../../assets/afine.jpg"),
       calories: 57,
@@ -275,6 +304,7 @@ const SearchPageScreen = ({ navigation }: any) => {
     },
     {
       id: 29,
+      date : new Date().getTime(),
       name: "Pineapple",
       photo: require("../../assets/ananas.jpg"),
       calories: 50,
@@ -284,6 +314,7 @@ const SearchPageScreen = ({ navigation }: any) => {
     },
     {
       id: 30,
+      date : new Date().getTime(),
       name: "Mango",
       photo: require("../../assets/mango.jpg"),
       calories: 60,
@@ -293,6 +324,7 @@ const SearchPageScreen = ({ navigation }: any) => {
     },
     {
       id: 31,
+      date : new Date().getTime(),
       name: "Kiwi",
       photo: require("../../assets/kiwi.jpg"),
       calories: 61,
@@ -302,6 +334,7 @@ const SearchPageScreen = ({ navigation }: any) => {
     },
     {
       id: 32,
+      date : new Date().getTime(),
       name: "Grapes",
       photo: require("../../assets/grapes.jpg"),
       calories: 69,
@@ -311,6 +344,7 @@ const SearchPageScreen = ({ navigation }: any) => {
     },
     {
       id: 33,
+      date : new Date().getTime(),
       name: "Peaches",
       photo: require("../../assets/peaches.jpg"),
       calories: 39,
@@ -320,6 +354,7 @@ const SearchPageScreen = ({ navigation }: any) => {
     },
     {
       id: 34,
+      date : new Date().getTime(),
       name: "Ice Cream",
       photo: require("../../assets/inghetata.jpg"),
       calories: 300,
@@ -329,6 +364,7 @@ const SearchPageScreen = ({ navigation }: any) => {
     },
     {
       id: 35,
+      date : new Date().getTime(),
       name: "Pancakes",
       photo: require("../../assets/crepe.jpg"),
       calories: 150,
@@ -338,6 +374,7 @@ const SearchPageScreen = ({ navigation }: any) => {
     },
     {
       id: 36,
+      date : new Date().getTime(),
       name: "Donut",
       photo: require("../../assets/donut.jpg"),
       calories: 300,
@@ -347,6 +384,7 @@ const SearchPageScreen = ({ navigation }: any) => {
     },
     {
       id: 37,
+      date : new Date().getTime(),
       name: "Waffle",
       photo: require("../../assets/waffle.jpg"),
       calories: 75,
@@ -356,6 +394,7 @@ const SearchPageScreen = ({ navigation }: any) => {
     },
     {
       id: 38,
+      date : new Date().getTime(),
       name: "Chocolate Cake",
       photo: require("../../assets/cake.jpg"),
       calories: 350,
@@ -365,6 +404,7 @@ const SearchPageScreen = ({ navigation }: any) => {
     },
     {
       id: 39,
+      date : new Date().getTime(),
       name: "Cheesecake",
       photo: require("../../assets/cheesecake.jpg"),
       calories: 300,
@@ -374,6 +414,7 @@ const SearchPageScreen = ({ navigation }: any) => {
     },
     {
       id: 40,
+      date : new Date().getTime(),
       name: "Muffin",
       photo: require("../../assets/briosa.jpg"),
       calories: 45,
@@ -383,6 +424,7 @@ const SearchPageScreen = ({ navigation }: any) => {
     },
     {
       id: 41,
+      date : new Date().getTime(),
       name: "Orange Juice",
       photo: require("../../assets/orange.jpg"),
       calories: 112,
@@ -392,6 +434,7 @@ const SearchPageScreen = ({ navigation }: any) => {
     },
     {
       id: 42,
+      date : new Date().getTime(),
       name: "Coffee",
       photo: require("../../assets/coffee.jpg"),
       calories: 2,
@@ -401,6 +444,7 @@ const SearchPageScreen = ({ navigation }: any) => {
     },
     {
       id: 43,
+      date : new Date().getTime(),
       name: "Milk",
       photo: require("../../assets/milk.jpg"),
       calories: 150,
@@ -410,6 +454,7 @@ const SearchPageScreen = ({ navigation }: any) => {
     },
     {
       id: 44,
+      date : new Date().getTime(),
       name: "Hot Chocolate",
       photo: require("../../assets/chocolate.jpg"),
       calories: 190,
@@ -419,6 +464,7 @@ const SearchPageScreen = ({ navigation }: any) => {
     },
     {
       id: 45,
+      date : new Date().getTime(),
       name: "Lemonade",
       photo: require("../../assets/lemonade.jpg"),
       calories: 99,
@@ -428,6 +474,7 @@ const SearchPageScreen = ({ navigation }: any) => {
     },
     {
       id: 46,
+      date : new Date().getTime(),
       name: "Tomatoes",
       photo: require("../../assets/tomatoes.jpg"),
       calories: 22,
@@ -437,6 +484,7 @@ const SearchPageScreen = ({ navigation }: any) => {
     },
     {
       id: 47,
+      date : new Date().getTime(),
       name: "Cucumber",
       photo: require("../../assets/cucu.jpg"),
       calories: 20,
@@ -446,6 +494,7 @@ const SearchPageScreen = ({ navigation }: any) => {
     },
     {
       id: 48,
+      date : new Date().getTime(),
       name: "Peppers",
       photo: require("../../assets/pepper.jpg"),
       calories: 20,
@@ -455,6 +504,7 @@ const SearchPageScreen = ({ navigation }: any) => {
     },
     {
       id: 49,
+      date : new Date().getTime(),
       name: "Carrots",
       photo: require("../../assets/carrot.jpg"),
       calories: 41,
@@ -464,6 +514,7 @@ const SearchPageScreen = ({ navigation }: any) => {
     },
     {
       id: 50,
+      date : new Date().getTime(),
       name: "Onion",
       photo: require("../../assets/ceapa.jpg"),
       calories: 32,

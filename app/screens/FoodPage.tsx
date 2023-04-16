@@ -5,30 +5,19 @@ import {
   Text,
   StyleSheet,
   View,
-  Image,
   ScrollView,
-  ImageBackground,
 } from "react-native";
 import {
-  Appbar,
-  Headline,
-  List,
-  Divider,
   Button,
-  Snackbar,
   Card,
   Paragraph,
   Surface,
   IconButton,
 } from "react-native-paper";
 import { FoodItem } from "./FoodCard";
-import MainLayout from "./Layout";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useNavigation } from "@react-navigation/native";
 import CircularProgress from "react-native-circular-progress-indicator";
 import globalstyles from "../global.styles.js";
-import { color } from "react-native-reanimated";
-import Icon from "react-native-paper/lib/typescript/src/components/Icon";
 import { Dimensions } from "react-native";
 const inputStyle: StyleProp<ViewStyle> = {
   alignSelf: "stretch",
@@ -64,6 +53,7 @@ const RightContent = (foodItem: FoodItem) => () =>
   (
     <Button
       mode="contained-tonal"
+      textColor = "red"
       style={[
         {
           backgroundColor: "#9db97d",
@@ -82,22 +72,13 @@ const RightContent = (foodItem: FoodItem) => () =>
 const MealDetailsScreen = ({ navigation, route }: any) => {
   const [meal, setMeal] = useState<FoodItem>(route.params?.foodItem || {});
 
-  const [visible, setVisible] = React.useState(false);
-  const onToggleSnackBar = () => setVisible(!visible);
-  const onDismissSnackBar = () => setVisible(false);
+  // const [visible, setVisible] = React.useState(false);
 
   const addMeal = async () => {
     const storedMeals = await AsyncStorage.getItem("@myfood");
     const foodList: FoodItem[] = storedMeals ? JSON.parse(storedMeals) : [];
 
-    // const alarmDrug = drugs.find(d => d.name === "Paracetamol")
-    // if(alarmDrug) {
-    //     alarmDrug.remainingPills = alarmDrug?.remainingPills?alarmDrug.remainingPills-1: 0
-    // }
-    // await AsyncStorage.setItem("@mydrugs", JSON.stringify(drugs))
-
     await AsyncStorage.setItem("@myfood", JSON.stringify([...foodList, meal]));
-    onToggleSnackBar();
   };
 
   return (
@@ -165,26 +146,12 @@ const MealDetailsScreen = ({ navigation, route }: any) => {
               {
                 flex: 1,
                 alignSelf: "flex-start",
-                // marginLeft: "-15%",
                 marginTop: "0%",
                 paddingTop: "7%",
                 fontSize: 28,
                 fontWeight: "800",
-                // fontSize : 20,
               },
             ]}
-            // subtitle={`${meal.calories} kcal`}
-            // subtitleStyle={{
-            //   color: "#808080",
-            //   fontFamily: "Cabin",
-            //   fontSize: 23,
-            //   paddingTop: "3%",
-            //   marginTop: "2%",
-            //   alignSelf: "flex-start",
-            //   // marginLeft: "24%",
-            // }}
-            // left={LeftContent(meal)}
-            // right={RightContent(meal)}
           />
           <Card.Content>
             <Surface style={[styles.row2, { backgroundColor: "#EEF5DB" }]}>
@@ -209,6 +176,7 @@ const MealDetailsScreen = ({ navigation, route }: any) => {
               </Paragraph>
               <Button
                 mode="contained-tonal"
+                // textColor = "red"
                 style={[
                   {
                     backgroundColor: "#9db97d",
@@ -219,10 +187,11 @@ const MealDetailsScreen = ({ navigation, route }: any) => {
                   }, //"#e4ede4"
                 ]}
                 onPress={() => {
-                  console.log("am apasat");
+                  // console.log("am apasat");
+                  addMeal();
                   navigation.navigate("MealTracking");
                 }}
-                textColor="#3C403D"
+                textColor="black"
               >
                 Add to Diary
               </Button>

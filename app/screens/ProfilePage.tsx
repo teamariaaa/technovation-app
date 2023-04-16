@@ -116,7 +116,7 @@ const ProfileScreen = ({ navigation }: any) => {
             { position: "absolute", marginLeft: win.width - 50, marginTop: 35 },
           ]}
           size={25}
-          onPress={() => navigation.navigate("Start")}
+          // onPress={() => navigation.navigate("Start")}
         />
         <View style={{ flex: 20, backgroundColor: "#FFFCEF" }}>
           <Card mode="contained">
@@ -125,7 +125,7 @@ const ProfileScreen = ({ navigation }: any) => {
                 style={{ margin: 10 }}
                 title={fullName}
                 titleStyle={[styles.text, styles.textBold]}
-                subtitle={age}
+                subtitle={age + " years old"}
                 subtitleStyle={[styles.text, styles.hightlightText]}
                 left={LeftContent}
                 leftStyle={{ marginRight: 40 }} //style={{ margin: 10 }}

@@ -48,7 +48,7 @@ const SelfCareScreen = ({ navigation }: any) => {
                 >
                     <Text style={[styles.buttonText, styles.text]}>
                         {isBreathingCycleInProgress
-                            ? "Stop breathing cycle"
+                            ? "Well done! Keep going!"
                             : "Start one breathing cycle"}
                     </Text>
                 </TouchableOpacity>

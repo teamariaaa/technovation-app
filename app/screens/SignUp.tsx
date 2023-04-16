@@ -15,6 +15,8 @@ import {
   StyleSheet,
   Image,
   Text,
+  ScrollView,
+  SafeAreaView,
 } from "react-native";
 import {
   Button,
@@ -22,6 +24,7 @@ import {
   TextInput,
   Surface,
   IconButton,
+  Avatar,
 } from "react-native-paper";
 import { red100 } from "react-native-paper/lib/typescript/src/styles/themes/v2/colors";
 import styles from "../global.styles.js";
@@ -108,79 +111,116 @@ const SignUpcreen = ({ navigation }: any) => {
     margin: 20,
   };
 
-  return (
-    <View style={styles.container}>
-      <View style={styles.upContainer}>
-        <IconButton
-          icon="keyboard-backspace"
-          mode="contained-tonal"
-          style={styles.iconButton}
-          size={20}
-          onPress={() => navigation.navigate("Start")}
-        />
+  function changePage() {
+    navigation.navigate("Start");
+  }
 
-        <Text
+  return (
+    <SafeAreaView style={[styles.container, { backgroundColor: "#FFFCEF" }]}>
+      <ScrollView style={{ flex: 1 }}>
+        <View
           style={[
-            styles.text,
-            styles.titleLarge,
-            styles.textSemiBold,
-            styles.textCenter,
+            styles.upContainer,
+            { backgroundColor: "#FFFCEF", marginBottom: 0 },
           ]}
         >
-          Sign up
-        </Text>
-      </View>
-      <View style={[styles.bottomContainer]}>
-        <Paragraph style={[styles.headlineSmall, styles.textBold]}>
-          Welcome!
-        </Paragraph>
-        <Paragraph style={(styles.bodyMedium, styles.lightText)}>
-          Enter your personal data
-        </Paragraph>
-        <TextInput
-          mode="flat"
-          style={[
-            styles.TextInput,
-            { marginTop: "10%", height: 50, marginBottom: "5%" },
-          ]}
-          label="Email"
-          left={<TextInput.Icon icon="email" />}
-          value={email}
-          onChangeText={(email: string) => setEmail(email)}
+          <IconButton
+            icon="keyboard-backspace"
+            mode="contained-tonal"
+            style={styles.iconButton}
+            size={20}
+            onPress={() => changePage()}
+          />
+
+          <Text
+            style={[
+              styles.text,
+              styles.textBodyLarge,
+              styles.textCenter,
+              { marginLeft: "2.5%" },
+            ]}
+          >
+            Sign Up
+          </Text>
+        </View>
+        <Avatar.Icon
+          size={134}
+          icon="dots-horizontal"
+          color="#c1dbc1"
+          style={{
+            backgroundColor: "transparent",
+            height: 122 * 0.8,
+            marginTop: "20%",
+            // width: customAvtardimension,
+            //height: customAvtardimension,
+          }}
         />
 
-        <TextInput
-          mode="flat"
-          label="Password"
-          style={[
-            styles.TextInput,
-            //styles.noTopMargin,
-            { marginTop: "10%", height: 50 },
-          ]}
-          secureTextEntry={hidePassword}
-          value={password}
-          onChangeText={(password) => setPassword(password)}
-          left={<TextInput.Icon icon="lock" />}
-          right={
-            <TextInput.Icon
-              icon="eye"
-              onPress={() => setHidePassword(!hidePassword)}
-            />
-          }
-        />
-        <Text style={styles.errorText}> {passwordError}</Text>
-        <Text style={styles.errorText}>{emailError}</Text>
+        <View
+          style={{
+            flex: 6,
+            alignItems: "flex-start",
+            justifyContent: "flex-start",
+            paddingLeft: 30,
+            paddingRight: 30,
+          }}
+        >
+          <Paragraph style={[styles.headlineSmall, styles.textBold]}>
+            Welcome to RevoverEats!
+          </Paragraph>
+          <Paragraph
+            style={[
+              styles.bodyMedium,
+              styles.lightText,
+              { width: "75%", marginBottom: "5%" },
+            ]}
+          >
+            In order to create an account, please enter your email and password.
+          </Paragraph>
+          <TextInput
+            mode="flat"
+            style={[
+              styles.TextInput,
+              { marginTop: "10%", height: 50, marginBottom: "5%" },
+            ]}
+            label="Email"
+            left={<TextInput.Icon icon="email" />}
+            value={email}
+            onChangeText={(email: string) => setEmail(email)}
+          />
+          <Text style={styles.errorText}>{emailError}</Text>
+          <TextInput
+            mode="flat"
+            label="Password"
+            style={[
+              styles.TextInput,
+              //styles.noTopMargin,
+              { marginTop: "5%", height: 50, marginBottom: "5%" },
+            ]}
+            secureTextEntry={hidePassword}
+            value={password}
+            onChangeText={(password) => setPassword(password)}
+            left={<TextInput.Icon icon="lock" />}
+            right={
+              <TextInput.Icon
+                icon="eye"
+                onPress={() => setHidePassword(!hidePassword)}
+              />
+            }
+          />
+          <Text style={styles.errorText}> {passwordError}</Text>
+        </View>
         <Button
           mode="elevated"
           style={[
             styles.myButton,
             //styles.marginButtonTop,
             styles.noBottomMargin,
-            { marginTop: "50%" },
+            { marginTop: "25%" },
           ]}
           onPress={() => {
-            //signUp();
-            navigation.navigate("GetUserPersonalData");
+            signUp();
+            //navigation.navigate("GetUserPersonalData");
           }}
         >
           <Text style={[styles.text, styles.textBodyLarge]}>Sign up</Text>
@@ -197,8 +237,8 @@ const SignUpcreen = ({ navigation }: any) => {
             <Text style={styles.hightlightText}>Sign in</Text>
           </Button>
         </View>
-      </View>
-    </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 

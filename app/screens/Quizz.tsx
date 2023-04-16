@@ -30,6 +30,7 @@ import {
 import { red100 } from "react-native-paper/lib/typescript/src/styles/themes/v2/colors";
 import styles from "../global.styles.js";
 import Icon from "react-native-paper/lib/typescript/src/components/Icon.js";
+import { Fontisto } from "@expo/vector-icons";
 
 const QuizzScreen = ({ navigation }: any) => {
   const questions = [
@@ -48,24 +49,202 @@ const QuizzScreen = ({ navigation }: any) => {
       name: "I find myself preoccupied with food.",
       description: "3",
     },
+    {
+      id: 4,
+      name: "I have gone on eating binges where I feel that I may not be able to stop.",
+      description: "4",
+    },
+    {
+      id: 5,
+      name: "I cut my food into small pieces.",
+      description: "5",
+    },
+    {
+      id: 6,
+      name: "I am aware of the calorie content of foods that I eat.",
+      description: "6",
+    },
+    {
+      id: 7,
+      name: "I particularly avoid food with high carbohydrate content.",
+      description: "7",
+    },
+    {
+      id: 8,
+      name: "I feel that others would prefer if I ate more.",
+      description: "8",
+    },
+    {
+      id: 9,
+      name: "I vomit after I have eaten.",
+      description: "9",
+    },
+    {
+      id: 10,
+      name: "I feel extremely guilty after eating.",
+      description: "10",
+    },
+    {
+      id: 11,
+      name: "I am preoccupied with the a desire to be thinner.",
+      description: "11",
+    },
+    {
+      id: 12,
+      name: "I think about burning up calories by exercising.",
+      description: "12",
+    },
+    {
+      id: 13,
+      name: "Other people think that i am too thin.",
+      description: "13",
+    },
+    {
+      id: 14,
+      name: "I am preoccupied with the thought of having fat on my body.",
+      description: "14",
+    },
+    {
+      id: 15,
+      name: "I take longer than others to eat my meals.",
+      description: "15",
+    },
+    {
+      id: 16,
+      name: "I avoid foods with sugar in them.",
+      description: "16",
+    },
+    {
+      id: 17,
+      name: "I eat diet foods.",
+      description: "17",
+    },
+    {
+      id: 18,
+      name: "I feel that food controls my life.",
+      description: "18",
+    },
+    {
+      id: 19,
+      name: "I display self-control around food.",
+      description: "19",
+    },
+    {
+      id: 20,
+      name: "I feel that others pressure me to eat more.",
+      description: "20",
+    },
+    {
+      id: 21,
+      name: "I give too much time and thought to food.",
+      description: "21",
+    },
+    {
+      id: 22,
+      name: "I feel uncomfortable after I eat sweets.",
+      description: "22",
+    },
+    {
+      id: 23,
+      name: "I engage in dieting behaviour.",
+      description: "23",
+    },
+    {
+      id: 24,
+      name: "I like my stomach to be empty.",
+      description: "24",
+    },
+    {
+      id: 25,
+      name: "I have the impulse to vomit after meals.",
+      description: "25",
+    },
+  ];
+
+  const options = [
+    {
+      id: 0,
+      name: "Never",
+    },
+    {
+      id: 1,
+      name: "Rarely",
+    },
+    {
+      id: 2,
+      name: "Sometimes",
+    },
+    {
+      id: 3,
+      name: "Often",
+    },
+    {
+      id: 4,
+      name: "Usually",
+    },
+    {
+      id: 5,
+      name: "Always",
+    },
   ];
 
   const [currentPage, setCurrentPage] = useState(1);
   const [questionNo, setQuestionNo] = useState(1);
+  const [selected, setSelected] = useState(-1);
+  const [score, setScore] = useState(0);
+
+  function updateUser() {
+    const auth = getAuth();
+    const user = auth.currentUser;
+    if (true) {
+      let fullName = user?.displayName;
+      if (user) {
+        console.log("mda" + score);
+        setScore(score / 2);
+        console.log("mda" + score);
+        fullName = fullName + "$" + score;
+        updateProfile(user, {
+          displayName: fullName,
+          photoURL: "https://example.com/jane-q-user/profile.jpg",
+        })
+          .then(() => {
+            console.log(user.displayName);
+          })
+          .catch((error) => {
+            // An error occurred
+            // ...
+          });
+      }
+    }
+  }
 
   function changePage() {
-    console.log(currentPage + 1);
-    if (currentPage < 3) setCurrentPage(currentPage + 1);
-    else navigation.navigate("Main");
+    //add to score the id from the option selected
+    console.log("Selected: " + selected);
+    console.log("Score2: " + score);
+    console.log("Score3: " + (score + selected));
+    if (selected != -1) {
+      let tempScore = score + selected;
+      setScore(tempScore);
+      console.log("Score1: " + score);
+    }
+    if (currentPage < 25) {
+      setSelected(-1);
+      setCurrentPage(currentPage + 1);
+      console.log(currentPage + 1);
+    } else {
+      updateUser();
+      navigation.navigate("LastPageSignUp");
+    }
+  }
+
+  //set change with the value of the option selected
+  function changeSelected(value: number) {
+    setSelected(value);
   }
 
   return (
-    <SafeAreaView
-      style={[
-        styles.container,
-        { backgroundColor: "#FFFCEF", paddingTop: StatusBar.currentHeight },
-      ]}
-    >
+    <SafeAreaView style={[styles.container, { backgroundColor: "#FFFCEF" }]}>
       <ScrollView style={{ flex: 1 }}>
         <View
           style={[
@@ -84,12 +263,12 @@ const QuizzScreen = ({ navigation }: any) => {
           <Text
             style={[
               styles.text,
-              styles.bodyMedium,
+              styles.textBodyLarge,
               styles.textCenter,
               { marginLeft: "2.5%" },
             ]}
           >
-            Sign Up
+            Quizz
           </Text>
         </View>
         <Avatar.Icon
@@ -99,7 +278,7 @@ const QuizzScreen = ({ navigation }: any) => {
           style={{
             backgroundColor: "transparent",
             height: 122 * 0.8,
-            marginTop: "10%",
+            marginTop: "2%",
             // width: customAvtardimension,
             //height: customAvtardimension,
           }}
@@ -117,11 +296,37 @@ const QuizzScreen = ({ navigation }: any) => {
           {questions.map((question) => (
             <View>
               {question.description == currentPage.toString() ? (
-                <Text
-                  style={[styles.text, styles.headlineSmall, styles.textBold]}
-                >
-                  {question.name}
-                </Text>
+                <View>
+                  <Text
+                    style={[styles.text, styles.headlineSmall, styles.textBold]}
+                  >
+                    {question.name}
+                  </Text>
+
+                  {options.map((option) => (
+                    <View
+                      style={{
+                        flexDirection: "row",
+                        justifyContent: "flex-start",
+                        alignItems: "center",
+                        marginVertical: "1%",
+                      }}
+                    >
+                      <IconButton
+                        icon={
+                          option.id == selected
+                            ? "radiobox-marked"
+                            : "radiobox-blank"
+                        }
+                        size={18}
+                        onPress={() => changeSelected(option.id)}
+                      />
+                      <Text style={[styles.text, { fontSize: 18 }]}>
+                        {option.name}
+                      </Text>
+                    </View>
+                  ))}
+                </View>
               ) : (
                 <View></View>
               )}
@@ -137,13 +342,13 @@ const QuizzScreen = ({ navigation }: any) => {
               styles.myButton,
               //styles.marginButtonTop,
               styles.noBottomMargin,
-              { marginTop: "30%", marginBottom: "10%" },
+              { marginTop: "35%", marginBottom: "10%" },
             ]}
             onPress={() => {
               changePage();
             }}
           >
-            <Text style={[styles.text, styles.textBodyLarge]}>Start quizz</Text>
+            <Text style={[styles.text, styles.textBodyLarge]}>Next</Text>
           </Button>
         </View>
       </ScrollView>

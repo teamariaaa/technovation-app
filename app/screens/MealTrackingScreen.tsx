@@ -34,77 +34,77 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
          #C7EFCF
          #B7CECE*/
 
-const breakfastItems = [
-  {
-    id: 1,
-    name: "Omelet",
-    photo: "../../assets/profilePicture.jpeg",
-    calories: 183,
-    protein: 12,
-    fat: 14,
-    carbs: 4.6,
-  },
-];
+// const breakfastItems = [
+//   {
+//     id: 1,
+//     name: "Omelet",
+//     photo: "../../assets/profilePicture.jpeg",
+//     calories: 183,
+//     protein: 12,
+//     fat: 14,
+//     carbs: 4.6,
+//   },
+// ];
 
-const lunchItems = [
-  {
-    id: 1,
-    name: "Omelet",
-    photo: "../../assets/profilePicture.jpeg",
-    calories: 183,
-    protein: 12,
-    fat: 14,
-    carbs: 4.6,
-  },
-];
+// const lunchItems = [
+//   {
+//     id: 1,
+//     name: "Omelet",
+//     photo: "../../assets/profilePicture.jpeg",
+//     calories: 183,
+//     protein: 12,
+//     fat: 14,
+//     carbs: 4.6,
+//   },
+// ];
 
-const dinnerItems = [
-  {
-    id: 1,
-    name: "Omelet",
-    photo: "../../assets/profilePicture.jpeg",
-    calories: 183,
-    protein: 12,
-    fat: 14,
-    carbs: 4.6,
-  },
-];
+// const dinnerItems = [
+//   {
+//     id: 1,
+//     name: "Omelet",
+//     photo: "../../assets/profilePicture.jpeg",
+//     calories: 183,
+//     protein: 12,
+//     fat: 14,
+//     carbs: 4.6,
+//   },
+// ];
 
-const drinksItems = [
-  {
-    id: 1,
-    name: "Omelet",
-    photo: "../../assets/profilePicture.jpeg",
-    calories: 183,
-    protein: 12,
-    fat: 14,
-    carbs: 4.6,
-  },
-];
+// const drinksItems = [
+//   {
+//     id: 1,
+//     name: "Omelet",
+//     photo: "../../assets/profilePicture.jpeg",
+//     calories: 183,
+//     protein: 12,
+//     fat: 14,
+//     carbs: 4.6,
+//   },
+// ];
 
-const dessertItems = [
-  {
-    id: 1,
-    name: "Omelet",
-    photo: "../../assets/profilePicture.jpeg",
-    calories: 183,
-    protein: 12,
-    fat: 14,
-    carbs: 4.6,
-  },
-];
+// const dessertItems = [
+//   {
+//     id: 1,
+//     name: "Omelet",
+//     photo: "../../assets/profilePicture.jpeg",
+//     calories: 183,
+//     protein: 12,
+//     fat: 14,
+//     carbs: 4.6,
+//   },
+// ];
 
-const snacksItems = [
-  {
-    id: 1,
-    name: "Omelet",
-    photo: "../../assets/profilePicture.jpeg",
-    calories: 183,
-    protein: 12,
-    fat: 14,
-    carbs: 4.6,
-  },
-];
+// const snacksItems = [
+//   {
+//     id: 1,
+//     name: "Omelet",
+//     photo: "../../assets/profilePicture.jpeg",
+//     calories: 183,
+//     protein: 12,
+//     fat: 14,
+//     carbs: 4.6,
+//   },
+// ];
 
 const MealTrackingScreen = ({ navigation }: any) => {
   const win = Dimensions.get("window");
@@ -169,7 +169,7 @@ const MealTrackingScreen = ({ navigation }: any) => {
               //initialValue={1400}
               //<MaterialCommunityIcons name = "fire" />
               radius={110}
-              duration={3000}
+              duration={0}
               activeStrokeColor="#9db97d"
               inActiveStrokeColor="#B6CB9E"
               inActiveStrokeOpacity={0.5}

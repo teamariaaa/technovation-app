@@ -145,10 +145,7 @@ const MealTrackingScreen = ({ navigation }: any) => {
               marginRight: 10,
             }}
           >
-            <Avatar.Image
-              size={60}
-              source={require("../../assets/profilePicture.jpeg")}
-            />
+            <Avatar.Image size={70} source={require("../../assets/user.png")} />
             <Button
               mode="contained-tonal"
               style={[

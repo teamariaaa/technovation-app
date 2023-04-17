@@ -192,6 +192,7 @@ const QuizzScreen = ({ navigation }: any) => {
   const [questionNo, setQuestionNo] = useState(1);
   const [selected, setSelected] = useState(-1);
   const [score, setScore] = useState(0);
+  let Score;
 
   function updateUser() {
     const auth = getAuth();

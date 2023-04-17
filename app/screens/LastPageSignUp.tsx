@@ -44,7 +44,11 @@ const LastSignUpScreen = ({ navigation }: any) => {
   let score;
 
   score = info ? parseInt(info[6]) : 0;
+  console.log("Aici");
+  if (!score) score = 0;
+  if (info) console.log("mhm" + info[6]);
   console.log(score / 2);
+  score = 108;
 
   return (
     <SafeAreaView

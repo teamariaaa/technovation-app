@@ -162,7 +162,8 @@ const MealTrackingScreen = ({ navigation }: any) => {
   let height;
 
   let name;
-  const [BMR, setBRM] = useState(0);
+  let BMR;
+  // const [BMR, setBRM] = useState(0);
   name = fullName?.split("$");
   fullName = name ? name[0] + " " + name[1] : "";
   age = name ? parseInt(name[2]) : 0;
@@ -171,8 +172,8 @@ const MealTrackingScreen = ({ navigation }: any) => {
   height = name ? parseInt(name[5]) : 0;
 
   if (gender === "female")
-    setBRM(447.593 + 9.247 * weight + 3.098 * height - 4.33 * age);
-  else setBRM(88.362 + 13.397 * weight + 4.799 * height - 5.677 * age);
+    BMR = 447.593 + 9.247 * weight + 3.098 * height - 4.33 * age;
+  else BMR = 88.362 + 13.397 * weight + 4.799 * height - 5.677 * age;
 
   const CALORIE_INTAKE = BMR * 1.375;
   const CARBS_INTAKE = (BMR * 0.5) / 4;
@@ -197,7 +198,10 @@ const MealTrackingScreen = ({ navigation }: any) => {
               marginRight: 10,
             }}
           >
-            <Avatar.Image size={70} source={require("../../assets/avatar3.jpg")} />
+            <Avatar.Image
+              size={70}
+              source={require("../../assets/avatar3.jpg")}
+            />
             <Button
               mode="contained-tonal"
               style={[

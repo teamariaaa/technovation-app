@@ -1,73 +1,154 @@
 import React, { useState } from "react";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { View, Dimensions, ScrollView } from "react-native";
-import { AgendaList, Calendar, CalendarProvider, ExpandableCalendar, LocaleConfig, WeekCalendar } from "react-native-calendars";
-import CircularProgress from "react-native-circular-progress-indicator";
-import {
-  Card,
-  Paragraph,
-  Avatar,
-  Title,
-  IconButton,
-  Button,
-} from "react-native-paper";
+import { View, ScrollView, Pressable, StyleSheet } from "react-native";
+import { Avatar, IconButton, Surface, Text, Props } from "react-native-paper";
 import globalstyles from "../global.styles.js";
+import moment from "moment";
+import DiaryCard from "./DiaryCard";
+import { useNavigation } from "@react-navigation/native";
 
-const LeftContent = () => (
-  <Avatar.Image
-    size={70}
-    source={require("../../assets/profilePicture.jpeg")}
-  />
+const DayItem = (props: any) => (
+  <Surface
+    style={[
+      {
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        backgroundColor: props.selected ? "#DBEAB3" : "#EEF5DB",
+        padding: 15,
+        borderRadius: 20,
+        marginLeft: 2.5,
+        marginRight: 2.5,
+        shadowColor : "#EEF5DB",
+      },
+    ]}
+  >
+    <Text>{props.day.format("dd")}</Text>
+    <Surface
+      style={[
+        {
+          display: "flex",
+          flexDirection: "column",
+          // alignItems: "center",
+          backgroundColor: "#EEF5DB",
+          shadowColor : "#EEF5DB",
+          padding: 8,
+          borderRadius: 20,
+          marginTop: 3,
+          // marginVertical : 5,
+          // marginLeft: "0%",
+          // marginRight: "0%",
+          // marginBottom : "2%",
+        },
+      ]}
+    >
+      <Text>{props.day.format("D-M")}</Text>
+    </Surface>
+  </Surface>
 );
 
-interface Props {
-  weekView?: boolean;
-}
-const DiaryScreen = (props : Props) => {
-  const [selected, setSelected] = useState("");
+const DaySlider = (props: any) => {
+  const days = [];
+  const [selected, setSelected] = useState<number>();
 
+  for (let i = -30; i <= 30; i++) {
+    days.push(moment().add(i, "days"));
+  }
 
   return (
-    <View style={{ paddingTop: 50, flex: 1 }}>
-      <Calendar
-        // Initially visible month. Default = Date()
-        current={"2012-03-01"}
-        // Minimum date that can be selected, dates before minDate will be grayed out. Default = undefined
-        minDate={"2012-05-10"}
-        // Maximum date that can be selected, dates after maxDate will be grayed out. Default = undefined
-        maxDate={"2012-05-30"}
-        // Handler which gets executed on day press. Default = undefined
-        onDayPress={(day) => {
-          console.log("selected day", day);
-        }}
-        // Month format in calendar title. Formatting values: http://arshaw.com/xdate/#Formatting
-        monthFormat={"yyyy MM"}
-        // Handler which gets executed when visible month changes in calendar. Default = undefined
-        onMonthChange={(month) => {
-          console.log("month changed", month);
-        }}
-        // Hide month navigation arrows. Default = false
-        hideArrows={true}
-        // Do not show days of other months in month page. Default = false
-        hideExtraDays={true}
-        // If hideArrows=false and hideExtraDays=false do not swich month when tapping on greyed out
-        // day from another month that is visible in calendar page. Default = false
-        disableMonthChange={true}
-        // If firstDay=1 week starts from Monday. Note that dayNames and dayNamesShort should still start from Sunday.
-        firstDay={1}
-      />
-      <CircularProgress
-        value={60}
-        radius={120}
-        duration={2000}
-        progressValueColor={"#ecf0f1"}
-        maxValue={200}
-        title={"KM/H"}
-        titleColor={"white"}
-        titleStyle={{ fontWeight: "bold" }}
-      />
+    <ScrollView
+      horizontal={true}
+      showsHorizontalScrollIndicator={false}
+      disableIntervalMomentum = {true}
+      decelerationRate= {"fast"}
+      style={{
+        maxHeight: 93,
+        backgroundColor: "#EEF5DB"//"#fffcef",
+      }}
+    >
+      {days.map((day, i) => (
+        <Pressable
+          key={i}
+          style={{
+            height: 58,
+            // paddingLeft: 1,
+            // paddingRight: 1,
+            marginTop: 10,
+            marginBottom: 10,
+            marginRight: 2.5,
+            marginLeft: 2.5,
+            
+          }}
+          onPress={() => {
+            props.dateChange(day);
+            setSelected(i);
+          }}
+        >
+          <DayItem day={day} selected={i === selected} />
+        </Pressable>
+      ))}
+    </ScrollView>
+  );
+};
+
+const DiaryScreen = (props: Props) => {
+  const navigation = useNavigation();
+  const [date, setDate] = useState(new Date());
+  const onChangeDate = (m: any) => {
+    setDate(m.toDate());
+  };
+
+  return (
+    <View
+      style={{
+        // justifyContent: "flex-start",
+        flex: 1,
+        backgroundColor: "#EEF5DB"//"#fffcef",
+      }}
+    >
+      <View style={[styles.upContainer, {backgroundColor : "#EEF5DB"}]}>
+        <IconButton
+          icon="keyboard-backspace"
+          mode="contained-tonal"
+          style={globalstyles.iconButton}
+          size={20}
+          onPress={() => navigation.navigate("MealTracking")}
+        />
+
+        <Text
+          style={[
+            globalstyles.text,
+            globalstyles.titleLarge,
+            globalstyles.textSemiBold,
+            globalstyles.textCenter,
+            ,
+            { marginLeft: "4%" },
+          ]}
+        >
+          Diary
+        </Text>
+      </View>
+      <View style = {{backgroundColor : "#EEF5DB", height : 90, marginBottom : 10}}>
+      <DaySlider dateChange={onChangeDate} />
+      </View>
+      <DiaryCard day={date} />
     </View>
   );
 };
 
 export default DiaryScreen;
+
+const styles = StyleSheet.create({
+  upContainer: {
+    flex: 1,
+    flexDirection: "row",
+    // paddingLeft: "2.5%",
+    backgroundColor: "#fffcef",
+    alignItems: "center",
+    justifyContent: "flex-start",
+    // paddingTop: 10,
+    // paddingBottom: 1,
+    marginTop: "2%",
+    // marginBottom: "2%",
+    borderBottomColor : "blue"
+  },
+});

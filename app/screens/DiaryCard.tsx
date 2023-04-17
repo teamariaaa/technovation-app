@@ -1,20 +1,30 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Card,
   IconButton,
+  Paragraph,
+  Portal,
+  Provider,
   Surface,
+  Button,
+  Modal,
+  Title,
 } from "react-native-paper";
-import { StyleSheet, Image } from "react-native";
+import { StyleSheet, Image, ImageBackground, ScrollView } from "react-native";
+import CircularProgress from "react-native-circular-progress-indicator";
 import globalstyles from "../global.styles.js";
 import { Pressable } from "react-native";
+import { View } from "react-native";
+import Icon from "react-native-paper/lib/typescript/src/components/Icon.js";
 import { Dimensions } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export interface FoodItem {
   id: number;
   name: string;
   photo: any;
-  date : number;
+  date : Date;
   calories: number;
   protein: number;
   fat: number;
@@ -48,7 +58,7 @@ const LeftContent = (foodItem: FoodItem) => () =>
     </Surface>
   );
 
-const FoodItemCard = ({ foodItem }: { foodItem: FoodItem }) => {
+const DiaryCard = ({day}: { day : Date }) => {
   const win = Dimensions.get("window");
 
   const [visible, setVisible] = useState<boolean>(false);
@@ -61,10 +71,28 @@ const FoodItemCard = ({ foodItem }: { foodItem: FoodItem }) => {
   };
 
   const navigation = useNavigation();
+  const [todayItems, setTodayItems] = useState<FoodItem[]>([]);
+
+  const addMeal = async () => {
+    const storedMeals = await AsyncStorage.getItem("@myfood");
+    return  storedMeals ? JSON.parse(storedMeals) : [];
+    // setTodayItems(foodList.filter((d) => new Date(d.date).toDateString() === day.toDateString())); 
+  };
+
+  useEffect(() => {
+    addMeal().then((foodList) => {
+      setTodayItems(foodList.filter((d : FoodItem) => new Date(d.date).toDateString() === day.toDateString()));
+    });
+}, [day]);
+  const Clear = async () => { await AsyncStorage.setItem("@myfood", JSON.stringify([]));}
 
   return (
-    <Pressable onPress={() => navigation.navigate("FoodPage", {foodItem})}>
-      <Card key={foodItem.id} style={styles.container}>
+    // <Pressable onPress={() => navigation.navigate("FoodPage", { foodItem })}>
+    <ScrollView style = {{height : "45%", backgroundColor : "#EEF5DB"}}>
+        {/* <Button onPress = {Clear}> clear </Button> */}
+        <Card style = {{backgroundColor : "#fffcef", borderRadius : 25, marginLeft : 10, marginRight : 10}}>
+        {todayItems.map((foodItem, i) =>
+      <Card key={i} style={styles.container}>
         <Card.Title
           style={{
             alignSelf: "flex-start",
@@ -94,29 +122,19 @@ const FoodItemCard = ({ foodItem }: { foodItem: FoodItem }) => {
           }}
           left={LeftContent(foodItem)}
         />
-        {/* <View style = {{flex : 1, padding : 100}}>
-          <ImageBackground
-        resizeMode = "cover"
-        style={{
-          flex : 1,
-          width: "100%",
-          height: "100%",
-          // justifyContent : "center", 
-          // shadowColor : "red",
-        }}
-        source={foodItem.photo}
-      /> 
-       </View> */}
       </Card>
-    </Pressable>
+    )}
+    </Card>
+    </ScrollView>
   );
 };
 
-export default FoodItemCard;
+export default DiaryCard;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#EEF5DB",
+    backgroundColor: "#fffcef",
+    shadowColor : "#fffcef",
     marginTop: "3%",
     marginBottom: "2%",
     marginLeft: "3%",

@@ -19,6 +19,8 @@ import Icon from "react-native-paper/lib/typescript/src/components/Icon.js";
 import { Dimensions } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import CardContent from "react-native-paper/lib/typescript/src/components/Card/CardContent.js";
+import moment from "moment";
 
 export interface FoodItem {
   id: number;
@@ -60,9 +62,7 @@ const DiaryCard = ({ day }: { day: Date }) => {
   // const [visible, setVisible] = useState<boolean[]>([]);
   // setVisible(visible.filter((d : boolean) => ))}
   const [visible, setVisible] = useState<number>(-1);
-
   const [todayItems, setTodayItems] = useState<FoodItem[]>([]);
-
   const [numeData, setNumeData] = useState<boolean>(true);
 
   useEffect(() => {
@@ -78,6 +78,8 @@ const DiaryCard = ({ day }: { day: Date }) => {
     // setTodayItems(foodList.filter((d) => new Date(d.date).toDateString() === day.toDateString()));
   };
 
+  const [todayCal, setTodayCal] = useState<number>(0);
+
   useEffect(() => {
     addMeal().then((foodList) => {
       setTodayItems(
@@ -86,6 +88,18 @@ const DiaryCard = ({ day }: { day: Date }) => {
             new Date(d.date).toDateString() === day.toDateString()
         )
       );
+      const stats = todayItems.reduce(
+        (acc: any, food: FoodItem) => {
+          acc.calories += food.calories;
+          acc.carbs += food.carbs;
+          acc.protein += food.protein;
+          acc.fat += food.fat;
+          return acc;
+        },
+        { calories: 0, carbs: 0, protein: 0, fat: 0 }
+      );
+
+      setTodayCal(stats.calories);
     });
   }, [day]);
 
@@ -107,8 +121,104 @@ const DiaryCard = ({ day }: { day: Date }) => {
           marginRight: 10,
         }}
       >
-        {numeData === true && <Card.Title title="Today"></Card.Title>}
-        {numeData === false && <Card.Title title={day.toDateString()}></Card.Title>}
+        {numeData === true && (
+          <>
+            <Card.Title
+              style={{
+                alignSelf: "flex-start",
+                marginTop: "4%",
+                marginBottom: "4%",
+                // display : "flex",
+                // flexDirection : "row",
+              }}
+              title="Today"
+              titleStyle={[
+                globalstyles.text,
+                {
+                  flex: 1,
+                  alignSelf: "flex-start",
+                  marginTop: "0%",
+                  marginLeft: 17,
+                  paddingTop: "7%",
+                  fontSize: 28,
+                  fontWeight: "800",
+                },
+              ]}
+            />
+            <Card.Content>
+              <Surface style={[styles.row2, { backgroundColor: "#fffcef" }]}>
+                <IconButton
+                  icon="fire"
+                  iconColor="#A0A0A0"
+                  size={33}
+                  style={{ marginTop: "-1%", marginRight: "-1%" }}
+                />
+                <Paragraph
+                  // left={LeftContent(meal)}
+                  style={{
+                    color: "#808080",
+                    fontFamily: "Cabin",
+                    fontSize: 23,
+                    paddingTop: "3%",
+                    marginTop: "2%",
+                    // alignSelf: "flex-start",
+                  }}
+                >
+                  {todayCal} kcal
+                </Paragraph>
+              </Surface>
+            </Card.Content>
+          </>
+        )}
+        {numeData === false && (
+          <>
+            <Card.Title
+              style={{
+                alignSelf: "flex-start",
+                marginTop: "4%",
+                marginBottom: "4%",
+                // display : "flex",
+                // flexDirection : "row",
+              }}
+              title={moment(day).format('MMMM D')}
+              titleStyle={[
+                globalstyles.text,
+                {
+                  flex: 1,
+                  alignSelf: "flex-start",
+                  marginTop: "0%",
+                  marginLeft: 17,
+                  paddingTop: "7%",
+                  fontSize: 28,
+                  fontWeight: "800",
+                },
+              ]}
+            />
+            <Card.Content>
+              <Surface style={[styles.row2, { backgroundColor: "#fffcef" }]}>
+                <IconButton
+                  icon="fire"
+                  iconColor="#A0A0A0"
+                  size={33}
+                  style={{ marginTop: "-1%", marginRight: "-1%" }}
+                />
+                <Paragraph
+                  // left={LeftContent(meal)}
+                  style={{
+                    color: "#808080",
+                    fontFamily: "Cabin",
+                    fontSize: 23,
+                    paddingTop: "3%",
+                    marginTop: "2%",
+                    // alignSelf: "flex-start",
+                  }}
+                >
+                  {todayCal} kcal
+                </Paragraph>
+              </Surface>
+            </Card.Content>
+          </>
+        )}
         {todayItems.map((foodItem, i) => (
           <Pressable key={i} onPress={() => setVisible(i === visible ? -1 : i)}>
             <Card key={i} style={[styles.container]}>
@@ -314,6 +424,18 @@ const styles = StyleSheet.create({
     color: "#EEF5DB",
     marginLeft: "3%",
     marginRight: "3%",
+  },
+  row2: {
+    mode: "flat",
+    elevation: 0,
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    // marginTop: 30,
+    shadowColor: "#EEF5DB",
+    color: "#EEF5DB",
+    // marginLeft: "3%",
+    // marginRight: "3%",
   },
   column: {
     mode: "flat",

@@ -103,14 +103,14 @@ const DiaryScreen = (props: Props) => {
   const onChangeDate = (m: any) => {
     setDate(m.toDate());
   };
-  const aref = useAnimatedRef();
-  const scroll = useSharedValue(0);
-  const ITEM_SIZE =1000;
-  const ITEM_MARGIN = 2.5;
+  // const aref = useAnimatedRef();
+  // const scroll = useSharedValue(0);
+  // const ITEM_SIZE =1000;
+  // const ITEM_MARGIN = 2.5;
 
-  useEffect(() => {
-    scrollTo(aref, scroll.value + (ITEM_SIZE + 2 * ITEM_MARGIN) * 30, 0, true);
-  });
+  // useEffect(() => {
+  //   scrollTo(aref, scroll.value + (ITEM_SIZE + 2 * ITEM_MARGIN) * 30, 0, true);
+  // });
 
   return (
     <View

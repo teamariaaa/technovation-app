@@ -524,7 +524,11 @@ const SearchPageScreen = ({ navigation }: any) => {
     },
   ];
 
-  const [food, setFood] = useState<FoodItem[]>(foodList);
+  const getThreeRandomItems = () => {
+    return foodList.sort(() => 0.5 - Math.random()).slice(0, 6);
+  }
+
+  const [food, setFood] = useState<FoodItem[]>(getThreeRandomItems());
 
   const styles = StyleSheet.create({
     container: {

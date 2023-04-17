@@ -115,6 +115,7 @@ const MealTrackingScreen = ({ navigation }: any) => {
 
   const getTodayMeals = async () => {
     const storedMeals = await AsyncStorage.getItem("@myfood");
+    console.log(storedMeals);
     return  storedMeals ? JSON.parse(storedMeals) : [];
     // setTodayItems(foodList.filter((d) => new Date(d.date).toDateString() === day.toDateString())); 
   };
@@ -182,7 +183,7 @@ const MealTrackingScreen = ({ navigation }: any) => {
               marginRight: 10,
             }}
           >
-            <Avatar.Image size={70} source={require("../../assets/user.png")} />
+            <Avatar.Image size={70} source={require("../../assets/avatar3.jpg")} />
             <Button
               mode="contained-tonal"
               style={[

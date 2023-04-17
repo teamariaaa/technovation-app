@@ -77,11 +77,8 @@ const GetToQuizzScreen = ({ navigation }: any) => {
             backgroundColor: "transparent",
             height: 122 * 0.8,
             marginTop: "20%",
-            // width: customAvtardimension,
-            //height: customAvtardimension,
           }}
         />
-        {/* <Icon name="dots-horizontal" size={15} /> */}
         <View
           style={{
             flex: 6,
@@ -105,14 +102,10 @@ const GetToQuizzScreen = ({ navigation }: any) => {
             statements!
           </Paragraph>
 
-          {/* {true && 
-            <View></View>
-          } */}
           <Button
             mode="elevated"
             style={[
               styles.myButton,
-              //styles.marginButtonTop,
               styles.noBottomMargin,
               { marginTop: "76%", marginBottom: "10%" },
             ]}

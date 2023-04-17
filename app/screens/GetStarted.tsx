@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { initializeApp } from "firebase/app";
-//import firebaseConfig from "../firebase-config.json";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import {
   getAuth,
@@ -19,17 +18,7 @@ import {
 import { Button, Paragraph, TextInput, Surface } from "react-native-paper";
 import { red100 } from "react-native-paper/lib/typescript/src/styles/themes/v2/colors";
 
-// const app = initializeApp(firebaseConfig);
-// const auth = getAuth(app);
-
 const GetStarted = ({ navigation }: any) => {
-  // onAuthStateChanged(auth, user => {
-  //     if (user != null) {
-  //         AsyncStorage.setItem('@user', JSON.stringify(user))
-  //             .then(() => navigation.navigate('Main'));
-  //     }
-  // });
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [hidePassword, setHidePassword] = useState(true);
@@ -89,7 +78,6 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
-    //backgroundColor: "red",
   },
   containerRow: {
     alignSelf: "center",
@@ -111,7 +99,6 @@ const styles = StyleSheet.create({
   },
 
   myButton: {
-    //height: 16,
     alignSelf: "center",
     backgroundColor: "#fff2bd",
     color: "#333",

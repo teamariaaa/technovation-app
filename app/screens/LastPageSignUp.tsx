@@ -44,10 +44,7 @@ const LastSignUpScreen = ({ navigation }: any) => {
   let score;
 
   score = info ? parseInt(info[6]) : 0;
-  console.log("Aici");
   if (!score) score = 0;
-  if (info) console.log("mhm" + info[6]);
-  console.log(score / 2);
   score = 108;
 
   return (
@@ -91,11 +88,8 @@ const LastSignUpScreen = ({ navigation }: any) => {
             backgroundColor: "transparent",
             height: 122 * 0.8,
             marginTop: "20%",
-            // width: customAvtardimension,
-            //height: customAvtardimension,
           }}
         />
-        {/* <Icon name="dots-horizontal" size={15} /> */}
         <View
           style={{
             flex: 6,
@@ -132,7 +126,6 @@ const LastSignUpScreen = ({ navigation }: any) => {
             mode="elevated"
             style={[
               styles.myButton,
-              //styles.marginButtonTop,
               styles.noBottomMargin,
               { marginTop: "60%", marginBottom: "10%" },
             ]}

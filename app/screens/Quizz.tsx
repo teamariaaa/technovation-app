@@ -200,46 +200,32 @@ const QuizzScreen = ({ navigation }: any) => {
     if (true) {
       let fullName = user?.displayName;
       if (user) {
-        console.log("mda" + score);
         setScore(score / 2);
-        console.log("mda" + score);
         fullName = fullName + "$" + score;
         updateProfile(user, {
           displayName: fullName,
           photoURL: "https://example.com/jane-q-user/profile.jpg",
         })
-          .then(() => {
-            console.log(user.displayName);
-          })
-          .catch((error) => {
-            // An error occurred
-            // ...
-          });
+          .then(() => {})
+          .catch((error) => {});
       }
     }
   }
 
   function changePage() {
-    //add to score the id from the option selected
-    console.log("Selected: " + selected);
-    console.log("Score2: " + score);
-    console.log("Score3: " + (score + selected));
     if (selected != -1) {
       let tempScore = score + selected;
       setScore(tempScore);
-      console.log("Score1: " + score);
     }
     if (currentPage < 25) {
       setSelected(-1);
       setCurrentPage(currentPage + 1);
-      console.log(currentPage + 1);
     } else {
       updateUser();
       navigation.navigate("LastPageSignUp");
     }
   }
 
-  //set change with the value of the option selected
   function changeSelected(value: number) {
     setSelected(value);
   }
@@ -280,11 +266,8 @@ const QuizzScreen = ({ navigation }: any) => {
             backgroundColor: "transparent",
             height: 122 * 0.8,
             marginTop: "2%",
-            // width: customAvtardimension,
-            //height: customAvtardimension,
           }}
         />
-        {/* <Icon name="dots-horizontal" size={15} /> */}
         <View
           style={{
             flex: 6,
@@ -334,14 +317,10 @@ const QuizzScreen = ({ navigation }: any) => {
             </View>
           ))}
 
-          {/* {true && 
-            <View></View>
-          } */}
           <Button
             mode="elevated"
             style={[
               styles.myButton,
-              //styles.marginButtonTop,
               styles.noBottomMargin,
               { marginTop: "35%", marginBottom: "10%" },
             ]}

@@ -5,6 +5,7 @@ import globalstyles from "../global.styles.js";
 import moment from "moment";
 import DiaryCard from "./DiaryCard";
 import { useNavigation } from "@react-navigation/native";
+import { scrollTo, useAnimatedRef, useDerivedValue, useSharedValue } from "react-native-reanimated";
 
 const DayItem = (props: any) => (
   <Surface
@@ -15,7 +16,8 @@ const DayItem = (props: any) => (
         alignItems: "center",
         backgroundColor: props.selected ? "#DBEAB3" : "#EEF5DB",
         padding: 15,
-        borderRadius: 20,
+        // width: 60,
+        borderRadius: 25,
         marginLeft: 2.5,
         marginRight: 2.5,
         shadowColor : "#EEF5DB",
@@ -27,13 +29,16 @@ const DayItem = (props: any) => (
       style={[
         {
           display: "flex",
-          flexDirection: "column",
+          flexDirection: "row",
           // alignItems: "center",
           backgroundColor: "#EEF5DB",
           shadowColor : "#EEF5DB",
           padding: 8,
+          // paddingLeft: 5,
+          // paddingRight: 5,
           borderRadius: 20,
           marginTop: 3,
+          // marginBottom: 3,
           // marginVertical : 5,
           // marginLeft: "0%",
           // marginRight: "0%",
@@ -41,7 +46,7 @@ const DayItem = (props: any) => (
         },
       ]}
     >
-      <Text>{props.day.format("D-M")}</Text>
+      <Text>{props.day.format("D/M")}</Text>
     </Surface>
   </Surface>
 );
@@ -69,7 +74,7 @@ const DaySlider = (props: any) => {
         <Pressable
           key={i}
           style={{
-            height: 58,
+            height: 60,
             // paddingLeft: 1,
             // paddingRight: 1,
             marginTop: 10,
@@ -96,6 +101,14 @@ const DiaryScreen = (props: Props) => {
   const onChangeDate = (m: any) => {
     setDate(m.toDate());
   };
+  const aref = useAnimatedRef();
+  const scroll = useSharedValue(0);
+  const ITEM_SIZE =45;
+  const ITEM_MARGIN = 2.5;
+
+  // useEffect(() => {
+  //   scrollTo(aref, 0, scroll.value + (ITEM_SIZE + 2 * ITEM_MARGIN) * 30, true);
+  // });
 
   return (
     <View
@@ -127,7 +140,7 @@ const DiaryScreen = (props: Props) => {
           Diary
         </Text>
       </View>
-      <View style = {{backgroundColor : "#EEF5DB", height : 90, marginBottom : 10}}>
+      <View style = {{backgroundColor : "#EEF5DB", height : 90, marginBottom : 30, marginTop : "-10%"}}>
       <DaySlider dateChange={onChangeDate} />
       </View>
       <DiaryCard day={date} />
@@ -152,3 +165,7 @@ const styles = StyleSheet.create({
     borderBottomColor : "blue"
   },
 });
+function useEffect(arg0: () => void) {
+  throw new Error("Function not implemented.");
+}
+

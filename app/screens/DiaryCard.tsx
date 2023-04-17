@@ -46,7 +46,6 @@ const LeftContent = (foodItem: FoodItem) => () =>
           borderTopLeftRadius: 10,
           borderTopRightRadius: 10,
           borderBottomRightRadius: 10,
-          // shadowColor : "red",
         }}
         source={foodItem.photo}
       />
@@ -88,41 +87,47 @@ const DiaryCard = ({day}: { day : Date }) => {
 
   return (
     // <Pressable onPress={() => navigation.navigate("FoodPage", { foodItem })}>
-    <ScrollView style = {{height : "45%", backgroundColor : "#EEF5DB"}}>
+    <ScrollView style = {{height : "43%", backgroundColor : "#EEF5DB"}}>
         {/* <Button onPress = {Clear}> clear </Button> */}
         <Card style = {{backgroundColor : "#fffcef", borderRadius : 25, marginLeft : 10, marginRight : 10}}>
         {todayItems.map((foodItem, i) =>
-      <Card key={i} style={styles.container}>
-        <Card.Title
-          style={{
-            alignSelf: "flex-start",
-            marginTop: "7%",
-            marginBottom: "7%",
-          }}
-          title={foodItem.name}
-          titleStyle={[
-            globalstyles.text,
-            {
-              alignSelf: "flex-start",
-              marginLeft: "18%",
-              marginTop: "-3%",
-              fontSize: 18,
-              fontWeight: "700",
-            },
-          ]}
-          subtitle={`${foodItem.calories} kcal`}
-          subtitleStyle={{
-            color: "#A0A0A0",
-            fontFamily: "Cabin",
-            fontSize: 16,
-            marginTop: "2%",
-            marginBottom: "-4%",
-            alignSelf: "flex-start",
-            marginLeft: "25%",
-          }}
-          left={LeftContent(foodItem)}
-        />
-      </Card>
+      <><Card key={i} style={[styles.container]}>
+            <Card.Title
+              style={{
+                alignSelf: "flex-start",
+                marginTop: "7%",
+                marginBottom: "7%",
+              }}
+              title={foodItem.name}
+              titleStyle={[
+                globalstyles.text,
+                {
+                  alignSelf: "flex-start",
+                  marginLeft: "18%",
+                  marginTop: "-3%",
+                  fontSize: 18,
+                  fontWeight: "700",
+                },
+              ]}
+              subtitle={`${foodItem.calories} kcal`}
+              subtitleStyle={{
+                color: "#A0A0A0",
+                fontFamily: "Cabin",
+                fontSize: 16,
+                marginTop: "2%",
+                marginBottom: "-4%",
+                alignSelf: "flex-start",
+                marginLeft: "25%",
+              }}
+              left={LeftContent(foodItem)} />
+          </Card><View
+              style={{
+                borderBottomColor: "lightgrey",
+                borderBottomWidth: 2,
+                borderStyle: "solid",
+                marginEnd: "5%",
+                marginStart: "5%",
+              }} /></>
     )}
     </Card>
     </ScrollView>
@@ -140,8 +145,8 @@ const styles = StyleSheet.create({
     marginLeft: "3%",
     marginRight: "3%",
     borderTopRightRadius: 20,
-    borderBottomLeftRadius: 20,
-    borderBottomRightRadius: 20,
+    // borderBottomLeftRadius: 20,
+    // borderBottomRightRadius: 20,
     borderTopLeftRadius: 20,
   },
   row: {

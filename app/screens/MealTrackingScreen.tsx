@@ -30,6 +30,7 @@ import CircularProgress from "react-native-circular-progress-indicator";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { FoodItem } from "./FoodCard";
+import { useFocusEffect } from "@react-navigation/native";
 
 /*Culori #DAF7DC
          #ABC8C0
@@ -121,6 +122,7 @@ const MealTrackingScreen = ({ navigation }: any) => {
         new Date(d.date).toDateString() === new Date().toDateString()
     )
     setTodayItems(filteredItems);
+    // console.log(filteredItems);
     const stats = filteredItems.reduce(
       (acc: any, food: FoodItem) => {
         acc.calories += food.calories;
@@ -145,9 +147,10 @@ const MealTrackingScreen = ({ navigation }: any) => {
   const [todayProtein, setTodayProtein] = useState<number>(0);
   const [todayFat, setTodayFat] = useState<number>(0)
   
-  useEffect(() => {
+  useFocusEffect(() => {
     getTodayMeals();
-  }, []);
+    // console.log("da");
+  });
 
 
   // const progress = <Paragraph style={globalstyles.textBold}>388</Paragraph>;
@@ -178,6 +181,8 @@ const MealTrackingScreen = ({ navigation }: any) => {
   const CARBS_INTAKE = Math.round(BMR * 50) / 400;
   const PROTEIN_INTAKE = (BMR * 30) / 900;
   const FAT_INTAKE = (BMR * 20) / 400;
+
+
 
   // const CALORIE_INTAKE =1400;
   // const CARBS_INTAKE = 200;
@@ -236,7 +241,7 @@ const MealTrackingScreen = ({ navigation }: any) => {
           ></Card.Title>
           <View style={{ alignSelf: "center", marginTop: 10 }}>
             <CircularProgress
-              value={CALORIE_INTAKE - todayCal}
+              value={todayCal}
               // initialValue={1400}
               //<MaterialCommunityIcons name = "fire" />
               radius={110}
@@ -328,7 +333,10 @@ const MealTrackingScreen = ({ navigation }: any) => {
                    left
                 </Paragraph> */}
                 <Paragraph style={[globalstyles.lightText2, {textAlign : "center"}]}>
-                  {Math.max(Math.round(((PROTEIN_INTAKE - todayProtein) * 10) / 10), 0)}g
+                {/* {PROTEIN_INTAKE - todayProtein}g */}
+
+                  {Math.max(Math.round(((PROTEIN_INTAKE- todayProtein) * 10) / 10), 0)}g
+
                   left
                 </Paragraph>
               </Surface>

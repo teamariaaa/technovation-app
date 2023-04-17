@@ -247,15 +247,20 @@ const ProfileScreen = ({ navigation }: any) => {
                           Therapist Notes:
                         </Paragraph>
                         <Paragraph style={[styles.text, styles.bodyMedium]}>
-                          Lorem ipsum dolor sit amet, consectetur adipiscing
-                          elit. Proin nisi metus, lobortis ut quam vitae,
-                          aliquet volutpat turpis. Donec convallis hendrerit
-                          dolor, ut accumsan risus lobortis nec. Suspendisse
-                          potenti. Donec quis rhoncus diam, vel faucibus massa.
-                          Pellentesque habitant morbi tristique senectus et
-                          netus et malesuada fames ac turpis egestas. Aenean
-                          placerat, neque ut tempor ultrices, sapien libero
-                          dignissim magna, non gravida urna turpis nec nunc.
+                          The caloric requirement will be established for a
+                          gradual and healthy fattening according to the
+                          prescribed food plan.{" "}
+                        </Paragraph>
+
+                        <Paragraph
+                          style={[
+                            styles.text,
+                            styles.bodyMedium,
+                            { marginTop: "2.5%" },
+                          ]}
+                        >
+                          The family will ensure compliance with a healthy and
+                          balanced diet.
                         </Paragraph>
                       </Card.Content>
                     </Card>
@@ -270,7 +275,7 @@ const ProfileScreen = ({ navigation }: any) => {
                     >
                       <Card.Title
                         style={{ margin: 10, marginBottom: 0 }}
-                        title="Dr. Nichifor Lipan"
+                        title="Dr. Sophia Lee"
                         titleStyle={[
                           styles.text,
                           styles.headlineSmall,
@@ -316,7 +321,7 @@ const ProfileScreen = ({ navigation }: any) => {
                             size={14}
                           />
                           <Text style={[styles.text, styles.bodyMedium]}>
-                            Metformin
+                            Serlift
                           </Text>
                         </View>
 
@@ -359,7 +364,7 @@ const ProfileScreen = ({ navigation }: any) => {
                             size={14}
                           />
                           <Text style={[styles.text, styles.bodyMedium]}>
-                            500mg ( metformin )
+                            50mg ( serlift )
                           </Text>
                         </View>
 
@@ -406,7 +411,7 @@ const ProfileScreen = ({ navigation }: any) => {
                             size={14}
                           />
                           <Text style={[styles.text, styles.bodyMedium]}>
-                            1-0-1
+                            one pill per day
                           </Text>
                         </View>
 
@@ -475,7 +480,7 @@ const ProfileScreen = ({ navigation }: any) => {
                   >
                     <Card.Title
                       style={{ margin: 10, marginBottom: 0 }}
-                      title="Dr. Nichifor Lipan"
+                      title="Dr. Sophia Lee"
                       titleStyle={[
                         styles.text,
                         styles.headlineSmall,
@@ -492,18 +497,14 @@ const ProfileScreen = ({ navigation }: any) => {
                           styles.textBold,
                         ]}
                       >
-                        Diagnosis details:
+                        Diagnosis: Anorexia
                       </Paragraph>
                       <Paragraph style={[styles.text, styles.bodyMedium]}>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Proin nisi metus, lobortis ut quam vitae, aliquet
-                        volutpat turpis. Donec convallis hendrerit dolor, ut
-                        accumsan risus lobortis nec. Suspendisse potenti. Donec
-                        quis rhoncus diam, vel faucibus massa. Pellentesque
-                        habitant morbi tristique senectus et netus et malesuada
-                        fames ac turpis egestas. Aenean placerat, neque ut
-                        tempor ultrices, sapien libero dignissim magna, non
-                        gravida urna turpis nec nunc.
+                        Details:
+                      </Paragraph>
+                      <Paragraph style={[styles.text, styles.bodyMedium]}>
+                        Reduced food intake for the needs of the body. Low body
+                        weight for the patient's age and height
                       </Paragraph>
 
                       <Paragraph

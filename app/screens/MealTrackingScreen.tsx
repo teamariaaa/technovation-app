@@ -150,10 +150,7 @@ const MealTrackingScreen = ({ navigation }: any) => {
       console.log(stats);
     });
   }, []);
-  const CALORIE_INTAKE = 1400;
-  const CARBS_INTAKE = 200;
-  const PROTEIN_INTAKE = 200;
-  const FAT_INTAKE = 200;
+
   // const progress = <Paragraph style={globalstyles.textBold}>388</Paragraph>;
   const auth = getAuth();
   const user = auth.currentUser;
@@ -165,12 +162,22 @@ const MealTrackingScreen = ({ navigation }: any) => {
   let height;
 
   let name;
+  const [BMR, setBRM] = useState(0);
   name = fullName?.split("$");
   fullName = name ? name[0] + " " + name[1] : "";
-  age = name ? name[2] : "";
+  age = name ? parseInt(name[2]) : 0;
   gender = name ? name[3] : "";
-  weight = name ? name[4] : "";
-  height = name ? name[5] : "";
+  weight = name ? parseInt(name[4]) : 0;
+  height = name ? parseInt(name[5]) : 0;
+
+  if (gender === "female")
+    setBRM(447.593 + 9.247 * weight + 3.098 * height - 4.33 * age);
+  else setBRM(88.362 + 13.397 * weight + 4.799 * height - 5.677 * age);
+
+  const CALORIE_INTAKE = BMR * 1.375;
+  const CARBS_INTAKE = (BMR * 0.5) / 4;
+  const PROTEIN_INTAKE = (BMR * 0.3) / 9;
+  const FAT_INTAKE = (BMR * 0.2) / 4;
 
   return (
     <ScrollView style={{ backgroundColor: "#FFFCEF" }}>

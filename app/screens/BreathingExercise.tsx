@@ -54,9 +54,10 @@ const BreathingScreen = ({ navigation }: any) => {
           <IconButton
             icon="keyboard-backspace"
             mode="contained-tonal"
-            style={
-              (styles.iconButton, { alignSelf: "center", marginRight: "7%" })
-            }
+            style={[
+              styles.iconButton,
+              { alignSelf: "center", marginRight: "7%" },
+            ]}
             size={20}
             onPress={() => navigation.navigate("SelfCare")}
           />

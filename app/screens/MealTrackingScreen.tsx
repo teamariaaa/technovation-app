@@ -1,5 +1,4 @@
-import React, { useEffect, useReducer, useState } from "react";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import React, { useState } from "react";
 import {
   _View,
   Dimensions,
@@ -12,22 +11,14 @@ import {
   Card,
   Paragraph,
   Avatar,
-  Title,
   Button,
   Appbar,
-  DataTable,
-  Divider,
-  IconButton,
-  MD3Colors,
   Surface,
 } from "react-native-paper";
 import globalstyles from "../global.styles.js";
 import { ScrollView } from "react-native";
-import * as Progress from "react-native-progress";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import firebaseConfig from "../../config/firebase.js";
+import { getAuth } from "firebase/auth";
 import CircularProgress from "react-native-circular-progress-indicator";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { FoodItem } from "./FoodCard";
 import { useFocusEffect } from "@react-navigation/native";
@@ -36,78 +27,6 @@ import { useFocusEffect } from "@react-navigation/native";
          #ABC8C0
          #C7EFCF
          #B7CECE*/
-
-// const breakfastItems = [
-//   {
-//     id: 1,
-//     name: "Omelet",
-//     photo: "../../assets/profilePicture.jpeg",
-//     calories: 183,
-//     protein: 12,
-//     fat: 14,
-//     carbs: 4.6,
-//   },
-// ];
-
-// const lunchItems = [
-//   {
-//     id: 1,
-//     name: "Omelet",
-//     photo: "../../assets/profilePicture.jpeg",
-//     calories: 183,
-//     protein: 12,
-//     fat: 14,
-//     carbs: 4.6,
-//   },
-// ];
-
-// const dinnerItems = [
-//   {
-//     id: 1,
-//     name: "Omelet",
-//     photo: "../../assets/profilePicture.jpeg",
-//     calories: 183,
-//     protein: 12,
-//     fat: 14,
-//     carbs: 4.6,
-//   },
-// ];
-
-// const drinksItems = [
-//   {
-//     id: 1,
-//     name: "Omelet",
-//     photo: "../../assets/profilePicture.jpeg",
-//     calories: 183,
-//     protein: 12,
-//     fat: 14,
-//     carbs: 4.6,
-//   },
-// ];
-
-// const dessertItems = [
-//   {
-//     id: 1,
-//     name: "Omelet",
-//     photo: "../../assets/profilePicture.jpeg",
-//     calories: 183,
-//     protein: 12,
-//     fat: 14,
-//     carbs: 4.6,
-//   },
-// ];
-
-// const snacksItems = [
-//   {
-//     id: 1,
-//     name: "Omelet",
-//     photo: "../../assets/profilePicture.jpeg",
-//     calories: 183,
-//     protein: 12,
-//     fat: 14,
-//     carbs: 4.6,
-//   },
-// ];
 
 const MealTrackingScreen = ({ navigation }: any) => {
   const win = Dimensions.get("window");
@@ -122,7 +41,6 @@ const MealTrackingScreen = ({ navigation }: any) => {
         new Date(d.date).toDateString() === new Date().toDateString()
     )
     setTodayItems(filteredItems);
-    // console.log(filteredItems);
     const stats = filteredItems.reduce(
       (acc: any, food: FoodItem) => {
         acc.calories += food.calories;
@@ -138,8 +56,6 @@ const MealTrackingScreen = ({ navigation }: any) => {
     setTodayCarbs(stats.carbs);
     setTodayProtein(stats.protein);
     setTodayFat(stats.fat);
-    // console.log(stats);
-    // setTodayItems(foodList.filter((d) => new Date(d.date).toDateString() === day.toDateString()));
   };
 
   const [todayCal, setTodayCal] = useState<number>(0);
@@ -149,11 +65,8 @@ const MealTrackingScreen = ({ navigation }: any) => {
   
   useFocusEffect(() => {
     getTodayMeals();
-    // console.log("da");
   });
 
-
-  // const progress = <Paragraph style={globalstyles.textBold}>388</Paragraph>;
   const auth = getAuth();
   const user = auth.currentUser;
 
@@ -165,7 +78,6 @@ const MealTrackingScreen = ({ navigation }: any) => {
 
   let name;
   let BMR;
-  // const [BMR, setBRM] = useState(0);
   name = fullName?.split("$");
   fullName = name ? name[0] + " " + name[1] : "";
   age = name ? parseInt(name[2]) : 0;
@@ -181,19 +93,6 @@ const MealTrackingScreen = ({ navigation }: any) => {
   const CARBS_INTAKE = Math.round(BMR * 50) / 400;
   const PROTEIN_INTAKE = (BMR * 30) / 900;
   const FAT_INTAKE = (BMR * 20) / 400;
-
-
-
-  // const CALORIE_INTAKE =1400;
-  // const CARBS_INTAKE = 200;
-  // const PROTEIN_INTAKE = 200;
-  // const FAT_INTAKE = 200;
-  // console.log(height, weight, age);
-  // console.log("height =", height);
-  // console.log("weight =", weight);
-  // console.log("age =", age);
-  // console.log("BMR =", BMR);
-  // console.log(CALORIE_INTAKE, CARBS_INTAKE, PROTEIN_INTAKE, FAT_INTAKE);
 
   return (
     <ScrollView style={{ backgroundColor: "#FFFCEF" }}>
@@ -220,7 +119,7 @@ const MealTrackingScreen = ({ navigation }: any) => {
             <Button
               mode="contained-tonal"
               style={[
-                { backgroundColor: "#EEF5DB", marginLeft: win.width - 180 }, //"#e4ede4"
+                { backgroundColor: "#EEF5DB", marginLeft: win.width - 180 },
               ]}
               onPress={() => navigation.navigate("Diary")}
             >
@@ -242,8 +141,6 @@ const MealTrackingScreen = ({ navigation }: any) => {
           <View style={{ alignSelf: "center", marginTop: 10 }}>
             <CircularProgress
               value={todayCal}
-              // initialValue={1400}
-              //<MaterialCommunityIcons name = "fire" />
               radius={110}
               duration={1}
               activeStrokeColor="#9db97d"
@@ -324,20 +221,8 @@ const MealTrackingScreen = ({ navigation }: any) => {
                     Protein
                   </Paragraph>
                 </View>
-                {/* <Paragraph
-                  style={[
-                    globalstyles.lightText2,
-                    { fontSize: 18, textAlign: "center" },
-                  ]}
-                >
-                   left
-                </Paragraph> */}
                 <Paragraph style={[globalstyles.lightText2, {textAlign : "center"}]}>
-                {/* {PROTEIN_INTAKE - todayProtein}g */}
-
-                  {Math.max(Math.round(((PROTEIN_INTAKE- todayProtein) * 10) / 10), 0)}g
-
-                  left
+                  {Math.max(Math.round(((PROTEIN_INTAKE- todayProtein) * 10) / 10), 0)}g left
                 </Paragraph>
               </Surface>
               <Surface
@@ -362,14 +247,6 @@ const MealTrackingScreen = ({ navigation }: any) => {
                     Fat
                   </Paragraph>
                 </View>
-                {/* <Paragraph
-                  style={[
-                    globalstyles.lightText2,
-                    { fontSize: 18, textAlign: "center" },
-                  ]}
-                >
-                  {FAT_INTAKE - todayFat}g left
-                </Paragraph> */}
                 <Paragraph style={[globalstyles.lightText2, {textAlign : "center"}]}>
                   {Math.max(Math.round(((FAT_INTAKE - todayFat) * 10) / 10), 0)}g left
                 </Paragraph>
@@ -426,19 +303,3 @@ const styles = StyleSheet.create({
     color: "#EEF5DB",
   },
 });
-
-{
-  /* <Progress.Circle
-            style={{ alignSelf: "center", marginTop: 10 }}
-            size={200}
-            progress={0.7}
-            thickness={10}
-            borderWidth={2}
-            color="#B6CB9E"
-            borderColor="#B6CB9E"
-            showsText={true}
-            fill="#EEF5DB"
-            unfilledColor="#EEF5DB"
-            formatText={() => progress}
-          /> */
-}

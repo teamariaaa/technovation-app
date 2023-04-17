@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { IconButton, Searchbar, TextInput } from "react-native-paper";
+import { IconButton, TextInput } from "react-native-paper";
 import { ScrollView, View, StyleSheet } from "react-native";
 import FoodItemCard, { FoodItem } from "./FoodCard";
 import globalstyles from "../global.styles.js";
@@ -564,13 +564,11 @@ const SearchPageScreen = ({ navigation }: any) => {
     setSearchQuery(query);
     if (query === "") {
       setFood(foodList);
-      // console.log("empty");s
     } else {
       const lowercaseQuery = query.toLowerCase();
       setFood(
         foodList.filter((d) => d.name.toLowerCase().startsWith(lowercaseQuery))
       );
-      // foodList.map((d) => console.log(d.name));
     }
   };
 
@@ -589,7 +587,6 @@ const SearchPageScreen = ({ navigation }: any) => {
           />
           <TextInput
             value={searchQuery}
-            // mode = "outlined"
             style={{
               margin: "3%",
               flex: 1,
@@ -598,19 +595,15 @@ const SearchPageScreen = ({ navigation }: any) => {
               borderRadius: 20,
               borderTopRightRadius: 20,
               borderTopLeftRadius: 20,
-              // height: 40,
             }}
             activeUnderlineColor="#EEF5DB"
             underlineColor="#EEF5DB"
             left={<TextInput.Icon icon="magnify" />}
             placeholder="Search"
-            //inputStyle = {{marginTop: "-5%", marginBottom: "-5%"}}
             onChangeText={onChangeSearch}
           />
         </View>
-        {/* <View style={{paddingBottom : 29}}> */}
         <ScrollView style = {{height : "85.8%"}}>{renderFood(food)}</ScrollView>
-        {/* </View> */}
       </View>
     </>
   );

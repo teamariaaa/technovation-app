@@ -3,25 +3,16 @@ import {
   Card,
   IconButton,
   Paragraph,
-  Portal,
-  Provider,
   Surface,
-  Button,
-  Modal,
-  Title,
 } from "react-native-paper";
-import { StyleSheet, Image, ImageBackground, ScrollView } from "react-native";
+import { StyleSheet, Image, ScrollView } from "react-native";
 import CircularProgress from "react-native-circular-progress-indicator";
 import globalstyles from "../global.styles.js";
 import { Pressable } from "react-native";
 import { View } from "react-native";
-import Icon from "react-native-paper/lib/typescript/src/components/Icon.js";
-import { Dimensions } from "react-native";
-import { useNavigation } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import CardContent from "react-native-paper/lib/typescript/src/components/Card/CardContent.js";
 import moment from "moment";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth } from "firebase/auth";
 
 export interface FoodItem {
   id: number;
@@ -72,7 +63,6 @@ const DiaryCard = ({ day }: { day: Date }) => {
 
   let name;
   let BMR;
-  // const [BMR, setBRM] = useState(0);
   name = fullName?.split("$");
   fullName = name ? name[0] + " " + name[1] : "";
   age = name ? parseInt(name[2]) : 0;
@@ -85,8 +75,6 @@ const DiaryCard = ({ day }: { day: Date }) => {
   else BMR = 88.362 + 13.397 * weight + 4.799 * height - 5.677 * age;
 
   const CALORIE_INTAKE = Math.round(BMR * 137.5/100);
-  // const [visible, setVisible] = useState<boolean[]>([]);
-  // setVisible(visible.filter((d : boolean) => ))}
   const [visible, setVisible] = useState<number>(-1);
   const [todayItems, setTodayItems] = useState<FoodItem[]>([]);
   const [numeData, setNumeData] = useState<boolean>(true);
@@ -95,13 +83,11 @@ const DiaryCard = ({ day }: { day: Date }) => {
     setNumeData(
       day.toDateString() === new Date().toDateString() ? true : false
     );
-    // console.log(numeData);
   }, [day]);
 
   const addMeal = async () => {
     const storedMeals = await AsyncStorage.getItem("@myfood");
     return storedMeals ? JSON.parse(storedMeals) : [];
-    // setTodayItems(foodList.filter((d) => new Date(d.date).toDateString() === day.toDateString()));
   };
 
   const [todayCal, setTodayCal] = useState<number>(0);
@@ -127,12 +113,11 @@ const DiaryCard = ({ day }: { day: Date }) => {
     });
   }, [day]);
 
-  const Clear = async () => {
-    await AsyncStorage.removeItem("@myfood");
-  };
+  // const Clear = async () => {
+  //   await AsyncStorage.removeItem("@myfood");
+  // };
 
   return (
-    // <Pressable onPress={() => navigation.navigate("FoodPage", { foodItem })}>
     <ScrollView
       style={{ height: "44%", backgroundColor: "#EEF5DB", borderRadius: 25 }}
     >
@@ -152,8 +137,6 @@ const DiaryCard = ({ day }: { day: Date }) => {
                 alignSelf: "flex-start",
                 marginTop: "4%",
                 marginBottom: "4%",
-                // display : "flex",
-                // flexDirection : "row",
               }}
               title="Today"
               titleStyle={[
@@ -169,7 +152,7 @@ const DiaryCard = ({ day }: { day: Date }) => {
                 },
               ]}
             />
-            <Card.Content>
+            <Card.Content style = {{paddingBottom : 5}}>
               <Surface style={[styles.row2, { backgroundColor: "#fffcef" , marginTop : "-2.5%"}]}>
                 <IconButton
                   icon="fire"
@@ -178,20 +161,17 @@ const DiaryCard = ({ day }: { day: Date }) => {
                   style={{ marginTop: "-1%", marginRight: "-1%" }}
                 />
                 <Paragraph
-                  // left={LeftContent(meal)}
                   style={{
                     color: "#808080",
                     fontFamily: "Cabin",
                     fontSize: 23,
                     paddingTop: "3%",
                     marginTop: "2%",
-                    // alignSelf: "flex-start",
                   }}
                 >
                   {todayCal} kcal
                 </Paragraph>
                 <Paragraph
-                  // left={LeftContent(meal)}
                   style={{
                     color: "#B6CB9E",
                     fontFamily: "Cabin",
@@ -199,7 +179,6 @@ const DiaryCard = ({ day }: { day: Date }) => {
                     marginLeft: 7,
                     paddingTop: "3%",
                     marginTop: "2%",
-                    // alignSelf: "flex-start",
                   }}
                 >
                   / {CALORIE_INTAKE}kcal
@@ -215,10 +194,6 @@ const DiaryCard = ({ day }: { day: Date }) => {
                 alignSelf: "flex-start",
                 marginTop: "4%",
                 marginBottom: "4%",
-                // borderColor : "red",
-                // borderWidth : 2,
-                // display : "flex",
-                // flexDirection : "row",
               }}
               title={moment(day).format('MMMM D')}
               titleStyle={[
@@ -243,20 +218,17 @@ const DiaryCard = ({ day }: { day: Date }) => {
                   style={{ marginTop: "-1%", marginRight: "-1%" }}
                 />
                 <Paragraph
-                  // left={LeftContent(meal)}
                   style={{
                     color: "#808080",
                     fontFamily: "Cabin",
                     fontSize: 23,
                     paddingTop: "3%",
                     marginTop: "2%",
-                    // alignSelf: "flex-start",
                   }}
                 >
                   {todayCal} kcal
                 </Paragraph>
                 <Paragraph
-                  // left={LeftContent(meal)}
                   style={{
                     color: "#B6CB9E",
                     fontFamily: "Cabin",
@@ -264,7 +236,6 @@ const DiaryCard = ({ day }: { day: Date }) => {
                     marginLeft: 7,
                     paddingTop: "3%",
                     marginTop: "2%",
-                    // alignSelf: "flex-start",
                   }}
                 >
                   / {CALORIE_INTAKE}kcal
@@ -322,7 +293,7 @@ const DiaryCard = ({ day }: { day: Date }) => {
                   <Paragraph
                     style={[
                       globalstyles.textBold,
-                      { marginBottom: "-2%", marginLeft: "3%" },
+                      { marginBottom: "-2%", marginLeft: "5%", marginTop: "4%" },
                     ]}
                   >
                     Nutritional Information
@@ -341,14 +312,10 @@ const DiaryCard = ({ day }: { day: Date }) => {
                     >
                       <CircularProgress
                         value={
-                          (foodItem.carbs * 10000) /
-                          ((foodItem.carbs + foodItem.fat + foodItem.protein) *
-                            100)
+                          (foodItem.carbs * 10000) /((foodItem.carbs + foodItem.fat + foodItem.protein) *100)
                         }
                         maxValue={100}
                         valueSuffix="%"
-                        //initialValue={1400}
-                        //<MaterialCommunityIcons name = "fire" />
                         radius={40}
                         duration={1}
                         activeStrokeColor="#9db97d"
@@ -374,14 +341,10 @@ const DiaryCard = ({ day }: { day: Date }) => {
                     >
                       <CircularProgress
                         value={
-                          (foodItem.protein * 10000) /
-                          ((foodItem.carbs + foodItem.fat + foodItem.protein) *
-                            100)
+                          (foodItem.protein * 10000) /((foodItem.carbs + foodItem.fat + foodItem.protein) *100)
                         }
                         maxValue={100}
                         valueSuffix="%"
-                        //initialValue={1400}
-                        //<MaterialCommunityIcons name = "fire" />
                         radius={40}
                         duration={1}
                         activeStrokeColor="#9db97d"
@@ -407,14 +370,10 @@ const DiaryCard = ({ day }: { day: Date }) => {
                     >
                       <CircularProgress
                         value={
-                          (foodItem.fat * 10000) /
-                          ((foodItem.carbs + foodItem.fat + foodItem.protein) *
-                            100)
+                          (foodItem.fat * 10000) /((foodItem.carbs + foodItem.fat + foodItem.protein) *100)
                         }
                         maxValue={100}
                         valueSuffix="%"
-                        //initialValue={1400}
-                        //<MaterialCommunityIcons name = "fire" />
                         radius={40}
                         duration={1}
                         activeStrokeColor="#9db97d"
@@ -463,8 +422,6 @@ const styles = StyleSheet.create({
     marginLeft: "3%",
     marginRight: "3%",
     borderTopRightRadius: 20,
-    // borderBottomLeftRadius: 20,
-    // borderBottomRightRadius: 20,
     borderTopLeftRadius: 20,
   },
   row: {
@@ -485,11 +442,8 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     justifyContent: "flex-start",
-    // marginTop: 30,
     shadowColor: "#EEF5DB",
     color: "#EEF5DB",
-    // marginLeft: "3%",
-    // marginRight: "3%",
   },
   column: {
     mode: "flat",

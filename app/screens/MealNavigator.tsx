@@ -14,9 +14,7 @@ const MealsScreen = () => {
         <ItemStack.Screen name="MealTracking" component={MealsTrackingScreen} options={{ headerShown: false }} />
         <ItemStack.Screen name="Diary" component={DiaryScreen} options={{ headerShown: false }}/>
         <ItemStack.Screen name="SearchPage" component= {SearchPageScreen} options={{ headerShown: false }}/>
-        {/* <ItemStack.Screen name="MealTracking" component={MealsTrackingScreen} options={{ headerShown: false }} /> */}
         <ItemStack.Screen name="FoodPage" component={MealDetailsScreen} options={{ headerShown: false }}/>
-        {/* <ItemStack.Screen name="SearchPage" component= {SearchPageScreen} options={{ headerShown: false }}/> */}
         <ItemStack.Screen name="FoodItemCard" component= {FoodItemCard} options={{ headerShown: false }}/>
     </ItemStack.Navigator>
 }

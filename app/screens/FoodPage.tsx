@@ -27,18 +27,6 @@ const inputStyle: StyleProp<ViewStyle> = {
 const LeftContent = (foodItem: FoodItem) => () =>
   (
     <Surface style={[styles.row, styles.container]}>
-      {/* <Image
-        style={{
-          width: 85,
-          height: 80,
-          borderBottomLeftRadius: 10,
-          borderTopLeftRadius: 10,
-          borderTopRightRadius: 10,
-          borderBottomRightRadius: 10,
-          // shadowColor : "red",
-        }}
-        source={foodItem.photo}
-      /> */}
       <IconButton
         icon="fire"
         iconColor="#A0A0A0"
@@ -46,27 +34,6 @@ const LeftContent = (foodItem: FoodItem) => () =>
         style={{ marginTop: "170%" }}
       />
     </Surface>
-  );
-
-const win = Dimensions.get("window");
-const RightContent = (foodItem: FoodItem) => () =>
-  (
-    <Button
-      mode="contained-tonal"
-      textColor = "red"
-      style={[
-        {
-          backgroundColor: "#9db97d",
-          opacity: 0.5,
-          marginRight: "10%",
-          marginTop: "30%",
-          marginBottom: "10%",
-        }, //"#e4ede4"
-      ]}
-      onPress={() => console.log("Pressed")}
-    >
-      Add to Diary
-    </Button>
   );
 
 const MealDetailsScreen = ({ navigation, route }: any) => {
@@ -118,7 +85,9 @@ const MealDetailsScreen = ({ navigation, route }: any) => {
       >
         <Card style={{ backgroundColor: "blue" }}>
           <Card.Cover
-            source={{uri : `https://firebasestorage.googleapis.com/v0/b/recovereats-722e7.appspot.com/o/${meal.photo}.jpg?alt=media`}}
+            source={{
+              uri: `https://firebasestorage.googleapis.com/v0/b/recovereats-722e7.appspot.com/o/${meal.photo}.jpg?alt=media`,
+            }}
             style={{ width: "100%", height: 270, maxHeight: 270 }}
           />
         </Card>
@@ -136,8 +105,6 @@ const MealDetailsScreen = ({ navigation, route }: any) => {
               alignSelf: "flex-start",
               marginTop: "4%",
               marginBottom: "4%",
-              // display : "flex",
-              // flexDirection : "row",
             }}
             title={meal.name}
             titleStyle={[
@@ -161,14 +128,12 @@ const MealDetailsScreen = ({ navigation, route }: any) => {
                 style={{ marginTop: "-1%", marginRight: "-1%" }}
               />
               <Paragraph
-                // left={LeftContent(meal)}
                 style={{
                   color: "#808080",
                   fontFamily: "Cabin",
                   fontSize: 23,
                   paddingTop: "3%",
                   marginTop: "2%",
-                  // alignSelf: "flex-start",
                 }}
               >
                 {meal.calories} kcal
@@ -182,7 +147,7 @@ const MealDetailsScreen = ({ navigation, route }: any) => {
                     marginLeft: "17%",
                     marginTop: "1%",
                     marginBottom: "10%",
-                  }
+                  },
                 ]}
                 onPress={() => {
                   addMeal();
@@ -233,8 +198,6 @@ const MealDetailsScreen = ({ navigation, route }: any) => {
                   }
                   maxValue={100}
                   valueSuffix="%"
-                  //initialValue={1400}
-                  //<MaterialCommunityIcons name = "fire" />
                   radius={40}
                   duration={1}
                   activeStrokeColor="#9db97d"
@@ -264,8 +227,6 @@ const MealDetailsScreen = ({ navigation, route }: any) => {
                   }
                   maxValue={100}
                   valueSuffix="%"
-                  //initialValue={1400}
-                  //<MaterialCommunityIcons name = "fire" />
                   radius={40}
                   duration={1}
                   activeStrokeColor="#9db97d"
@@ -295,8 +256,6 @@ const MealDetailsScreen = ({ navigation, route }: any) => {
                   }
                   maxValue={100}
                   valueSuffix="%"
-                  //initialValue={1400}
-                  //<MaterialCommunityIcons name = "fire" />
                   radius={40}
                   duration={1}
                   activeStrokeColor="#9db97d"
@@ -328,7 +287,7 @@ const MealDetailsScreen = ({ navigation, route }: any) => {
             <Surface
               style={[
                 styles.row3,
-                { backgroundColor: "#EEF5DB", shadowColor: "#EEF5DB"},
+                { backgroundColor: "#EEF5DB", shadowColor: "#EEF5DB" },
               ]}
             >
               <Surface
@@ -360,20 +319,14 @@ const MealDetailsScreen = ({ navigation, route }: any) => {
                   { backgroundColor: "#EEF5DB", shadowColor: "#EEF5DB" },
                 ]}
               >
-                {/* <View
-                  style={{
-                    borderBottomColor: "#B6CB9E",
-                    borderBottomWidth: 2,
-                    borderStyle: "solid",
-                  }}
-                > */}
-                  <Paragraph style={[
-                      globalstyles.textBold,
-                      { fontSize: 18, textAlign: "center" },
-                    ]}>
-                    {meal.carbs} g
-                  </Paragraph>
-                {/* </View> */}
+                <Paragraph
+                  style={[
+                    globalstyles.textBold,
+                    { fontSize: 18, textAlign: "center" },
+                  ]}
+                >
+                  {meal.carbs} g
+                </Paragraph>
               </Surface>
             </Surface>
             <Surface
@@ -411,20 +364,14 @@ const MealDetailsScreen = ({ navigation, route }: any) => {
                   { backgroundColor: "#EEF5DB", shadowColor: "#EEF5DB" },
                 ]}
               >
-                {/* <View
-                  style={{
-                    borderBottomColor: "#B6CB9E",
-                    borderBottomWidth: 2,
-                    borderStyle: "solid",
-                  }}
-                > */}
-                  <Paragraph style={[
-                      globalstyles.textBold,
-                      { fontSize: 18, textAlign: "center" },
-                    ]}>
-                    {meal.protein} g
-                  </Paragraph>
-                {/* </View> */}
+                <Paragraph
+                  style={[
+                    globalstyles.textBold,
+                    { fontSize: 18, textAlign: "center" },
+                  ]}
+                >
+                  {meal.protein} g
+                </Paragraph>
               </Surface>
             </Surface>
             <Surface
@@ -462,34 +409,16 @@ const MealDetailsScreen = ({ navigation, route }: any) => {
                   { backgroundColor: "#EEF5DB", shadowColor: "#EEF5DB" },
                 ]}
               >
-                {/* <View
-                  style={{
-                    borderBottomColor: "#B6CB9E",
-                    borderBottomWidth: 2,
-                    borderStyle: "solid",
-                  }}
-                > */}
-                  <Paragraph style={[
-                      globalstyles.textBold,
-                      { fontSize: 18, textAlign: "center" },
-                    ]}>
-                    {meal.fat} g
-                  </Paragraph>
-                {/* </View> */}
+                <Paragraph
+                  style={[
+                    globalstyles.textBold,
+                    { fontSize: 18, textAlign: "center" },
+                  ]}
+                >
+                  {meal.fat} g
+                </Paragraph>
               </Surface>
             </Surface>
-            {/* <Surface style={[styles.row3, { backgroundColor: "#EEF5DB" }]}>
-            <Paragraph style = {{justifyContent : "flex-start"}}> Carbs </Paragraph>
-            <Paragraph style = {{justifyContent : "flex-end"}}> {meal.carbs}g</Paragraph>
-            </Surface>
-            <Surface style={[styles.row3, { backgroundColor: "#EEF5DB" }]}>
-            <Paragraph style = {{justifyContent : "flex-start"}}> Protein </Paragraph>
-            <Paragraph style = {{justifyContent : "flex-end"}}> {meal.protein}g</Paragraph>
-            </Surface>
-            <Surface style={[styles.row3, { backgroundColor: "#EEF5DB" }]}>
-            <Paragraph style = {{justifyContent : "flex-start"}}> Fat </Paragraph>
-            <Paragraph style = {{justifyContent : "flex-end"}}> {meal.fat}g</Paragraph>
-            </Surface> */}
           </View>
         </Card>
       </Card>
@@ -540,11 +469,8 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     justifyContent: "flex-start",
-    // marginTop: 30,
     shadowColor: "#EEF5DB",
     color: "#EEF5DB",
-    // marginLeft: "3%",
-    // marginRight: "3%",
   },
 
   row3: {

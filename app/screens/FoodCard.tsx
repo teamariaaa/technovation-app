@@ -1,9 +1,5 @@
-import React, { useState } from "react";
-import {
-  Card,
-  IconButton,
-  Surface,
-} from "react-native-paper";
+import React from "react";
+import { Card, IconButton, Surface } from "react-native-paper";
 import { StyleSheet, Image } from "react-native";
 import globalstyles from "../global.styles.js";
 import { Pressable } from "react-native";
@@ -14,7 +10,7 @@ export interface FoodItem {
   id: number;
   name: string;
   photo: string;
-  date : number;
+  date: number;
   calories: number;
   protein: number;
   fat: number;
@@ -32,9 +28,10 @@ const LeftContent = (foodItem: FoodItem) => () =>
           borderTopLeftRadius: 10,
           borderTopRightRadius: 10,
           borderBottomRightRadius: 10,
-          // shadowColor : "red",
         }}
-        source={{uri : `https://firebasestorage.googleapis.com/v0/b/recovereats-722e7.appspot.com/o/${foodItem.photo}.jpg?alt=media`}}
+        source={{
+          uri: `https://firebasestorage.googleapis.com/v0/b/recovereats-722e7.appspot.com/o/${foodItem.photo}.jpg?alt=media`,
+        }}
       />
       <IconButton
         icon="fire"
@@ -49,7 +46,7 @@ const FoodItemCard = ({ foodItem }: { foodItem: FoodItem }) => {
   const navigation = useNavigation();
 
   return (
-    <Pressable onPress={() => navigation.navigate("FoodPage", {foodItem})}>
+    <Pressable onPress={() => navigation.navigate("FoodPage", { foodItem })}>
       <Card key={foodItem.id} style={styles.container}>
         <Card.Title
           style={{

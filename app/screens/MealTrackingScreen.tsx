@@ -162,7 +162,8 @@ const MealTrackingScreen = ({ navigation }: any) => {
   let height;
 
   let name;
-  const [BMR, setBRM] = useState(0);
+  let BMR;
+  // const [BMR, setBRM] = useState(0);
   name = fullName?.split("$");
   fullName = name ? name[0] + " " + name[1] : "";
   age = name ? parseInt(name[2]) : 0;
@@ -170,9 +171,9 @@ const MealTrackingScreen = ({ navigation }: any) => {
   weight = name ? parseInt(name[4]) : 0;
   height = name ? parseInt(name[5]) : 0;
 
-  // if (gender === "female")
-  //   setBRM(447.593 + 9.247 * weight + 3.098 * height - 4.33 * age);
-  // else setBRM(88.362 + 13.397 * weight + 4.799 * height - 5.677 * age);
+  if (gender === "female")
+    BMR = 447.593 + 9.247 * weight + 3.098 * height - 4.33 * age;
+  else BMR = 88.362 + 13.397 * weight + 4.799 * height - 5.677 * age;
 
   const CALORIE_INTAKE = Math.round(BMR * 137.5/100);
   const CARBS_INTAKE = Math.round(BMR * 50) / 400;

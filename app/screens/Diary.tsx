@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { View, ScrollView, Pressable, StyleSheet } from "react-native";
 import { Avatar, IconButton, Surface, Text, Props } from "react-native-paper";
 import globalstyles from "../global.styles.js";
@@ -65,9 +65,11 @@ const DaySlider = (props: any) => {
       showsHorizontalScrollIndicator={false}
       disableIntervalMomentum = {true}
       decelerationRate= {"fast"}
+      contentOffset={{ x: 30 * 78, y: 0 }}
+      snapToInterval={78}
       style={{
         maxHeight: 93,
-        backgroundColor: "#EEF5DB"//"#fffcef",
+        // backgroundColor:"#EEF5DB", //"#fffcef",
       }}
     >
       {days.map((day, i) => (
@@ -103,12 +105,12 @@ const DiaryScreen = (props: Props) => {
   };
   const aref = useAnimatedRef();
   const scroll = useSharedValue(0);
-  const ITEM_SIZE =45;
+  const ITEM_SIZE =1000;
   const ITEM_MARGIN = 2.5;
 
-  // useEffect(() => {
-  //   scrollTo(aref, 0, scroll.value + (ITEM_SIZE + 2 * ITEM_MARGIN) * 30, true);
-  // });
+  useEffect(() => {
+    scrollTo(aref, scroll.value + (ITEM_SIZE + 2 * ITEM_MARGIN) * 30, 0, true);
+  });
 
   return (
     <View
@@ -140,7 +142,7 @@ const DiaryScreen = (props: Props) => {
           Diary
         </Text>
       </View>
-      <View style = {{backgroundColor : "#EEF5DB", height : 90, marginBottom : 30, marginTop : "-10%"}}>
+      <View style = {{backgroundColor : "#EEF5DB", height : 90, marginBottom : 20, marginTop : "-15%"}}>
       <DaySlider dateChange={onChangeDate} />
       </View>
       <DiaryCard day={date} />
@@ -165,7 +167,7 @@ const styles = StyleSheet.create({
     borderBottomColor : "blue"
   },
 });
-function useEffect(arg0: () => void) {
-  throw new Error("Function not implemented.");
-}
+// function useEffect(arg0: () => void) {
+//   throw new Error("Function not implemented.");
+// }
 

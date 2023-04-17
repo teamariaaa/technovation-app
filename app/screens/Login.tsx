@@ -194,6 +194,8 @@ const LoginScreen = ({ navigation }: any) => {
           ]}
           onPress={() => {
             LogIn();
+            //navigate to main screen
+            //navigation.navigate("Main");
           }}
         >
           <Text style={[styles.text, styles.textBodyLarge]}>Sign in</Text>

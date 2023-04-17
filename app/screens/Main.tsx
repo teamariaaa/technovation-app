@@ -27,7 +27,7 @@ const MainNavigator = () => (
   <Tab.Navigator
     screenOptions={{
       tabBarStyle: {
-        height: 90,
+        height: "12%",
         paddingTop: 20,
         paddingBottom: 20,
         shadowColor: "#000",
@@ -81,7 +81,7 @@ const MainNavigator = () => (
       component={SelfCareScreen}
       options={{
         headerShown: false,
-        tabBarLabel: "Self-care",
+        tabBarLabel: "Self Care",
         //tabBarColor: "#8DB38D",
         tabBarIcon: ({ color }) => (
           <View
@@ -90,7 +90,7 @@ const MainNavigator = () => (
               color == "#246324" && { backgroundColor: "#fff2bd" },
             ]}
           >
-            <Ionicons name="leaf-outline" color={color} size={26} />
+            <Icon name="accessibility" color={color} size={26} />
           </View>
         ),
       }}
@@ -116,7 +116,7 @@ const MainNavigator = () => (
     />
 
     <Tab.Screen
-      name="Mda"
+      name="Profile"
       component={ProfileScreen}
       options={{
         headerShown: false,

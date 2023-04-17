@@ -34,28 +34,8 @@ const LeftContent = () => (
 );
 
 const ProfileScreen = ({ navigation }: any) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [hidePassword, setHidePassword] = useState(true);
-  const [emailError, setEmailError] = useState("");
-  const [passwordError, setPasswordError] = useState("");
-
   const auth = getAuth();
   const user = auth.currentUser;
-
-  // const [name, setName] = useState("");
-  // onAuthStateChanged(auth, (user) => {
-  //   if (user) {
-  //     // User is signed in, see docs for a list of available properties
-  //     // https://firebase.google.com/docs/reference/js/firebase.User
-  //     const uid = user.uid;
-  //     const displayName = user.displayName;
-  //     // ...
-  //   } else {
-  //     // User is signed out
-  //     // ...
-  //   }
-  // });
 
   const [problems, setProblems] = useState<string[]>([
     "anger",

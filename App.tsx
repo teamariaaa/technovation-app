@@ -12,6 +12,8 @@ import UserDataScreen from "./app/screens/GetUserPersonalData";
 import QuizzScreen from "./app/screens/Quizz";
 import GetToQuizzScreen from "./app/screens/GoToQuizz";
 import LastSignUpScreen from "./app/screens/LastPageSignUp";
+import BreathingScreen from "./app/screens/BreathingExercise";
+import ResourcesScreen from "./app/screens/Resources";
 
 import { useFonts } from "expo-font";
 import ProfileTherapeutScreen from "./app/screens/ProfileTherapeutScreen";
@@ -100,6 +102,17 @@ function App() {
           <Stack.Screen
             name="GoToQuizz"
             component={GetToQuizzScreen}
+            options={{ headerShown: false }}
+          />
+
+          <Stack.Screen
+            name="BreathingExercise"
+            component={BreathingScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Resources"
+            component={ResourcesScreen}
             options={{ headerShown: false }}
           />
         </Stack.Navigator>

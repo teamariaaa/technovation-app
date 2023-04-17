@@ -114,13 +114,21 @@ const MealTrackingScreen = ({ navigation }: any) => {
   const user = auth.currentUser;
 
   let fullName = user?.displayName;
+  let age;
+  let gender;
+  let weight;
+  let height;
 
   let name;
-  name = fullName?.split(",");
+  name = fullName?.split("$");
   fullName = name ? name[0] + " " + name[1] : "";
+  age = name ? name[2] : "";
+  gender = name ? name[3] : "";
+  weight = name ? name[4] : "";
+  height = name ? name[5] : "";
 
   return (
-    <ScrollView style = {{backgroundColor : "#FFFCEF"}}>
+    <ScrollView style={{ backgroundColor: "#FFFCEF" }}>
       <View style={{ flex: 1, backgroundColor: "#FFFCEF", marginLeft: 0 }}>
         <View
           style={{
@@ -160,7 +168,7 @@ const MealTrackingScreen = ({ navigation }: any) => {
             title="Today"
             titleStyle={[
               globalstyles.headlineSmall,
-              { textAlign: "center", color: "#9db97d"},
+              { textAlign: "center", color: "#9db97d" },
             ]}
           ></Card.Title>
           <View style={{ alignSelf: "center", marginTop: 10 }}>
@@ -339,7 +347,8 @@ const styles = StyleSheet.create({
   },
 });
 
-{/* <Progress.Circle
+{
+  /* <Progress.Circle
             style={{ alignSelf: "center", marginTop: 10 }}
             size={200}
             progress={0.7}
@@ -351,4 +360,5 @@ const styles = StyleSheet.create({
             fill="#EEF5DB"
             unfilledColor="#EEF5DB"
             formatText={() => progress}
-          /> */}
+          /> */
+}

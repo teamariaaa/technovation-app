@@ -1,6 +1,19 @@
-import { NativeStackNavigationProp, createNativeStackNavigator } from "@react-navigation/native-stack";
+import {
+  NativeStackNavigationProp,
+  createNativeStackNavigator,
+} from "@react-navigation/native-stack";
 import React, { useState } from "react";
-import { Animated, Text, View, Dimensions, StyleSheet, SafeAreaView, KeyboardAvoidingView, Platform, ScrollView } from "react-native";
+import {
+  Animated,
+  Text,
+  View,
+  Dimensions,
+  StyleSheet,
+  SafeAreaView,
+  KeyboardAvoidingView,
+  Platform,
+  ScrollView,
+} from "react-native";
 import { Button, TextInput } from "react-native-paper";
 
 const Stack = createNativeStackNavigator();
@@ -28,7 +41,7 @@ const ProfileTherapeutChatScreen = ({ route, navigation }: Props) => {
   };
 
   return (
-    <View style={{ flex: 1, backgroundColor: "#fff" }}>
+    <View style={{ flex: 1, backgroundColor: "#FFFCEF" }}>
       <SafeAreaView style={styles.container}>
         <Text
           style={{
@@ -45,28 +58,54 @@ const ProfileTherapeutChatScreen = ({ route, navigation }: Props) => {
         >
           Chat with {item.name}
         </Text>
-        <ScrollView style={{ alignSelf: "flex-start", width: "100%", padding: 10, paddingBottom: 80, flex: 1, }}>
+        <ScrollView
+          style={{
+            alignSelf: "flex-start",
+            width: "100%",
+            padding: 10,
+            paddingBottom: 80,
+            flex: 1,
+          }}
+        >
           {therapistItem.messages.length == 0 && <Text>No messages</Text>}
           {therapistItem.messages.map((message: any, index: number) => {
             return (
               <View
                 key={index}
-                style={{ alignSelf: message.sender ? "flex-end" : "flex-start", marginBottom: 10, padding: 10, borderRadius: 20,
-                backgroundColor: message.sender ? "#2a9d8f" : "#f4a261", marginLeft: message.sender ? "45%" : '0%', maxWidth: '50%'}}>
-
-                <Text style={{ textAlign: message.sender ? "right" : "left" }}> {message.text} </Text>
-                <View style={message.sender ? styles.rightArrow : styles.leftArrow}></View>
-                <View style={message.sender ? styles.rightArrowOverlap : styles.leftArrowOverlap}></View>
+                style={{
+                  alignSelf: message.sender ? "flex-end" : "flex-start",
+                  marginBottom: 10,
+                  padding: 10,
+                  borderRadius: 20,
+                  backgroundColor: message.sender ? "#2a9d8f" : "#f4a261",
+                  marginLeft: message.sender ? "45%" : "0%",
+                  maxWidth: "50%",
+                }}
+              >
+                <Text style={{ textAlign: message.sender ? "right" : "left" }}>
+                  {" "}
+                  {message.text}{" "}
+                </Text>
+                <View
+                  style={message.sender ? styles.rightArrow : styles.leftArrow}
+                ></View>
+                <View
+                  style={
+                    message.sender
+                      ? styles.rightArrowOverlap
+                      : styles.leftArrowOverlap
+                  }
+                ></View>
               </View>
             );
           })}
         </ScrollView>
         <KeyboardAvoidingView
-          style={{ flex: 1}}
+          style={{ flex: 1 }}
           behavior={Platform.OS === "ios" ? "padding" : "height"}
           keyboardVerticalOffset={Platform.OS === "ios" ? 80 : 0}
         >
-          <View style={{ flex: 1}}>
+          <View style={{ flex: 1 }}>
             <View
               style={{
                 alignSelf: "flex-start",
@@ -75,7 +114,7 @@ const ProfileTherapeutChatScreen = ({ route, navigation }: Props) => {
                 // padding: 10,
                 paddingBottom: 80,
                 // flex: 1,
-                backgroundColor: '#fff'
+                backgroundColor: "#fff",
               }}
             >
               {/* Chat messages */}
@@ -88,16 +127,14 @@ const ProfileTherapeutChatScreen = ({ route, navigation }: Props) => {
                 flexDirection: "row",
                 justifyContent: "space-evenly",
                 alignItems: "center",
-                backgroundColor: '#fff'
+                backgroundColor: "#fff",
               }}
             >
-
               <TextInput
                 style={{ flex: 1 }}
                 value={message}
                 onChangeText={(m) => setMessage(m)}
                 placeholder="Write a message..."
-
               />
               <Button
                 style={{
@@ -123,9 +160,7 @@ export default ProfileTherapeutChatScreen;
 const win = Dimensions.get("window");
 
 const styles = StyleSheet.create({
-
-  rightArrow:
-  {
+  rightArrow: {
     position: "absolute",
     backgroundColor: "#2a9d8f",
     //backgroundColor:"red",
@@ -133,7 +168,7 @@ const styles = StyleSheet.create({
     height: 25,
     bottom: 0,
     borderBottomLeftRadius: 25,
-    right: -10
+    right: -10,
   },
   rightArrowOverlap: {
     position: "absolute",
@@ -143,8 +178,7 @@ const styles = StyleSheet.create({
     height: 35,
     bottom: -6,
     borderBottomLeftRadius: 18,
-    right: -20
-
+    right: -20,
   },
   leftArrow: {
     position: "absolute",
@@ -154,7 +188,7 @@ const styles = StyleSheet.create({
     height: 25,
     bottom: 0,
     borderBottomRightRadius: 25,
-    left: -10
+    left: -10,
   },
 
   leftArrowOverlap: {
@@ -165,15 +199,14 @@ const styles = StyleSheet.create({
     height: 35,
     bottom: -6,
     borderBottomRightRadius: 18,
-    left: -20
-
+    left: -20,
   },
 
   container: {
     flex: 1,
     marginTop: 5,
     fontSize: 30,
-    height: "70%"
+    height: "70%",
   },
 
   item: {

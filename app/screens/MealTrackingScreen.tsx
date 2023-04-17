@@ -115,11 +115,10 @@ const MealTrackingScreen = ({ navigation }: any) => {
 
   const getTodayMeals = async () => {
     const storedMeals = await AsyncStorage.getItem("@myfood");
-    console.log(storedMeals);
-    return  storedMeals ? JSON.parse(storedMeals) : [];
-    // setTodayItems(foodList.filter((d) => new Date(d.date).toDateString() === day.toDateString())); 
+    return storedMeals ? JSON.parse(storedMeals) : [];
+    // setTodayItems(foodList.filter((d) => new Date(d.date).toDateString() === day.toDateString()));
   };
-  
+
   const [todayCal, setTodayCal] = useState<number>(0);
   const [todayCarbs, setTodayCarbs] = useState<number>(0);
   const [todayProtein, setTodayProtein] = useState<number>(0);
@@ -127,26 +126,31 @@ const MealTrackingScreen = ({ navigation }: any) => {
 
   useEffect(() => {
     getTodayMeals().then((foodList) => {
-      setTodayItems(foodList.filter((d : FoodItem) => new Date(d.date).toDateString() === new Date().toDateString()));
-      const stats = todayItems.reduce((acc : any, food : FoodItem) => {
-        acc.calories += food.calories;
-        acc.carbs += food.carbs;
-        acc.protein += food.protein;
-        acc.fat += food.fat;
-        return acc;
-      }, {calories: 0, carbs: 0, protein: 0, fat: 0});
-      
+      setTodayItems(
+        foodList.filter(
+          (d: FoodItem) =>
+            new Date(d.date).toDateString() === new Date().toDateString()
+        )
+      );
+      const stats = todayItems.reduce(
+        (acc: any, food: FoodItem) => {
+          acc.calories += food.calories;
+          acc.carbs += food.carbs;
+          acc.protein += food.protein;
+          acc.fat += food.fat;
+          return acc;
+        },
+        { calories: 0, carbs: 0, protein: 0, fat: 0 }
+      );
+
       setTodayCal(stats.calories);
       setTodayCarbs(stats.carbs);
       setTodayProtein(stats.protein);
       setTodayFat(stats.fat);
       console.log(stats);
     });
-}, []);
-  const CALORIE_INTAKE = 1400;
-  const CARBS_INTAKE = 200;
-  const PROTEIN_INTAKE = 200;
-  const FAT_INTAKE = 200;
+  }, []);
+
   // const progress = <Paragraph style={globalstyles.textBold}>388</Paragraph>;
   const auth = getAuth();
   const user = auth.currentUser;
@@ -158,12 +162,22 @@ const MealTrackingScreen = ({ navigation }: any) => {
   let height;
 
   let name;
+  const [BMR, setBRM] = useState(0);
   name = fullName?.split("$");
   fullName = name ? name[0] + " " + name[1] : "";
-  age = name ? name[2] : "";
+  age = name ? parseInt(name[2]) : 0;
   gender = name ? name[3] : "";
-  weight = name ? name[4] : "";
-  height = name ? name[5] : "";
+  weight = name ? parseInt(name[4]) : 0;
+  height = name ? parseInt(name[5]) : 0;
+
+  if (gender === "female")
+    setBRM(447.593 + 9.247 * weight + 3.098 * height - 4.33 * age);
+  else setBRM(88.362 + 13.397 * weight + 4.799 * height - 5.677 * age);
+
+  const CALORIE_INTAKE = BMR * 1.375;
+  const CARBS_INTAKE = (BMR * 0.5) / 4;
+  const PROTEIN_INTAKE = (BMR * 0.3) / 9;
+  const FAT_INTAKE = (BMR * 0.2) / 4;
 
   return (
     <ScrollView style={{ backgroundColor: "#FFFCEF" }}>
@@ -208,7 +222,7 @@ const MealTrackingScreen = ({ navigation }: any) => {
           ></Card.Title>
           <View style={{ alignSelf: "center", marginTop: 10 }}>
             <CircularProgress
-              value={CALORIE_INTAKE-todayCal}
+              value={CALORIE_INTAKE - todayCal}
               // initialValue={1400}
               //<MaterialCommunityIcons name = "fire" />
               radius={110}
@@ -265,7 +279,9 @@ const MealTrackingScreen = ({ navigation }: any) => {
                     Carbs
                   </Paragraph>
                 </View>
-                <Paragraph style={globalstyles.lightText2}>{Math.round((CARBS_INTAKE - todayCarbs)*10 / 10)}g left</Paragraph>
+                <Paragraph style={globalstyles.lightText2}>
+                  {Math.round(((CARBS_INTAKE - todayCarbs) * 10) / 10)}g left
+                </Paragraph>
               </Surface>
               <Surface
                 style={[
@@ -297,7 +313,10 @@ const MealTrackingScreen = ({ navigation }: any) => {
                 >
                    left
                 </Paragraph> */}
-                <Paragraph style={globalstyles.lightText2}>{Math.round((PROTEIN_INTAKE - todayProtein)*10 / 10)}g left</Paragraph>
+                <Paragraph style={globalstyles.lightText2}>
+                  {Math.round(((PROTEIN_INTAKE - todayProtein) * 10) / 10)}g
+                  left
+                </Paragraph>
               </Surface>
               <Surface
                 style={[
@@ -329,7 +348,9 @@ const MealTrackingScreen = ({ navigation }: any) => {
                 >
                   {FAT_INTAKE - todayFat}g left
                 </Paragraph> */}
-                <Paragraph style={globalstyles.lightText2}>{Math.round((FAT_INTAKE - todayFat)*10 / 10)}g left</Paragraph>
+                <Paragraph style={globalstyles.lightText2}>
+                  {Math.round(((FAT_INTAKE - todayFat) * 10) / 10)}g left
+                </Paragraph>
               </Surface>
             </Surface>
             <Pressable

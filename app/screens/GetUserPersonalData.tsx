@@ -225,7 +225,7 @@ const UserDataScreen = ({ navigation }: any) => {
               <TextInput
                 mode="flat"
                 style={[styles.TextInput, { height: 45, marginTop: "5%" }]}
-                label="Gender"
+                label="Male or female"
                 left={<TextInput.Icon icon="gender-male-female" />}
                 value={userGender}
                 onChangeText={(userGender: string) => setUserGender(userGender)}

@@ -166,7 +166,7 @@ const SignUpcreen = ({ navigation }: any) => {
           }}
         >
           <Paragraph style={[styles.headlineSmall, styles.textBold]}>
-            Welcome to RevoverEats!
+            Welcome to RecoverEats!
           </Paragraph>
           <Paragraph
             style={[

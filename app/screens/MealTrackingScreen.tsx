@@ -139,10 +139,14 @@ const MealTrackingScreen = ({ navigation }: any) => {
       setTodayCarbs(stats.carbs);
       setTodayProtein(stats.protein);
       setTodayFat(stats.fat);
+      console.log(stats);
     });
 }, []);
-
-  const progress = <Paragraph style={globalstyles.textBold}>388</Paragraph>;
+  const CALORIE_INTAKE = 1400;
+  const CARBS_INTAKE = 200;
+  const PROTEIN_INTAKE = 200;
+  const FAT_INTAKE = 200;
+  // const progress = <Paragraph style={globalstyles.textBold}>388</Paragraph>;
   const auth = getAuth();
   const user = auth.currentUser;
 
@@ -206,8 +210,8 @@ const MealTrackingScreen = ({ navigation }: any) => {
           ></Card.Title>
           <View style={{ alignSelf: "center", marginTop: 10 }}>
             <CircularProgress
-              value={388}
-              //initialValue={1400}
+              value={CALORIE_INTAKE-todayCal}
+              // initialValue={1400}
               //<MaterialCommunityIcons name = "fire" />
               radius={110}
               duration={1}
@@ -263,7 +267,7 @@ const MealTrackingScreen = ({ navigation }: any) => {
                     Carbs
                   </Paragraph>
                 </View>
-                <Paragraph style={globalstyles.lightText2}>204g left</Paragraph>
+                <Paragraph style={globalstyles.lightText2}>{Math.round((CARBS_INTAKE - todayCarbs)*10 / 10)}g left</Paragraph>
               </Surface>
               <Surface
                 style={[
@@ -287,14 +291,15 @@ const MealTrackingScreen = ({ navigation }: any) => {
                     Protein
                   </Paragraph>
                 </View>
-                <Paragraph
+                {/* <Paragraph
                   style={[
                     globalstyles.lightText2,
                     { fontSize: 18, textAlign: "center" },
                   ]}
                 >
-                  81g left
-                </Paragraph>
+                   left
+                </Paragraph> */}
+                <Paragraph style={globalstyles.lightText2}>{Math.round((PROTEIN_INTAKE - todayProtein)*10 / 10)}g left</Paragraph>
               </Surface>
               <Surface
                 style={[
@@ -318,14 +323,15 @@ const MealTrackingScreen = ({ navigation }: any) => {
                     Fat
                   </Paragraph>
                 </View>
-                <Paragraph
+                {/* <Paragraph
                   style={[
                     globalstyles.lightText2,
                     { fontSize: 18, textAlign: "center" },
                   ]}
                 >
-                  54g left
-                </Paragraph>
+                  {FAT_INTAKE - todayFat}g left
+                </Paragraph> */}
+                <Paragraph style={globalstyles.lightText2}>{Math.round((FAT_INTAKE - todayFat)*10 / 10)}g left</Paragraph>
               </Surface>
             </Surface>
             <Pressable

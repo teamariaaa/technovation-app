@@ -27,10 +27,7 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 const Stack = createNativeStackNavigator();
 
 const LeftContent = () => (
-  <Avatar.Image
-    size={70}
-    source={require("../../assets/profilePicture.jpeg")}
-  />
+  <Avatar.Image size={70} source={require("../../assets/user.png")} />
 );
 
 const ProfileScreen = ({ navigation }: any) => {

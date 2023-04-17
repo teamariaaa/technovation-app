@@ -115,10 +115,10 @@ const MealTrackingScreen = ({ navigation }: any) => {
 
   const getTodayMeals = async () => {
     const storedMeals = await AsyncStorage.getItem("@myfood");
-    return  storedMeals ? JSON.parse(storedMeals) : [];
-    // setTodayItems(foodList.filter((d) => new Date(d.date).toDateString() === day.toDateString())); 
+    return storedMeals ? JSON.parse(storedMeals) : [];
+    // setTodayItems(foodList.filter((d) => new Date(d.date).toDateString() === day.toDateString()));
   };
-  
+
   const [todayCal, setTodayCal] = useState<number>(0);
   const [todayCarbs, setTodayCarbs] = useState<number>(0);
   const [todayProtein, setTodayProtein] = useState<number>(0);
@@ -126,21 +126,29 @@ const MealTrackingScreen = ({ navigation }: any) => {
 
   useEffect(() => {
     getTodayMeals().then((foodList) => {
-      setTodayItems(foodList.filter((d : FoodItem) => new Date(d.date).toDateString() === new Date().toDateString()));
-      const stats = todayItems.reduce((acc : any, food : FoodItem) => {
-        acc.calories += food.calories;
-        acc.carbs += food.carbs;
-        acc.protein += food.protein;
-        acc.fat += food.fat;
-        return acc;
-      }, {calories: 0, carbs: 0, protein: 0, fat: 0});
-      
+      setTodayItems(
+        foodList.filter(
+          (d: FoodItem) =>
+            new Date(d.date).toDateString() === new Date().toDateString()
+        )
+      );
+      const stats = todayItems.reduce(
+        (acc: any, food: FoodItem) => {
+          acc.calories += food.calories;
+          acc.carbs += food.carbs;
+          acc.protein += food.protein;
+          acc.fat += food.fat;
+          return acc;
+        },
+        { calories: 0, carbs: 0, protein: 0, fat: 0 }
+      );
+
       setTodayCal(stats.calories);
       setTodayCarbs(stats.carbs);
       setTodayProtein(stats.protein);
       setTodayFat(stats.fat);
     });
-}, []);
+  }, []);
 
   const progress = <Paragraph style={globalstyles.textBold}>388</Paragraph>;
   const auth = getAuth();

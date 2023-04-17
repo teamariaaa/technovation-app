@@ -136,7 +136,6 @@ const DiaryCard = ({ day }: { day: Date }) => {
     <ScrollView
       style={{ height: "44%", backgroundColor: "#EEF5DB", borderRadius: 25 }}
     >
-      {/* <Button onPress = {Clear}> clear </Button> */}
       <Card
         style={{
           backgroundColor: "#fffcef",
@@ -145,6 +144,7 @@ const DiaryCard = ({ day }: { day: Date }) => {
           marginRight: 10,
         }}
       >
+        {/* <Button onPress = {Clear}> clear </Button> */}
         {numeData === true && (
           <>
             <Card.Title
@@ -215,6 +215,8 @@ const DiaryCard = ({ day }: { day: Date }) => {
                 alignSelf: "flex-start",
                 marginTop: "4%",
                 marginBottom: "4%",
+                // borderColor : "red",
+                // borderWidth : 2,
                 // display : "flex",
                 // flexDirection : "row",
               }}
@@ -232,7 +234,7 @@ const DiaryCard = ({ day }: { day: Date }) => {
                 },
               ]}
             />
-            <Card.Content>
+            <Card.Content style = {{paddingBottom : 5}}>
               <Surface style={[styles.row2, { backgroundColor: "#fffcef",  marginTop : "-2.5%"}]}>
                 <IconButton
                   icon="fire"
@@ -243,7 +245,7 @@ const DiaryCard = ({ day }: { day: Date }) => {
                 <Paragraph
                   // left={LeftContent(meal)}
                   style={{
-                    color: "#B6CB9E",
+                    color: "#808080",
                     fontFamily: "Cabin",
                     fontSize: 23,
                     paddingTop: "3%",
@@ -256,7 +258,7 @@ const DiaryCard = ({ day }: { day: Date }) => {
                 <Paragraph
                   // left={LeftContent(meal)}
                   style={{
-                    color: "#ADADC9",
+                    color: "#B6CB9E",
                     fontFamily: "Cabin",
                     fontSize: 19,
                     marginLeft: 7,

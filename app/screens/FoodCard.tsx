@@ -21,10 +21,6 @@ export interface FoodItem {
   carbs: number;
 }
 
-const CARBS = 1;
-const PROTEIN = 1;
-const FAT = 1;
-
 const LeftContent = (foodItem: FoodItem) => () =>
   (
     <Surface style={[styles.row, styles.container]}>
@@ -50,16 +46,6 @@ const LeftContent = (foodItem: FoodItem) => () =>
 
 const FoodItemCard = ({ foodItem }: { foodItem: FoodItem }) => {
   const win = Dimensions.get("window");
-
-  const [visible, setVisible] = useState<boolean>(false);
-
-  const showModal = () => setVisible(true);
-  const hideModal = () => setVisible(false);
-  const containerStyle = {
-    backgroundColor: "#fffcef",
-    padding: win.width * 0.03,
-  };
-
   const navigation = useNavigation();
 
   return (
@@ -94,19 +80,6 @@ const FoodItemCard = ({ foodItem }: { foodItem: FoodItem }) => {
           }}
           left={LeftContent(foodItem)}
         />
-        {/* <View style = {{flex : 1, padding : 100}}>
-          <ImageBackground
-        resizeMode = "cover"
-        style={{
-          flex : 1,
-          width: "100%",
-          height: "100%",
-          // justifyContent : "center", 
-          // shadowColor : "red",
-        }}
-        source={foodItem.photo}
-      /> 
-       </View> */}
       </Card>
     </Pressable>
   );

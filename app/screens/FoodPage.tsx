@@ -73,8 +73,6 @@ const MealDetailsScreen = ({ navigation, route }: any) => {
   const [meal, setMeal] = useState<FoodItem>(route.params?.foodItem || {});
   meal.date = new Date().getTime();
 
-  // const [visible, setVisible] = React.useState(false);
-
   const addMeal = async () => {
     const storedMeals = await AsyncStorage.getItem("@myfood");
     const foodList: FoodItem[] = storedMeals ? JSON.parse(storedMeals) : [];
@@ -177,7 +175,6 @@ const MealDetailsScreen = ({ navigation, route }: any) => {
               </Paragraph>
               <Button
                 mode="contained-tonal"
-                // textColor = "red"
                 style={[
                   {
                     backgroundColor: "#9db97d",
@@ -185,10 +182,9 @@ const MealDetailsScreen = ({ navigation, route }: any) => {
                     marginLeft: "17%",
                     marginTop: "1%",
                     marginBottom: "10%",
-                  }, //"#e4ede4"
+                  }
                 ]}
                 onPress={() => {
-                  // console.log("am apasat");
                   addMeal();
                   navigation.navigate("MealTracking");
                 }}

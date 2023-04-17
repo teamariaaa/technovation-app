@@ -170,14 +170,14 @@ const MealTrackingScreen = ({ navigation }: any) => {
   weight = name ? parseInt(name[4]) : 0;
   height = name ? parseInt(name[5]) : 0;
 
-  if (gender === "female")
-    setBRM(447.593 + 9.247 * weight + 3.098 * height - 4.33 * age);
-  else setBRM(88.362 + 13.397 * weight + 4.799 * height - 5.677 * age);
+  // if (gender === "female")
+  //   setBRM(447.593 + 9.247 * weight + 3.098 * height - 4.33 * age);
+  // else setBRM(88.362 + 13.397 * weight + 4.799 * height - 5.677 * age);
 
-  const CALORIE_INTAKE = BMR * 1.375;
-  const CARBS_INTAKE = (BMR * 0.5) / 4;
-  const PROTEIN_INTAKE = (BMR * 0.3) / 9;
-  const FAT_INTAKE = (BMR * 0.2) / 4;
+  const CALORIE_INTAKE = Math.round(BMR * 137.5/100);
+  const CARBS_INTAKE = Math.round(BMR * 50) / 400;
+  const PROTEIN_INTAKE = (BMR * 30) / 900;
+  const FAT_INTAKE = (BMR * 20) / 400;
 
   return (
     <ScrollView style={{ backgroundColor: "#FFFCEF" }}>
@@ -197,7 +197,10 @@ const MealTrackingScreen = ({ navigation }: any) => {
               marginRight: 10,
             }}
           >
-            <Avatar.Image size={70} source={require("../../assets/avatar3.jpg")} />
+            <Avatar.Image
+              size={70}
+              source={require("../../assets/avatar3.jpg")}
+            />
             <Button
               mode="contained-tonal"
               style={[
@@ -210,7 +213,7 @@ const MealTrackingScreen = ({ navigation }: any) => {
           </Appbar.Header>
         </View>
         <Paragraph style={[globalstyles.titleLarge, { bottom: 13, left: 15 }]}>
-          Hello, {name ? name[1] : ""}!
+         Hello, {name ? name[1] : ""}!
         </Paragraph>
         <Card style={globalstyles.idkContainer}>
           <Card.Title

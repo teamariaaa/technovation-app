@@ -14,7 +14,9 @@ import {
   Platform,
   ScrollView,
 } from "react-native";
-import { Button, TextInput } from "react-native-paper";
+import { Button, IconButton, TextInput } from "react-native-paper";
+import globalstyles from "../global.styles.js";
+import { useNavigation } from "@react-navigation/native";
 
 const Stack = createNativeStackNavigator();
 
@@ -40,24 +42,42 @@ const ProfileTherapeutChatScreen = ({ route, navigation }: Props) => {
     setMessage("");
   };
 
+  // const navigation1 = useNavigation();
   return (
-    <View style={{ flex: 1, backgroundColor: "#FFFCEF" }}>
+    <KeyboardAvoidingView
+      style={{
+        flex: 1,
+        backgroundColor: "#FFFCEF",
+      }}
+    >
       <SafeAreaView style={styles.container}>
-        <Text
-          style={{
-            fontFamily: "Cabin",
-            fontSize: 24,
-            fontWeight: "400",
-            letterSpacing: 0,
-            lineHeight: 36,
-            marginTop: "10%",
-            marginBottom: "10%",
-            color: "#333333",
-            textAlign: "center",
-          }}
+        <View
+          style={[styles.upContainer]}
         >
-          Chat with {item.name}
-        </Text>
+          <IconButton
+            icon="keyboard-backspace"
+            mode="contained-tonal"
+            style={[globalstyles.iconButton, { marginRight: 33 }]}
+            size={20}
+            onPress={() => navigation.goBack()}
+          />
+
+          <Text
+            style={{
+              fontFamily: "Cabin",
+              fontSize: 24,
+              fontWeight: "400",
+              letterSpacing: 0,
+              lineHeight: 36,
+              marginTop: "10%",
+              marginBottom: "10%",
+              color: "#333333",
+              textAlign: "center",
+            }}
+          >
+            Chat with {item.name}
+          </Text>
+        </View>
         <ScrollView
           style={{
             alignSelf: "flex-start",
@@ -77,12 +97,12 @@ const ProfileTherapeutChatScreen = ({ route, navigation }: Props) => {
                   marginBottom: 10,
                   padding: 10,
                   borderRadius: 20,
-                  backgroundColor: message.sender ? "#2a9d8f" : "#f4a261",
+                  backgroundColor: message.sender ? "#DBEAB3" : "#EEF5DB",
                   marginLeft: message.sender ? "45%" : "0%",
                   maxWidth: "50%",
                 }}
               >
-                <Text style={{ textAlign: message.sender ? "right" : "left" }}>
+                <Text style={{ marginLeft: 7, textAlign: "left" }}>
                   {" "}
                   {message.text}{" "}
                 </Text>
@@ -100,59 +120,59 @@ const ProfileTherapeutChatScreen = ({ route, navigation }: Props) => {
             );
           })}
         </ScrollView>
-        <KeyboardAvoidingView
-          style={{ flex: 1 }}
-          behavior={Platform.OS === "ios" ? "padding" : "height"}
-          keyboardVerticalOffset={Platform.OS === "ios" ? 80 : 0}
+        <View
+          style={{
+            height: 70,
+            // height: Dimensions.get("window").height * 0.2,
+            // width: Dimensions.get("window").width,
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-evenly",
+            alignItems: "center",
+            backgroundColor: "#FFFCEF",
+          }}
         >
-          <View style={{ flex: 1 }}>
-            <View
+          <TextInput
+            style={{
+              flex: 1,
+              borderTopLeftRadius: 20,
+              borderBottomLeftRadius: 20,
+              marginLeft: 15,
+              backgroundColor: "#FFF2BC",
+            }} //"#eeeee4"}}
+            value={message}
+            activeUnderlineColor="#FFF2BC"
+            underlineColor="#FFF2BC"
+            onChangeText={(m) => setMessage(m)}
+            placeholder="Write a message..."
+          />
+          <Button
+            style={{
+              backgroundColor: "#c1dbc1",
+              // width: 80,
+              height: 56,
+              borderRadius: 20,
+              position: "relative",
+              right: 17,
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+            onPress={() => sendMessage()}
+          >
+            <Text
               style={{
-                alignSelf: "flex-start",
-                height: "20%",
-                width: "100%",
-                // padding: 10,
-                paddingBottom: 80,
-                // flex: 1,
-                backgroundColor: "#fff",
+                fontSize: 27,
+                lineHeight: 40,
+                marginTop: 20,
+                textAlign: "center",
               }}
             >
-              {/* Chat messages */}
-            </View>
-            <View
-              style={{
-                height: Dimensions.get("window").height * 0.2,
-                width: Dimensions.get("window").width,
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "space-evenly",
-                alignItems: "center",
-                backgroundColor: "#fff",
-              }}
-            >
-              <TextInput
-                style={{ flex: 1 }}
-                value={message}
-                onChangeText={(m) => setMessage(m)}
-                placeholder="Write a message..."
-              />
-              <Button
-                style={{
-                  backgroundColor: "#264653",
-                  width: 80,
-                  borderRadius: 0,
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-                onPress={() => sendMessage()}
-              >
-                <Text style={{ fontSize: 27, lineHeight: 40 }}>💬</Text>
-              </Button>
-            </View>
-          </View>
-        </KeyboardAvoidingView>
+              💬
+            </Text>
+          </Button>
+        </View>
       </SafeAreaView>
-    </View>
+    </KeyboardAvoidingView>
   );
 };
 export default ProfileTherapeutChatScreen;
@@ -160,10 +180,24 @@ export default ProfileTherapeutChatScreen;
 const win = Dimensions.get("window");
 
 const styles = StyleSheet.create({
+  upContainer: {
+    flex: 1,
+    flexDirection: "row",
+    paddingLeft: "2.5%",
+    backgroundColor: "#fffcef",
+    alignItems: "center",
+    justifyContent: "flex-start",
+    maxHeight :110,
+    // paddingVertical: 10,
+    marginTop: "10%",
+    marginBottom: "0%",
+    // marginBottom: "2%",
+  },
+
   rightArrow: {
     position: "absolute",
-    backgroundColor: "#2a9d8f",
-    //backgroundColor:"red",
+    // backgroundColor: "#2a9d8f",
+    backgroundColor: "#DBEAB3",
     width: 20,
     height: 25,
     bottom: 0,
@@ -182,8 +216,8 @@ const styles = StyleSheet.create({
   },
   leftArrow: {
     position: "absolute",
-    backgroundColor: "#f4a261",
-    //backgroundColor:"red",
+    backgroundColor: "#EEF5DB",
+    // backgroundColor:"red",
     width: 20,
     height: 25,
     bottom: 0,
@@ -207,6 +241,8 @@ const styles = StyleSheet.create({
     marginTop: 5,
     fontSize: 30,
     height: "70%",
+    marginLeft: 10,
+    marginRight: 10,
   },
 
   item: {

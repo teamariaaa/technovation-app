@@ -13,7 +13,7 @@ import { useNavigation } from "@react-navigation/native";
 export interface FoodItem {
   id: number;
   name: string;
-  photo: any;
+  photo: string;
   date : number;
   calories: number;
   protein: number;
@@ -38,7 +38,7 @@ const LeftContent = (foodItem: FoodItem) => () =>
           borderBottomRightRadius: 10,
           // shadowColor : "red",
         }}
-        source={foodItem.photo}
+        source={{uri : `https://firebasestorage.googleapis.com/v0/b/recovereats-722e7.appspot.com/o/${foodItem.photo}.jpg?alt=media`}}
       />
       <IconButton
         icon="fire"

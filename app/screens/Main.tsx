@@ -120,7 +120,7 @@ const MainNavigator = () => (
       component={ProfileScreen}
       options={{
         headerShown: false,
-        tabBarLabel: "Profil",
+        tabBarLabel: "Profile",
         //tabBarColor: "#8DB38D",
         tabBarIcon: ({ color }) => (
           <View

@@ -31,12 +31,10 @@ export interface FoodItem {
   carbs: number;
 }
 
-const CARBS = 1;
-const PROTEIN = 1;
-const FAT = 1;
 
 const LeftContent = (foodItem: FoodItem) => () =>
-  (
+  {
+    return (
     <Surface style={[styles.row, styles.container]}>
       <Image
         style={{
@@ -47,7 +45,7 @@ const LeftContent = (foodItem: FoodItem) => () =>
           borderTopRightRadius: 10,
           borderBottomRightRadius: 10,
         }}
-        source={foodItem.photo}
+        source={{uri : `https://firebasestorage.googleapis.com/v0/b/recovereats-722e7.appspot.com/o/${foodItem.photo}.jpg?alt=media`}}
       />
       <IconButton
         icon="fire"
@@ -55,21 +53,13 @@ const LeftContent = (foodItem: FoodItem) => () =>
         style={{ alignSelf: "flex-end", marginBottom: "6%" }}
       />
     </Surface>
-  );
+  )};
 
 const DiaryCard = ({day}: { day : Date }) => {
-  const win = Dimensions.get("window");
+  // const [visible, setVisible] = useState<boolean[]>([]); 
+  // setVisible(visible.filter((d : boolean) => ))}
+  const [visible, setVisible] = useState<number>(-1);
 
-  const [visible, setVisible] = useState<boolean>(false);
-
-  const showModal = () => setVisible(true);
-  const hideModal = () => setVisible(false);
-  const containerStyle = {
-    backgroundColor: "#fffcef",
-    padding: win.width * 0.03,
-  };
-
-  const navigation = useNavigation();
   const [todayItems, setTodayItems] = useState<FoodItem[]>([]);
 
   const addMeal = async () => {
@@ -83,15 +73,17 @@ const DiaryCard = ({day}: { day : Date }) => {
       setTodayItems(foodList.filter((d : FoodItem) => new Date(d.date).toDateString() === day.toDateString()));
     });
 }, [day]);
-  const Clear = async () => { await AsyncStorage.setItem("@myfood", JSON.stringify([]));}
+   
+ const Clear = async () => {await AsyncStorage.removeItem("@myfood");}
 
   return (
     // <Pressable onPress={() => navigation.navigate("FoodPage", { foodItem })}>
-    <ScrollView style = {{height : "43%", backgroundColor : "#EEF5DB"}}>
+    <ScrollView style = {{height : "44%", backgroundColor : "#EEF5DB", borderRadius : 25}}>
         {/* <Button onPress = {Clear}> clear </Button> */}
         <Card style = {{backgroundColor : "#fffcef", borderRadius : 25, marginLeft : 10, marginRight : 10}}>
         {todayItems.map((foodItem, i) =>
-      <><Card key={i} style={[styles.container]}>
+      <Pressable key={i} onPress={() => setVisible(i === visible ? -1 : i)}>
+        <Card key={i} style={[styles.container]}>
             <Card.Title
               style={{
                 alignSelf: "flex-start",
@@ -105,7 +97,7 @@ const DiaryCard = ({day}: { day : Date }) => {
                   alignSelf: "flex-start",
                   marginLeft: "18%",
                   marginTop: "-3%",
-                  fontSize: 18,
+                  fontSize: 17,
                   fontWeight: "700",
                 },
               ]}
@@ -120,14 +112,118 @@ const DiaryCard = ({day}: { day : Date }) => {
                 marginLeft: "25%",
               }}
               left={LeftContent(foodItem)} />
-          </Card><View
+            {visible === i  && 
+            (
+              <View style={[styles.container, {marginTop : "-5%", borderTopLeftRadius : 20, borderTopRightRadius : 20, backgroundColor : "#fffcef", marginLeft : "0%", marginRight :"0%"}]}>
+              <Paragraph style={[globalstyles.textBold, {marginBottom : "-2%", marginLeft : "3%"}]}>
+                Nutritional Information
+              </Paragraph>
+              <Surface
+                style={[
+                  styles.row,
+                  { backgroundColor: "#fffcef", shadowColor: "#fffcef" },
+                ]}
+              >
+                <Surface
+                  style={[
+                    styles.column,
+                    { backgroundColor: "#fffcef", shadowColor: "#fffcef" },
+                  ]}
+                >
+                  <CircularProgress
+                    value={(foodItem.carbs * 10000) /((foodItem.carbs + foodItem.fat + foodItem.protein) * 100)}
+                    maxValue={100}
+                    valueSuffix="%"
+                    //initialValue={1400}
+                    //<MaterialCommunityIcons name = "fire" />
+                    radius={40}
+                    duration={1}
+                    activeStrokeColor="#9db97d"
+                    inActiveStrokeColor="#B6CB9E"
+                    inActiveStrokeOpacity={0.5}
+                    progressValueColor={"#3C403D"}
+                    progressValueStyle={{ fontSize: 15 }}
+                  />
+                  <Paragraph
+                    style={[
+                      globalstyles.text,
+                      { marginTop: 8, fontSize: 15, textAlign: "center" },
+                    ]}
+                  >
+                    Carbs
+                  </Paragraph>
+                </Surface>
+                <Surface
+                  style={[
+                    styles.column,
+                    { backgroundColor: "#fffcef", shadowColor: "#fffcef" },
+                  ]}
+                >
+                  <CircularProgress
+                    value={(foodItem.protein * 10000) /((foodItem.carbs + foodItem.fat + foodItem.protein) * 100)}
+                    maxValue={100}
+                    valueSuffix="%"
+                    //initialValue={1400}
+                    //<MaterialCommunityIcons name = "fire" />
+                    radius={40}
+                    duration={1}
+                    activeStrokeColor="#9db97d"
+                    inActiveStrokeColor="#B6CB9E"
+                    inActiveStrokeOpacity={0.5}
+                    progressValueColor={"#3C403D"}
+                    progressValueStyle={{ fontSize: 15 }}
+                  />
+                  <Paragraph
+                    style={[
+                      globalstyles.text,
+                      { marginTop: 8, fontSize: 15, textAlign: "center" },
+                    ]}
+                  >
+                    Protein
+                  </Paragraph>
+                </Surface>
+                <Surface
+                  style={[
+                    styles.column,
+                    { backgroundColor: "#fffcef", shadowColor: "#fffcef" },
+                  ]}
+                >
+                  <CircularProgress
+                    value={(foodItem.fat * 10000) /((foodItem.carbs + foodItem.fat + foodItem.protein) * 100)}
+                    maxValue={100}
+                    valueSuffix="%"
+                    //initialValue={1400}
+                    //<MaterialCommunityIcons name = "fire" />
+                    radius={40}
+                    duration={1}
+                    activeStrokeColor="#9db97d"
+                    inActiveStrokeColor="#B6CB9E"
+                    inActiveStrokeOpacity={0.5}
+                    progressValueColor={"#3C403D"}
+                    progressValueStyle={{ fontSize: 15 }}
+                  />
+                  <Paragraph
+                    style={[
+                      globalstyles.text,
+                      { marginTop: 8, fontSize: 15, textAlign: "center" },
+                    ]}
+                  >
+                    Fat
+                  </Paragraph>
+                </Surface>
+              </Surface>
+            </View>
+            )}
+          </Card>
+          <View
               style={{
                 borderBottomColor: "lightgrey",
                 borderBottomWidth: 2,
                 borderStyle: "solid",
                 marginEnd: "5%",
                 marginStart: "5%",
-              }} /></>
+              }} />
+          </Pressable>
     )}
     </Card>
     </ScrollView>

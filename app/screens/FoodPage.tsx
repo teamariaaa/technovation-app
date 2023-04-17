@@ -71,6 +71,7 @@ const RightContent = (foodItem: FoodItem) => () =>
 
 const MealDetailsScreen = ({ navigation, route }: any) => {
   const [meal, setMeal] = useState<FoodItem>(route.params?.foodItem || {});
+  meal.date = new Date().getTime();
 
   // const [visible, setVisible] = React.useState(false);
 
@@ -119,7 +120,7 @@ const MealDetailsScreen = ({ navigation, route }: any) => {
       >
         <Card style={{ backgroundColor: "blue" }}>
           <Card.Cover
-            source={meal.photo}
+            source={{uri : `https://firebasestorage.googleapis.com/v0/b/recovereats-722e7.appspot.com/o/${meal.photo}.jpg?alt=media`}}
             style={{ width: "100%", height: 270, maxHeight: 270 }}
           />
         </Card>

@@ -2,20 +2,11 @@ import React, { useState } from "react";
 import {
   Card,
   IconButton,
-  Paragraph,
-  Portal,
-  Provider,
   Surface,
-  Button,
-  Modal,
-  Title,
 } from "react-native-paper";
-import { StyleSheet, Image, ImageBackground } from "react-native";
-import CircularProgress from "react-native-circular-progress-indicator";
+import { StyleSheet, Image } from "react-native";
 import globalstyles from "../global.styles.js";
 import { Pressable } from "react-native";
-import { View } from "react-native";
-import Icon from "react-native-paper/lib/typescript/src/components/Icon.js";
 import { Dimensions } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
@@ -72,7 +63,7 @@ const FoodItemCard = ({ foodItem }: { foodItem: FoodItem }) => {
   const navigation = useNavigation();
 
   return (
-    <Pressable onPress={() => navigation.navigate("FoodPage", { foodItem })}>
+    <Pressable onPress={() => navigation.navigate("FoodPage", {foodItem})}>
       <Card key={foodItem.id} style={styles.container}>
         <Card.Title
           style={{

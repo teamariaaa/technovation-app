@@ -88,8 +88,9 @@ const DiaryCard = ({day}: { day : Date }) => {
 
   return (
     // <Pressable onPress={() => navigation.navigate("FoodPage", { foodItem })}>
-    <ScrollView style = {{borderColor : "red", borderWidth : 2}}>
+    <ScrollView style = {{height : "45%", backgroundColor : "#EEF5DB"}}>
         {/* <Button onPress = {Clear}> clear </Button> */}
+        <Card style = {{backgroundColor : "#fffcef", borderRadius : 25, marginLeft : 10, marginRight : 10}}>
         {todayItems.map((foodItem, i) =>
       <Card key={i} style={styles.container}>
         <Card.Title
@@ -123,6 +124,7 @@ const DiaryCard = ({day}: { day : Date }) => {
         />
       </Card>
     )}
+    </Card>
     </ScrollView>
   );
 };
@@ -131,7 +133,8 @@ export default DiaryCard;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#EEF5DB",
+    backgroundColor: "#fffcef",
+    shadowColor : "#fffcef",
     marginTop: "3%",
     marginBottom: "2%",
     marginLeft: "3%",

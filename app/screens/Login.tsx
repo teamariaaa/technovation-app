@@ -3,7 +3,6 @@ import { initializeApp } from "firebase/app";
 import firebaseConfig from "../../config/firebase.js";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-//import firebase from "firebase";
 import {
   Dimensions,
   StyleProp,
@@ -30,17 +29,6 @@ const app = firebaseConfig;
 const auth = getAuth(app);
 
 const LoginScreen = ({ navigation }: any) => {
-  // onAuthStateChanged(auth, user => {
-  //     if (user != null) {
-  //         AsyncStorage.setItem('@user', JSON.stringify(user))
-  //             .then(() => navigation.navigate('Main'));
-  //     }
-  // });
-
-  //var database = firebase.database();
-  // save the user's profile into Firebase so we can list users,
-  // use them in Security and Firebase Rules, and show profiles
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [hidePassword, setHidePassword] = useState(true);
@@ -52,12 +40,10 @@ const LoginScreen = ({ navigation }: any) => {
     const auth = getAuth();
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        // Signed in
         setEmailError("");
         setPasswordError("");
         const user = userCredential.user;
         navigation.navigate("Main");
-        // ...
       })
       .catch((error) => {
         setEmailError("");
@@ -65,21 +51,17 @@ const LoginScreen = ({ navigation }: any) => {
         const errorCode = error.code;
         const errorMessage = error.message;
         if (error.code === "auth/user-not-found") {
-          console.log("User not found!");
           setEmailError("Invalid email");
           setPasswordError("Invalide password");
         }
 
         if (error.code === "auth/invalid-email") {
-          console.log("That email address is invalid!");
           setEmailError("That email address is invalid!");
         }
 
         if (error.code === "auth/wrong-password") {
-          console.log("Wrong password!");
           setPasswordError("Wrong password!");
         }
-        console.error(error);
       });
   }
 
@@ -124,8 +106,6 @@ const LoginScreen = ({ navigation }: any) => {
             backgroundColor: "transparent",
             height: 122 * 0.8,
             marginTop: "20%",
-            // width: customAvtardimension,
-            //height: customAvtardimension,
           }}
         />
         <View
@@ -168,7 +148,6 @@ const LoginScreen = ({ navigation }: any) => {
             label="Password"
             style={[
               styles.TextInput,
-              //styles.noTopMargin,
               { marginTop: "5%", height: 50, marginBottom: "5%" },
             ]}
             secureTextEntry={hidePassword}
@@ -186,16 +165,9 @@ const LoginScreen = ({ navigation }: any) => {
         </View>
         <Button
           mode="elevated"
-          style={[
-            styles.myButton,
-            //styles.marginButtonTop,
-            styles.noBottomMargin,
-            { marginTop: "25%" },
-          ]}
+          style={[styles.myButton, styles.noBottomMargin, { marginTop: "25%" }]}
           onPress={() => {
             LogIn();
-            //navigate to main screen
-            //navigation.navigate("Main");
           }}
         >
           <Text style={[styles.text, styles.textBodyLarge]}>Sign in</Text>

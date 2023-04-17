@@ -60,9 +60,6 @@ const ProfileScreen = ({ navigation }: any) => {
   weight = name ? name[4] : "";
   height = name ? name[5] : "";
 
-  console.log(fullName);
-  console.log(name);
-
   return (
     <ScrollView>
       <View style={{ flex: 1, backgroundColor: "#FFFCEF", marginLeft: 0 }}>
@@ -70,7 +67,6 @@ const ProfileScreen = ({ navigation }: any) => {
           style={{
             marginTop: 45,
             marginBottom: 30,
-            //backgroundColor: "red",
           }}
         >
           <Paragraph
@@ -93,7 +89,6 @@ const ProfileScreen = ({ navigation }: any) => {
             { position: "absolute", marginLeft: win.width - 50, marginTop: 35 },
           ]}
           size={25}
-          // onPress={() => navigation.navigate("Start")}
         />
         <View style={{ flex: 20, backgroundColor: "#FFFCEF" }}>
           <Card mode="contained">
@@ -105,7 +100,7 @@ const ProfileScreen = ({ navigation }: any) => {
                 subtitle={age + " years old"}
                 subtitleStyle={[styles.text, styles.hightlightText]}
                 left={LeftContent}
-                leftStyle={{ marginRight: 40 }} //style={{ margin: 10 }}
+                leftStyle={{ marginRight: 40 }}
               />
               <Card.Content style={{ margin: 10 }}>
                 <Title
@@ -291,7 +286,6 @@ const ProfileScreen = ({ navigation }: any) => {
                           <View style={{ paddingRight: 5 }}>
                             <Icon name="pill" color={"#3C403D"} size={14} />
                           </View>
-                          {/* <Icon name="pill" color={"#3C403D"} size={14} /> */}
                           <Text
                             style={[
                               styles.text,
@@ -305,8 +299,6 @@ const ProfileScreen = ({ navigation }: any) => {
 
                         <View
                           style={{
-                            //paddingVertical: 10,
-                            //paddingHorizontal: 10,
                             flexDirection: "row",
                             alignItems: "center",
                             marginTop: 5,
@@ -325,7 +317,6 @@ const ProfileScreen = ({ navigation }: any) => {
                         <View
                           style={{
                             paddingVertical: 10,
-                            //paddingHorizontal: 10,
                             flexDirection: "row",
                             justifyContent: "flex-start",
                             alignItems: "center",
@@ -348,8 +339,6 @@ const ProfileScreen = ({ navigation }: any) => {
 
                         <View
                           style={{
-                            //paddingVertical: 10,
-                            //paddingHorizontal: 10,
                             flexDirection: "row",
                             alignItems: "center",
                             marginTop: 5,
@@ -368,7 +357,6 @@ const ProfileScreen = ({ navigation }: any) => {
                         <View
                           style={{
                             paddingVertical: 10,
-                            //paddingHorizontal: 10,
                             flexDirection: "row",
                             justifyContent: "flex-start",
                             alignItems: "center",
@@ -395,8 +383,6 @@ const ProfileScreen = ({ navigation }: any) => {
 
                         <View
                           style={{
-                            //paddingVertical: 10,
-                            //paddingHorizontal: 10,
                             flexDirection: "row",
                             alignItems: "center",
                             marginTop: 5,
@@ -414,8 +400,6 @@ const ProfileScreen = ({ navigation }: any) => {
 
                         <View
                           style={{
-                            //paddingVertical: 10,
-                            //paddingHorizontal: 10,
                             flexDirection: "row",
                             alignItems: "center",
                             marginTop: 5,
@@ -442,8 +426,6 @@ const ProfileScreen = ({ navigation }: any) => {
 
                         <View
                           style={{
-                            //paddingVertical: 10,
-                            //paddingHorizontal: 10,
                             flexDirection: "row",
                             alignItems: "center",
                             marginTop: 5,

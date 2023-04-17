@@ -31,9 +31,6 @@ import { red100 } from "react-native-paper/lib/typescript/src/styles/themes/v2/c
 import styles from "../global.styles.js";
 import Icon from "react-native-paper/lib/typescript/src/components/Icon.js";
 
-// import database from "@react-native-firebase/database";
-// import { firebase } from "@react-native-firebase/database";
-
 const app = firebaseConfig;
 const auth = getAuth(app);
 
@@ -68,14 +65,8 @@ const UserDataScreen = ({ navigation }: any) => {
           displayName: userName,
           photoURL: "https://example.com/jane-q-user/profile.jpg",
         })
-          .then(() => {
-            console.log(user.displayName);
-            console.log(lastName);
-          })
-          .catch((error) => {
-            // An error occurred
-            // ...
-          });
+          .then(() => {})
+          .catch((error) => {});
 
         navigation.navigate("GoToQuizz");
       }
@@ -134,11 +125,8 @@ const UserDataScreen = ({ navigation }: any) => {
             backgroundColor: "transparent",
             height: 122 * 0.8,
             marginTop: "10%",
-            // width: customAvtardimension,
-            //height: customAvtardimension,
           }}
         />
-        {/* <Icon name="dots-horizontal" size={15} /> */}
         <View
           style={{
             flex: 6,
@@ -160,10 +148,6 @@ const UserDataScreen = ({ navigation }: any) => {
           >
             Based on your data we can calculate the perfect diet and treatment.
           </Paragraph>
-
-          {/* {true && 
-            <View></View>
-          } */}
 
           {currentPage == "userName" ? (
             <View style={{ width: "100%" }}>
@@ -255,7 +239,6 @@ const UserDataScreen = ({ navigation }: any) => {
             mode="elevated"
             style={[
               styles.myButton,
-              //styles.marginButtonTop,
               styles.noBottomMargin,
               { marginTop: "37%", marginBottom: "10%" },
             ]}

@@ -29,9 +29,6 @@ import {
 import { red100 } from "react-native-paper/lib/typescript/src/styles/themes/v2/colors";
 import styles from "../global.styles.js";
 
-// import database from "@react-native-firebase/database";
-// import { firebase } from "@react-native-firebase/database";
-
 const app = firebaseConfig;
 const auth = getAuth(app);
 
@@ -53,14 +50,8 @@ const SignUpcreen = ({ navigation }: any) => {
         displayName: userName,
         photoURL: "https://example.com/jane-q-user/profile.jpg",
       })
-        .then(() => {
-          console.log(user.displayName);
-          console.log(lastName);
-        })
-        .catch((error) => {
-          // An error occurred
-          // ...
-        });
+        .then(() => {})
+        .catch((error) => {});
     }
   }
 
@@ -69,8 +60,6 @@ const SignUpcreen = ({ navigation }: any) => {
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
-        //updateUser();
-        //writeUserData(user.uid, name, email, "");
 
         navigation.navigate("GetUserPersonalData");
       })
@@ -80,25 +69,20 @@ const SignUpcreen = ({ navigation }: any) => {
         const errorCode = error.code;
         const errorMessage = error.message;
         if (error.code === "auth/email-already-in-use") {
-          console.log("That email address is already in use!");
           setEmailError("That email address is already in use!");
         }
 
         if (error.code === "auth/invalid-email") {
-          console.log("That email address is invalid!");
           setEmailError("That email address is invalid!");
         }
 
         if (error.code === "auth/invalide-password") {
-          console.log("invalide-password");
           setPasswordError("invalide-password");
         }
 
         if (error.code === "auth/weak-password") {
-          console.log("weak-password");
           setPasswordError("Password should be at least six characters");
         }
-        console.error(error);
       });
   }
 
@@ -151,8 +135,6 @@ const SignUpcreen = ({ navigation }: any) => {
             backgroundColor: "transparent",
             height: 122 * 0.8,
             marginTop: "20%",
-            // width: customAvtardimension,
-            //height: customAvtardimension,
           }}
         />
 
@@ -194,7 +176,6 @@ const SignUpcreen = ({ navigation }: any) => {
             label="Password"
             style={[
               styles.TextInput,
-              //styles.noTopMargin,
               { marginTop: "5%", height: 50, marginBottom: "5%" },
             ]}
             secureTextEntry={hidePassword}
@@ -212,15 +193,9 @@ const SignUpcreen = ({ navigation }: any) => {
         </View>
         <Button
           mode="elevated"
-          style={[
-            styles.myButton,
-            //styles.marginButtonTop,
-            styles.noBottomMargin,
-            { marginTop: "25%" },
-          ]}
+          style={[styles.myButton, styles.noBottomMargin, { marginTop: "25%" }]}
           onPress={() => {
             signUp();
-            //navigation.navigate("GetUserPersonalData");
           }}
         >
           <Text style={[styles.text, styles.textBodyLarge]}>Sign up</Text>

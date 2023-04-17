@@ -248,7 +248,7 @@ const MealTrackingScreen = ({ navigation }: any) => {
               progressValueStyle={{ fontSize: 40 }}
               inActiveStrokeWidth={18}
               activeStrokeWidth={16}
-              maxValue={1400}
+              maxValue={CALORIE_INTAKE}
               title={"Kcal"}
               titleStyle={{
                 color: "#808080",

@@ -115,41 +115,40 @@ const MealTrackingScreen = ({ navigation }: any) => {
 
   const getTodayMeals = async () => {
     const storedMeals = await AsyncStorage.getItem("@myfood");
-    return storedMeals ? JSON.parse(storedMeals) : [];
+    const foodList = storedMeals ? JSON.parse(storedMeals) : [];
+    const filteredItems = foodList.filter(
+      (d: FoodItem) =>
+        new Date(d.date).toDateString() === new Date().toDateString()
+    )
+    setTodayItems(filteredItems);
+    const stats = filteredItems.reduce(
+      (acc: any, food: FoodItem) => {
+        acc.calories += food.calories;
+        acc.carbs += food.carbs;
+        acc.protein += food.protein;
+        acc.fat += food.fat;
+        return acc;
+      },
+      { calories: 0, carbs: 0, protein: 0, fat: 0 }
+    );
+
+    setTodayCal(stats.calories);
+    setTodayCarbs(stats.carbs);
+    setTodayProtein(stats.protein);
+    setTodayFat(stats.fat);
+    // console.log(stats);
     // setTodayItems(foodList.filter((d) => new Date(d.date).toDateString() === day.toDateString()));
   };
 
   const [todayCal, setTodayCal] = useState<number>(0);
   const [todayCarbs, setTodayCarbs] = useState<number>(0);
   const [todayProtein, setTodayProtein] = useState<number>(0);
-  const [todayFat, setTodayFat] = useState<number>(0);
-
+  const [todayFat, setTodayFat] = useState<number>(0)
+  
   useEffect(() => {
-    getTodayMeals().then((foodList) => {
-      setTodayItems(
-        foodList.filter(
-          (d: FoodItem) =>
-            new Date(d.date).toDateString() === new Date().toDateString()
-        )
-      );
-      const stats = todayItems.reduce(
-        (acc: any, food: FoodItem) => {
-          acc.calories += food.calories;
-          acc.carbs += food.carbs;
-          acc.protein += food.protein;
-          acc.fat += food.fat;
-          return acc;
-        },
-        { calories: 0, carbs: 0, protein: 0, fat: 0 }
-      );
-
-      setTodayCal(stats.calories);
-      setTodayCarbs(stats.carbs);
-      setTodayProtein(stats.protein);
-      setTodayFat(stats.fat);
-      console.log(stats);
-    });
+    getTodayMeals();
   }, []);
+
 
   // const progress = <Paragraph style={globalstyles.textBold}>388</Paragraph>;
   const auth = getAuth();
@@ -180,6 +179,17 @@ const MealTrackingScreen = ({ navigation }: any) => {
   const PROTEIN_INTAKE = (BMR * 30) / 900;
   const FAT_INTAKE = (BMR * 20) / 400;
 
+  // const CALORIE_INTAKE =1400;
+  // const CARBS_INTAKE = 200;
+  // const PROTEIN_INTAKE = 200;
+  // const FAT_INTAKE = 200;
+  // console.log(height, weight, age);
+  // console.log("height =", height);
+  // console.log("weight =", weight);
+  // console.log("age =", age);
+  // console.log("BMR =", BMR);
+  // console.log(CALORIE_INTAKE, CARBS_INTAKE, PROTEIN_INTAKE, FAT_INTAKE);
+
   return (
     <ScrollView style={{ backgroundColor: "#FFFCEF" }}>
       <View style={{ flex: 1, backgroundColor: "#FFFCEF", marginLeft: 0 }}>
@@ -194,8 +204,8 @@ const MealTrackingScreen = ({ navigation }: any) => {
             style={{
               flex: 1,
               backgroundColor: "#FFFCEF",
-              marginLeft: 10,
-              marginRight: 10,
+              marginLeft: 15,
+              marginRight: 3,
             }}
           >
             <Avatar.Image
@@ -205,7 +215,7 @@ const MealTrackingScreen = ({ navigation }: any) => {
             <Button
               mode="contained-tonal"
               style={[
-                { backgroundColor: "#EEF5DB", marginLeft: win.width - 170 }, //"#e4ede4"
+                { backgroundColor: "#EEF5DB", marginLeft: win.width - 180 }, //"#e4ede4"
               ]}
               onPress={() => navigation.navigate("Diary")}
             >
@@ -213,7 +223,7 @@ const MealTrackingScreen = ({ navigation }: any) => {
             </Button>
           </Appbar.Header>
         </View>
-        <Paragraph style={[globalstyles.titleLarge, { bottom: 13, left: 15 }]}>
+        <Paragraph style={[globalstyles.titleLarge, { bottom: 13, left: 25 }]}>
          Hello, {name ? name[1] : ""}!
         </Paragraph>
         <Card style={globalstyles.idkContainer}>
@@ -283,8 +293,8 @@ const MealTrackingScreen = ({ navigation }: any) => {
                     Carbs
                   </Paragraph>
                 </View>
-                <Paragraph style={globalstyles.lightText2}>
-                  {Math.round(((CARBS_INTAKE - todayCarbs) * 10) / 10)}g left
+                <Paragraph style={[globalstyles.lightText2, {textAlign : "center"}]}>
+                  {Math.max(Math.round(((CARBS_INTAKE - todayCarbs) * 10) / 10), 0)}g left
                 </Paragraph>
               </Surface>
               <Surface
@@ -317,8 +327,8 @@ const MealTrackingScreen = ({ navigation }: any) => {
                 >
                    left
                 </Paragraph> */}
-                <Paragraph style={globalstyles.lightText2}>
-                  {Math.round(((PROTEIN_INTAKE - todayProtein) * 10) / 10)}g
+                <Paragraph style={[globalstyles.lightText2, {textAlign : "center"}]}>
+                  {Math.max(Math.round(((PROTEIN_INTAKE - todayProtein) * 10) / 10), 0)}g
                   left
                 </Paragraph>
               </Surface>
@@ -352,8 +362,8 @@ const MealTrackingScreen = ({ navigation }: any) => {
                 >
                   {FAT_INTAKE - todayFat}g left
                 </Paragraph> */}
-                <Paragraph style={globalstyles.lightText2}>
-                  {Math.round(((FAT_INTAKE - todayFat) * 10) / 10)}g left
+                <Paragraph style={[globalstyles.lightText2, {textAlign : "center"}]}>
+                  {Math.max(Math.round(((FAT_INTAKE - todayFat) * 10) / 10), 0)}g left
                 </Paragraph>
               </Surface>
             </Surface>

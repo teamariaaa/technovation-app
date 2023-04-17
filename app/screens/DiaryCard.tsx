@@ -21,6 +21,7 @@ import { useNavigation } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import CardContent from "react-native-paper/lib/typescript/src/components/Card/CardContent.js";
 import moment from "moment";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
 export interface FoodItem {
   id: number;
@@ -59,6 +60,31 @@ const LeftContent = (foodItem: FoodItem) => () => {
 };
 
 const DiaryCard = ({ day }: { day: Date }) => {
+
+  const auth = getAuth();
+  const user = auth.currentUser;
+
+  let fullName = user?.displayName;
+  let age;
+  let gender;
+  let weight;
+  let height;
+
+  let name;
+  let BMR;
+  // const [BMR, setBRM] = useState(0);
+  name = fullName?.split("$");
+  fullName = name ? name[0] + " " + name[1] : "";
+  age = name ? parseInt(name[2]) : 0;
+  gender = name ? name[3] : "";
+  weight = name ? parseInt(name[4]) : 0;
+  height = name ? parseInt(name[5]) : 0;
+
+  if (gender === "female")
+    BMR = 447.593 + 9.247 * weight + 3.098 * height - 4.33 * age;
+  else BMR = 88.362 + 13.397 * weight + 4.799 * height - 5.677 * age;
+
+  const CALORIE_INTAKE = Math.round(BMR * 137.5/100);
   // const [visible, setVisible] = useState<boolean[]>([]);
   // setVisible(visible.filter((d : boolean) => ))}
   const [visible, setVisible] = useState<number>(-1);
@@ -82,13 +108,12 @@ const DiaryCard = ({ day }: { day: Date }) => {
 
   useEffect(() => {
     addMeal().then((foodList) => {
-      setTodayItems(
-        foodList.filter(
-          (d: FoodItem) =>
-            new Date(d.date).toDateString() === day.toDateString()
-        )
-      );
-      const stats = todayItems.reduce(
+      const filteredItems = foodList.filter(
+        (d: FoodItem) =>
+          new Date(d.date).toDateString() === day.toDateString()
+      )
+      setTodayItems(filteredItems);
+      const stats = filteredItems.reduce(
         (acc: any, food: FoodItem) => {
           acc.calories += food.calories;
           acc.carbs += food.carbs;
@@ -98,7 +123,6 @@ const DiaryCard = ({ day }: { day: Date }) => {
         },
         { calories: 0, carbs: 0, protein: 0, fat: 0 }
       );
-
       setTodayCal(stats.calories);
     });
   }, [day]);
@@ -146,7 +170,7 @@ const DiaryCard = ({ day }: { day: Date }) => {
               ]}
             />
             <Card.Content>
-              <Surface style={[styles.row2, { backgroundColor: "#fffcef" }]}>
+              <Surface style={[styles.row2, { backgroundColor: "#fffcef" , marginTop : "-2.5%"}]}>
                 <IconButton
                   icon="fire"
                   iconColor="#A0A0A0"
@@ -165,6 +189,20 @@ const DiaryCard = ({ day }: { day: Date }) => {
                   }}
                 >
                   {todayCal} kcal
+                </Paragraph>
+                <Paragraph
+                  // left={LeftContent(meal)}
+                  style={{
+                    color: "#B6CB9E",
+                    fontFamily: "Cabin",
+                    fontSize: 19,
+                    marginLeft: 7,
+                    paddingTop: "3%",
+                    marginTop: "2%",
+                    // alignSelf: "flex-start",
+                  }}
+                >
+                  / {CALORIE_INTAKE}kcal
                 </Paragraph>
               </Surface>
             </Card.Content>
@@ -195,7 +233,7 @@ const DiaryCard = ({ day }: { day: Date }) => {
               ]}
             />
             <Card.Content>
-              <Surface style={[styles.row2, { backgroundColor: "#fffcef" }]}>
+              <Surface style={[styles.row2, { backgroundColor: "#fffcef",  marginTop : "-2.5%"}]}>
                 <IconButton
                   icon="fire"
                   iconColor="#A0A0A0"
@@ -205,7 +243,7 @@ const DiaryCard = ({ day }: { day: Date }) => {
                 <Paragraph
                   // left={LeftContent(meal)}
                   style={{
-                    color: "#808080",
+                    color: "#B6CB9E",
                     fontFamily: "Cabin",
                     fontSize: 23,
                     paddingTop: "3%",
@@ -214,6 +252,20 @@ const DiaryCard = ({ day }: { day: Date }) => {
                   }}
                 >
                   {todayCal} kcal
+                </Paragraph>
+                <Paragraph
+                  // left={LeftContent(meal)}
+                  style={{
+                    color: "#ADADC9",
+                    fontFamily: "Cabin",
+                    fontSize: 19,
+                    marginLeft: 7,
+                    paddingTop: "3%",
+                    marginTop: "2%",
+                    // alignSelf: "flex-start",
+                  }}
+                >
+                  / {CALORIE_INTAKE}kcal
                 </Paragraph>
               </Surface>
             </Card.Content>
@@ -404,7 +456,7 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: "#fffcef",
     shadowColor: "#fffcef",
-    marginTop: "3%",
+    marginTop: "0%",
     marginBottom: "2%",
     marginLeft: "3%",
     marginRight: "3%",

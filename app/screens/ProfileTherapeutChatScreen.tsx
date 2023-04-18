@@ -42,7 +42,6 @@ const ProfileTherapeutChatScreen = ({ route, navigation }: Props) => {
     setMessage("");
   };
 
-  // const navigation1 = useNavigation();
   return (
     <KeyboardAvoidingView
       style={{
@@ -123,8 +122,6 @@ const ProfileTherapeutChatScreen = ({ route, navigation }: Props) => {
         <View
           style={{
             height: 70,
-            // height: Dimensions.get("window").height * 0.2,
-            // width: Dimensions.get("window").width,
             display: "flex",
             flexDirection: "row",
             justifyContent: "space-evenly",
@@ -139,7 +136,7 @@ const ProfileTherapeutChatScreen = ({ route, navigation }: Props) => {
               borderBottomLeftRadius: 20,
               marginLeft: 15,
               backgroundColor: "#FFF2BC",
-            }} //"#eeeee4"}}
+            }}
             value={message}
             activeUnderlineColor="#FFF2BC"
             underlineColor="#FFF2BC"
@@ -149,7 +146,6 @@ const ProfileTherapeutChatScreen = ({ route, navigation }: Props) => {
           <Button
             style={{
               backgroundColor: "#c1dbc1",
-              // width: 80,
               height: 56,
               borderRadius: 20,
               position: "relative",
@@ -188,15 +184,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "flex-start",
     maxHeight :110,
-    // paddingVertical: 10,
     marginTop: "10%",
     marginBottom: "0%",
-    // marginBottom: "2%",
   },
 
   rightArrow: {
     position: "absolute",
-    // backgroundColor: "#2a9d8f",
     backgroundColor: "#DBEAB3",
     width: 20,
     height: 25,
@@ -207,7 +200,6 @@ const styles = StyleSheet.create({
   rightArrowOverlap: {
     position: "absolute",
     backgroundColor: "#fff",
-    //backgroundColor:"green",
     width: 20,
     height: 35,
     bottom: -6,
@@ -217,7 +209,6 @@ const styles = StyleSheet.create({
   leftArrow: {
     position: "absolute",
     backgroundColor: "#EEF5DB",
-    // backgroundColor:"red",
     width: 20,
     height: 25,
     bottom: 0,
@@ -228,7 +219,6 @@ const styles = StyleSheet.create({
   leftArrowOverlap: {
     position: "absolute",
     backgroundColor: "#fff",
-    //backgroundColor:"green",
     width: 20,
     height: 35,
     bottom: -6,

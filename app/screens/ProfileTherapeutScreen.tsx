@@ -58,12 +58,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "flex-start",
     maxHeight :80,
-    // paddingVertical: 10,
-    // marginTop: "5%",
-    // marginBottom: "0%",
-    // marginBottom: "2%",
-    // borderColor : "red",
-    // borderWidth : 3,
   },
 
   container: {
@@ -71,8 +65,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#fffcef",
     alignItems: "center",
     justifyContent: "center",
-    // borderColor : "red",
-    // borderWidth : 3,
   },
   profileImage: {
     width: 120,
@@ -84,7 +76,6 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: "bold",
     color: "#333333",
-    // marginBottom: 20,
     textAlign: "center",
   },
   infoContainer: {

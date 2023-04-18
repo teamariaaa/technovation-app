@@ -230,10 +230,6 @@ const WeCareScreen = ({ navigation }: any) => {
   <SafeAreaView style={styles.container}>
   <Animated.FlatList
           data = {persons}
-        //  onScroll={Animated.event(
-        //    [{nativeEvent: {contentOffset: {y: scrollY}}}],
-        //    {useNativeDriver: true}
-        //  )}
           keyExtractor={(item) => item.id}
           ListEmptyComponent={myListEmpty}
           ListHeaderComponent={() => (
@@ -243,7 +239,6 @@ const WeCareScreen = ({ navigation }: any) => {
                   fontWeight: "400",
                   letterSpacing: 0,
                   lineHeight: 36,
-                  // marginTop: "30%",
                   marginBottom: "15%",
                   color: "#333333",
                   textAlign: 'center'}}>Therapists</Text>
@@ -282,7 +277,7 @@ const WeCareScreen = ({ navigation }: any) => {
               padding : SPACING, 
               marginBottom : SPACING, 
               elevation : 2,
-              backgroundColor : "#EEF5DB",//'#c1dbc1', 
+              backgroundColor : "#EEF5DB",
               borderRadius : 12, 
               shadowColor : "#000",  
               shadowOffset : {width : 0, height : 10}, 
@@ -300,7 +295,6 @@ const WeCareScreen = ({ navigation }: any) => {
               source={{ uri: item.avatarURL }}
               style={{ width: ITEM_SIZE / 2, height: ITEM_SIZE / 2, borderRadius: ITEM_SIZE / 4 }}
             />
-              {/* <Text style={{ fontSize: 18, fontWeight: "600", textDecorationColor: "#246324"}}>{item.name}</Text> */}
                     <Text style={{ fontSize: 18, fontWeight: "600", textDecorationColor: "#246324"}}>{item.name}</Text>
                     <Text style={{ fontFamily: "Cabin", fontSize: 16, fontWeight: "400", letterSpacing: 0.15, lineHeight: 21}}>{item.description}</Text>
             </View>

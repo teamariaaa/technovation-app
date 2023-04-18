@@ -3,21 +3,14 @@ import {
   View,
   Text,
   StyleSheet,
-  TouchableOpacity,
-  TouchableWithoutFeedbackProps,
   ScrollView,
-  ImageBackground,
   Image,
   Dimensions,
 } from "react-native";
 import {
-  Surface,
-  Card,
-  Paragraph,
   Button,
   IconButton,
 } from "react-native-paper";
-import { FlipInEasyX } from "react-native-reanimated";
 
 const BreathingScreen = ({ navigation }: any) => {
   const [isBreathingCycleInProgress, setIsBreathingCycleInProgress] =

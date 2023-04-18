@@ -1,37 +1,19 @@
-import React, { useState } from "react";
+import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import {
   StyleSheet,
   View,
   Text,
-  Dimensions,
   ScrollView,
   TouchableOpacity,
   Linking,
 } from "react-native";
-import MainLayout from "./Layout";
 import {
-  Card,
-  Paragraph,
   Avatar,
-  Title,
-  Chip,
-  Surface,
-  Button,
   IconButton,
-  DataTable,
 } from "react-native-paper";
-//import styles from "../global.styles.js";
-import Icon from "@expo/vector-icons/MaterialCommunityIcons";
 
 const Stack = createNativeStackNavigator();
-
-const LeftContent = () => (
-  <Avatar.Image
-    size={70}
-    source={require("../../assets/profilePicture.jpeg")}
-  />
-);
 
 const ResourcesScreen = ({ navigation }: any) => {
   const resources = [
@@ -85,7 +67,6 @@ const ResourcesScreen = ({ navigation }: any) => {
               display: "flex",
               flexDirection: "row",
               justifyContent: "flex-start",
-              //marginBottom: "10%",
             }}
           >
             <IconButton
@@ -98,7 +79,6 @@ const ResourcesScreen = ({ navigation }: any) => {
               size={20}
               onPress={() => navigation.navigate("SelfCare")}
             />
-            {/* <Text style={styles.buttonText}> Try our exercise for relaxing </Text> */}
             <Text
               style={[
                 styles.text,
@@ -161,7 +141,7 @@ const styles = StyleSheet.create({
   resourceDescription: {
     fontSize: 16,
     fontFamily: "Cabin",
-    color: "#999999", // light grey color code
+    color: "#999999",
   },
   text: {
     color: "#3C403D",
